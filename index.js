@@ -31,6 +31,5 @@ client.on ('message', msg =>{
                 case 'commands':
                     msg.channel.send ('```Commands are BotInfo version, BotInfo author, belt, test```')
                     break;
-                case '':
             }
 }})
