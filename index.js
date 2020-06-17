@@ -20,9 +20,6 @@ client.on ('message', msg =>{
             msg.channel.send ('ALRIGHT YOU AINT LISTENIN SO YOURE GETTING THE BELT!') ;
             msg.channel.send ('https://cdn.discordapp.com/attachments/618926084750180363/721009676849905725/belt.jpg')
             break;
-        case 'test':
-            msg.reply ('jack did something right in life')
-            break;
         case 'BotInfo':
             switch (args[1]) {
                 case 'version':
@@ -36,12 +33,4 @@ client.on ('message', msg =>{
                     break;
                 case '':
             }
-        case 'rank':
-            switch (args[1]) {
-                case 'promote':
-                    client.channels.fetch('719955731821887602')
-                  .then(channel.messages.fetch (limit = 1),)
-                  .then (console.log (channel.messages)) 
-                    }
-            }
-})
+}})
