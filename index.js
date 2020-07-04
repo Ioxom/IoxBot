@@ -78,4 +78,8 @@ client.on ('message', msg => {
 			}
 
 	}
+<<<<<<< Updated upstream
 })
+=======
+})
+>>>>>>> Stashed changes
