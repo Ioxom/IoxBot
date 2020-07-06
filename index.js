@@ -1,64 +1,73 @@
-const { Client, MessageAttachment } = require('discord.js');
+const { Client, MessageAttachment, MessageEmbed } = require('discord.js');
 const client = new Client();
 const prefix = ('-');
-const token = ('NzIyODM1MjkwNjQ0ODA3NzEx.Xuo3vQ.ZFGQOKOxVdE0VosQMcDjHc4d8Ww');
+//a couple variables for making updating things easier
 const version = '1.0.0';
-var commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, belt, uno_reverse_card, are_they_groovin? (in progress)'
-client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.Xuo3vQ.ZFGQOKOxVdE0VosQMcDjHc4d8Ww') ;
+const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, belt, uno_reverse_card, are_they_groovin?'
+client.login ('this isnt going to be on the github anymore') ;
 
 //sends a message in console when the bot successfully starts up
-client.once ('ready', () =>{
+client.once ('ready', () => {
 	console.log ('bot initialized successfully') ;
 })
 
-client.on ('message', msg => {
-	if (msg.content === '-belt') {
-	  // Create the belt attachment using MessageAttachment
-	  const beltAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/618926084750180363/721009676849905725/belt.jpg');
-	  msg.channel.send ('ALRIGHT YOU AIN\'T LISTENIN\' SO YOU\'RE GETTING THE BELT!')
-	  msg.channel.send (beltAttachment);
-	}
-});
-
 //this is where new commands are added
-client.on ('message', msg =>{
+client.on ('message', msg => {
+	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
 	var args = msg.content.substring (prefix.length) .split (" ");
+
 	switch (args[0]) {
+		case 'belt':
+			// Create the belt attachment using MessageAttachment
+			const beltAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/618926084750180363/721009676849905725/belt.jpg');
+			msg.channel.send ('ALRIGHT YOU AIN\'T LISTENIN\' SO YOU\'RE GETTING THE BELT!')
+			msg.channel.send (beltAttachment);
+			return;
 		case 'uno_reverse_card':
-			msg.channel.send ('https://cdn.discordapp.com/attachments/642003331656581170/717832539896807434/nxeiZ78_ZCkQvMGkZ7fSTmixJ2ey4JCSlOuyKQL6Gos-1.png')
-			break;
-		case 'are_they_groovin?':
-			var groovin = (Math.floor (Math.random() * 10 ))
-			console.log (groovin)
-			if (groovin = 1) {
-				msg.channel.send ('https://cdn.discordapp.com/attachments/618926084750180363/717833399825334303/Screen_Shot_2019-07-31_at_12.png')
-				return;
-			}
-			if (groovin = 1,2,3,4,5,6,7,8,9,10) {
-				msg.channel.send ('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQnpJBB55my5LQ-7rf3LVTqMdAYwVPJ2VwnD8dbgq22qEA4DiiC&usqp=CAU')
-				return;
-			}
+			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/642003331656581170/717832539896807434/nxeiZ78_ZCkQvMGkZ7fSTmixJ2ey4JCSlOuyKQL6Gos-1.png')
+			msg.channel.send (unoAttachment)
+			return;
 		case 'what\'s_a_tortoise':
 			msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.')
-			break;
+			return;
+		case 'are_they_groovin?':
+			const groovinAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/618926084750180363/717833399825334303/Screen_Shot_2019-07-31_at_12.png');
+			msg.channel.send (groovinAttachment)
+			return;
 		case 'BotInfo':
 			switch (args[1]) {
 				case 'version':
-					msg.channel.send ('```IoxBot version is ' + version + '```');
+					const versionEmbed = new MessageEmbed()
+						.setTitle (version)
+						.setColor (0x00FF00)
+					msg.channel.send (versionEmbed)
 					return;
 				case 'author':
-					msg.channel.send ('```IoxBot, made by Ioxom```');
+					const authorEmbed = new MessageEmbed()
+						//set the title of the embed
+						.setTitle ('IoxBot has been programmed by Ioxom')
+						// Set the color of the embed's side thingy
+						.setColor (0x00FF00)
+    					// Set the main content of the embed
+						.setDescription ('Ioxom is cool give him your cash money')
+					// Send the embed to the same channel as the message
+					msg.channel.send (authorEmbed)
 					return;
 				case 'commands':
-					msg.channel.send ('```Commands are ' + commands + '```')
+					const commandsEmbed = new MessageEmbed()
+						.setTitle ('IoxBot\'s commands are :')
+						.setColor (0x00FF00)
+						.setDescription (commands);
+					msg.channel.send (commandsEmbed)
 					return;
 				case 'GitHub':
-					msg.channel.send ('```https://github.com/Ioxom/IoxBot```')
+					const githubEmbed = new MessageEmbed()
+						.setTitle ('Source code For IoxBot can be found here')
+    					.setColor (0x00FF00)
+    					.setDescription ('https://github.com/Ioxom/Ioxbot');
+					msg.channel.send (githubEmbed)
 					return;
-
 			}
 
 	}
 })
-
-a
