@@ -9,3 +9,6 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 -uno_reverse_card | Pull a no u on the haters.
 
 -are_they_groovin? | Are they?
+
+# Recent Updates
+2020/07/04 - Remove links for images using function MessageAttachment
