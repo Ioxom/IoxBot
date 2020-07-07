@@ -6,7 +6,7 @@ const version = '1.1.0';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, belt, uno_reverse_card, are_they_groovin?';
 const lastUpdate = 'July 6th, 2020';
 //logs in the bot
-client.login ('I\'ve already regenerated the token is mine alone');
+client.login ('no');
 
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
@@ -15,7 +15,9 @@ client.once ('ready', () => {
 
 //this is where new commands are added
 client.on ('message', msg => {
+	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
+	//splits the arguments at every space
 	var args = msg.content.substring (prefix.length) .split (" ") ;
 
 	switch (args[0]) {
@@ -55,7 +57,7 @@ client.on ('message', msg => {
 					const authorEmbed = new MessageEmbed ()
 						//set the title of the embed
 						.setTitle ('IoxBot has been programmed by Ioxom')
-						// Set the color of the embed's side thingy
+						// Set the color of the embed's side thingy, in this case green
 						.setColor (0x00FF00)
     					// Set the main content of the embed
 						.setDescription ('Ioxom is cool give him your cash money');
@@ -77,6 +79,5 @@ client.on ('message', msg => {
 					msg.channel.send (githubEmbed);
 					return;
 			}
-
 	}
 })
