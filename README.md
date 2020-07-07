@@ -12,5 +12,7 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 
 # Recent Updates
 2020/07/06 - Add new BotInfo command, "creation_date"
+
 2020/07/06 - Convert all BotInfo commands to embeds, various improvements
+
 2020/07/04 - Remove links for images using function MessageAttachment
