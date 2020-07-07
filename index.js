@@ -4,8 +4,9 @@ const prefix = ('-');
 //a couple variables for making updating things easier
 const version = '1.1.0';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, belt, uno_reverse_card, are_they_groovin?';
+const lastUpdate = 'July 6th, 2020';
 //logs in the bot
-client.login ('this won\'t be on the github anymore');
+client.login ('I\'ve already regenerated the token is mine alone');
 
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
@@ -37,6 +38,13 @@ client.on ('message', msg => {
 			return;
 		case 'BotInfo':
 			switch (args[1]) {
+				case 'creation_date':
+					const dateEmbed = new MessageEmbed ()
+						.setTitle ('Created on June 17th, 2020')
+						.setColor (0x00FF00)
+						.setDescription ('Last update was ' + (lastUpdate));
+					msg.channel.send (dateEmbed);
+					return;
 				case 'version':
 					const versionEmbed = new MessageEmbed ()
 						.setTitle (version)
