@@ -6,7 +6,7 @@ const version = '1.1.0';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, belt, uno_reverse_card, are_they_groovin?';
 const lastUpdate = 'July 6th, 2020';
 //logs in the bot
-client.login ('no');
+client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
