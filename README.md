@@ -11,6 +11,8 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 -are_they_groovin? | Are they?
 
 # Recent Updates
+2020/07/09 - Make the code a bit easier easier to understand using comments
+
 2020/07/06 - Add new BotInfo command, "creation_date"
 
 2020/07/06 - Convert all BotInfo commands to embeds, various improvements
