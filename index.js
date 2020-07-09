@@ -4,7 +4,7 @@ const prefix = ('-');
 //a couple variables for making updating things easier
 const version = '1.1.0';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, belt, uno_reverse_card, are_they_groovin?';
-const lastUpdate = 'July 6th, 2020';
+const lastUpdate = 'July 9th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 
@@ -19,13 +19,12 @@ client.on ('message', msg => {
 	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
 	//splits the arguments at every space
 	var args = msg.content.substring (prefix.length) .split (" ") ;
-
 	switch (args[0]) {
 		case 'belt':
 			// Create the belt attachment using MessageAttachment
 			const beltAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/618926084750180363/721009676849905725/belt.jpg');
 			//send some text to the channel that the command was sent to
-			msg.channel.send ('ALRIGHT YOU AIN\'T LISTENIN\' SO YOU\'RE GETTING THE BELT!')
+			msg.channel.send ('ALRIGHT YOU AIN\'T LISTENIN\' SO YOU\'RE GETTING THE BELT!');
 			//send the attachment made a couple lines ago
 			msg.channel.send (beltAttachment);
 			//makes sure that the next command isn't executed immediately after this one
