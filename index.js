@@ -24,8 +24,11 @@ client.on ('message', msg => {
 		case 'belt':
 			// Create the belt attachment using MessageAttachment
 			const beltAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/618926084750180363/721009676849905725/belt.jpg');
+			//send some text to the channel that the command was sent to
 			msg.channel.send ('ALRIGHT YOU AIN\'T LISTENIN\' SO YOU\'RE GETTING THE BELT!')
+			//send the attachment made a couple lines ago
 			msg.channel.send (beltAttachment);
+			//makes sure that the next command isn't executed immediately after this one
 			return;
 		case 'uno_reverse_card':
 			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/642003331656581170/717832539896807434/nxeiZ78_ZCkQvMGkZ7fSTmixJ2ey4JCSlOuyKQL6Gos-1.png');
