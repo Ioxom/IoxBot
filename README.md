@@ -4,7 +4,7 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 # Commands
 -belt | Abuse your friends!
 
--BotInfo | Information about the bot. Includes author, GitHub, commands and version.
+-BotInfo | Information about the bot. Includes author, GitHub, commands, creation_date and version.
 
 -uno_reverse_card | Pull a no u on the haters.
 
