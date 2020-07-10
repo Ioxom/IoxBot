@@ -2,7 +2,7 @@ const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
 const prefix = ('-');
 //a couple variables for making updating things easier
-const version = '1.1.0';
+const version = '1.2.0';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, belt, uno_reverse_card, are_they_groovin?';
 const lastUpdate = 'July 9th, 2020';
 //logs in the bot
