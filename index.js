@@ -18,7 +18,7 @@ client.on ('message', msg => {
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
 	//splits the arguments at every space
-	var args = msg.content.substring (prefix.length) .split (" ") ;
+	var args = msg.content.substring (prefix.length) .split (" ");
 	switch (args[0]) {
 		case 'belt':
 			// Create the belt attachment using MessageAttachment
