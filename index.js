@@ -1,9 +1,9 @@
-const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
+const { Client, MessageAttachment, MessageEmbed, Message } = require ('discord.js');
 const client = new Client ();
 const prefix = ('-');
 //a couple variables for making updating things easier
-const version = '1.2.0';
-const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card, are_they_groovin?';
+const version = '1.3.0';
+const commands = ' With prefix : BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card, are_they_groovin? No prefix : no u, E, IoxBot';
 const lastUpdate = 'July 9th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
@@ -15,6 +15,20 @@ client.once ('ready', () => {
 
 //this is where new commands are added
 client.on ('message', msg => {
+	//prefixless commands
+	if (msg.content.startsWith ('E')) {
+		if (msg.author.bot) return;
+		msg.channel.send ('E');
+	}
+	if (msg.content.startsWith ('no u')) {
+		if (msg.author.bot) return;
+		msg.channel.send ('no u');
+	}
+	if (msg.content.startsWith ('IoxBot')) {
+		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/294758024877178880/722042809695207444/7x8rp0xnxiv31.png');
+		if (msg.author.bot) return;
+		msg.channel.send (whomstAttachment);
+	}
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
 	//splits the arguments at every space
