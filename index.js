@@ -4,7 +4,7 @@ const prefix = ('-');
 //a couple variables for making updating things easier
 const version = '1.3.0';
 const commands = ' With prefix : BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card, are_they_groovin? No prefix : no u, E, IoxBot';
-const lastUpdate = 'July 9th, 2020';
+const lastUpdate = 'July 11th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 

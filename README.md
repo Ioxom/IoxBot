@@ -10,7 +10,11 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 
 -are_they_groovin? | Are they?
 
+And a couple prefixless commands, no u, E, and IoxBot. It's up to you to find out what they return.
+
 # Recent Updates
+2020/07/11 - Add prefixless commands, anticipate lillia launch
+
 2020/07/09 - Make the code a bit easier easier to understand using comments
 
 2020/07/06 - Add new BotInfo command, "creation_date"
