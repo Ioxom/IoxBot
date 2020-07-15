@@ -5,7 +5,7 @@ const prefix = ('-');
 const version = '1.4.0';
 const prefixlessCommands = 'no u, E, rip, hello IoxBot and IoxBot';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card and are_they_groovin?';
-const lastUpdate = 'July 14th, 2020';
+const lastUpdate = 'July 15th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 
@@ -20,12 +20,25 @@ client.on ('message', msg => {
 	if (msg.content.startsWith ('E')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('E');
+	} else if (msg.content.endsWith('E')) {
+		if (msg.author.bot) return;
+		msg.channel.send ('E');
+	} else if (msg.content.startsWith ('e')) {
+		if (msg.author.bot) return;
+		msg.channel.send ('E');
+	} else if (msg.content.endsWith('e')) {
+		if (msg.author.bot) return;
+		msg.channel.send ('E');
 	}
-	if (msg.content.startsWith ('no u')) {
+	if (msg.content = ('no u')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('no u');
 	}
 	if (msg.content.startsWith ('IoxBot')) {
+		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/294758024877178880/722042809695207444/7x8rp0xnxiv31.png');
+		if (msg.author.bot) return;
+		msg.channel.send (whomstAttachment);
+	} else if (msg.content.endsWith ('IoxBot')) {
 		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/294758024877178880/722042809695207444/7x8rp0xnxiv31.png');
 		if (msg.author.bot) return;
 		msg.channel.send (whomstAttachment);
@@ -35,7 +48,7 @@ client.on ('message', msg => {
 		if (msg.author.bot) return;
 		msg.channel.send (ripAttachment);
 	}
-	if (msg.content.startsWith ('hello IoxBot')) {
+	if (msg.content = ('hello IoxBot')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
 	}
