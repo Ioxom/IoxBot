@@ -17,10 +17,12 @@ client.once ('ready', () => {
 //this is where new commands are added
 client.on ('message', msg => {
 	//prefixless commands
+	//checks if the message begins with "E"
 	if (msg.content.startsWith ('E')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('E');
 		return;
+	//checks if the message ends with "E"
 	} else if (msg.content.endsWith('E')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('E');
@@ -49,6 +51,7 @@ client.on ('message', msg => {
 	}
 	if (msg.content.startsWith ('hello IoxBot')) {
 		if (msg.author.bot) return;
+		//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
 		msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
 		return;
 	}
