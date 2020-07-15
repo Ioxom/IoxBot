@@ -10,7 +10,7 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 
 -are_they_groovin? | Are they?
 
-And a couple prefixless commands, no u, E, rip, and IoxBot. It's up to you to find out what they return.
+And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
 2020/07/11 - Add prefixless commands, anticipate lillia launch

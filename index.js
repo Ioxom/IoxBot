@@ -2,9 +2,9 @@ const { Client, MessageAttachment, MessageEmbed, Message } = require ('discord.j
 const client = new Client ();
 const prefix = ('-');
 //a couple variables for making updating things easier
-const version = '1.3.0';
+const version = '1.4.0';
 const commands = ' With prefix : BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card, are_they_groovin? No prefix : no u, E, rip and IoxBot';
-const lastUpdate = 'July 11th, 2020';
+const lastUpdate = 'July 14th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 
@@ -33,6 +33,10 @@ client.on ('message', msg => {
 		const ripAttachment = new MessageAttachment ('https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2013/11/rip-786x305.jpg');
 		if (msg.author.bot) return;
 		msg.channel.send (ripAttachment);
+	}
+	if (msg.content.startsWith ('hello IoxBot')) {
+		if (msg.author.bot) return;
+		msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
 	}
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
@@ -96,7 +100,7 @@ client.on ('message', msg => {
 					const githubEmbed = new MessageEmbed()
 						.setTitle ('Source code For IoxBot can be found here')
     					.setColor (0x00FF00)
-    					.setDescription ('https://github.com/Ioxom/Ioxbot');
+    					.setURL ("https://github.com/Ioxom/Ioxbot");
 					msg.channel.send (githubEmbed);
 					return;
 			}
