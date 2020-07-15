@@ -20,37 +20,37 @@ client.on ('message', msg => {
 	if (msg.content.startsWith ('E')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('E');
+		return;
 	} else if (msg.content.endsWith('E')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('E');
+		return;
 	} else if (msg.content.startsWith ('e')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('E');
-	} else if (msg.content.endsWith('e')) {
-		if (msg.author.bot) return;
-		msg.channel.send ('E');
+		return;
 	}
-	if (msg.content = ('no u')) {
+	if (msg.content.startsWith ('no u')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('no u');
+		return;
 	}
 	if (msg.content.startsWith ('IoxBot')) {
 		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/294758024877178880/722042809695207444/7x8rp0xnxiv31.png');
 		if (msg.author.bot) return;
 		msg.channel.send (whomstAttachment);
-	} else if (msg.content.endsWith ('IoxBot')) {
-		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/294758024877178880/722042809695207444/7x8rp0xnxiv31.png');
-		if (msg.author.bot) return;
-		msg.channel.send (whomstAttachment);
+		return;
 	}
 	if (msg.content.startsWith ('rip')) {
 		const ripAttachment = new MessageAttachment ('https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2013/11/rip-786x305.jpg');
 		if (msg.author.bot) return;
 		msg.channel.send (ripAttachment);
+		return;
 	}
-	if (msg.content = ('hello IoxBot')) {
+	if (msg.content.startsWith ('hello IoxBot')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
+		return;
 	}
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
