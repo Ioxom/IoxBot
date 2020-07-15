@@ -3,7 +3,8 @@ const client = new Client ();
 const prefix = ('-');
 //a couple variables for making updating things easier
 const version = '1.4.0';
-const commands = ' With prefix : BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card, are_they_groovin? No prefix : no u, E, rip and IoxBot';
+const prefixlessCommands = 'no u, E, rip, hello IoxBot and IoxBot';
+const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card and are_they_groovin?';
 const lastUpdate = 'July 14th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
@@ -93,7 +94,10 @@ client.on ('message', msg => {
 					const commandsEmbed = new MessageEmbed ()
 						.setTitle ('IoxBot\'s commands are :')
 						.setColor (0x00FF00)
-						.setDescription (commands);
+						.addFields (
+							{ name: 'Normal Commands', value: (commands)},
+							{ name: 'Prefixless Commands', value: (prefixlessCommands)}
+						)
 					msg.channel.send (commandsEmbed);
 					return;
 				case 'GitHub':
