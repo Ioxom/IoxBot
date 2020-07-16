@@ -1,4 +1,4 @@
-const { Client, MessageAttachment, MessageEmbed, Message } = require ('discord.js');
+const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
 const prefix = ('-');
 //a couple variables for making updating things easier
@@ -12,7 +12,10 @@ client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
 	console.log ('bot initialized successfully');
-})
+	client.user.setActivity('E', {
+		type: 'PLAYING',
+	  });
+});
 
 //this is where new commands are added
 client.on ('message', msg => {
