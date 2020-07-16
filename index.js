@@ -2,17 +2,19 @@ const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
 const prefix = ('-');
 //a couple variables for making updating things easier
-const version = '1.4.0';
+const version = '1.5.0';
 const prefixlessCommands = 'no u, E, rip, hello IoxBot and IoxBot';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card and are_they_groovin?';
-const lastUpdate = 'July 15th, 2020';
+const lastUpdate = 'July 16th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
 	console.log ('bot initialized successfully');
+	//sets the bot's activity to "E"
 	client.user.setActivity('E', {
+		//sets the type of activity, types are https://discord.js.org/#/docs/main/stable/typedef/ActivityType
 		type: 'PLAYING',
 	  });
 });
