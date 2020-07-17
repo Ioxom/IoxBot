@@ -5,7 +5,7 @@ const prefix = ('-');
 const version = '1.5.0';
 const prefixlessCommands = 'no u, E, rip, hello IoxBot and IoxBot';
 const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card and are_they_groovin?';
-const lastUpdate = 'July 16th, 2020';
+const lastUpdate = 'July 17th, 2020';
 //logs in the bot
 client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 
@@ -13,7 +13,7 @@ client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
 client.once ('ready', () => {
 	console.log ('bot initialized successfully');
 	//sets the bot's activity to "E"
-	client.user.setActivity('E', {
+	client.user.setActivity ('E', {
 		//sets the type of activity, types are https://discord.js.org/#/docs/main/stable/typedef/ActivityType
 		//note that for the streaming type you need to specify the URL
 		type: 'PLAYING',
@@ -46,13 +46,13 @@ client.on ('message', msg => {
 		return;
 	}
 	if (msg.content.startsWith ('IoxBot')) {
-		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/294758024877178880/722042809695207444/7x8rp0xnxiv31.png');
+		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
 		if (msg.author.bot) return;
 		msg.channel.send (whomstAttachment);
 		return;
 	}
 	if (msg.content.startsWith ('rip')) {
-		const ripAttachment = new MessageAttachment ('https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2013/11/rip-786x305.jpg');
+		const ripAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058159140954/rip.jpg');
 		if (msg.author.bot) return;
 		msg.channel.send (ripAttachment);
 		return;
@@ -70,7 +70,7 @@ client.on ('message', msg => {
 	switch (args[0]) {
 		case 'belt':
 			// Create the belt attachment using MessageAttachment
-			const beltAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/618926084750180363/721009676849905725/belt.jpg');
+			const beltAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/719955731821887602/733807048956837928/belt.jpg');
 			//send some text to the channel that the command was sent to
 			msg.channel.send ('ALRIGHT YOU AIN\'T LISTENIN\' SO YOU\'RE GETTING THE BELT!');
 			//send the attachment made a couple lines ago
@@ -78,14 +78,14 @@ client.on ('message', msg => {
 			//makes sure that the next command isn't executed immediately after this one
 			return;
 		case 'uno_reverse_card':
-			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/642003331656581170/717832539896807434/nxeiZ78_ZCkQvMGkZ7fSTmixJ2ey4JCSlOuyKQL6Gos-1.png');
+			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 			msg.channel.send (unoAttachment);
 			return;
 		case 'what\'s_a_tortoise':
 			msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.');
 			return;
 		case 'are_they_groovin?':
-			const groovinAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/618926084750180363/717833399825334303/Screen_Shot_2019-07-31_at_12.png');
+			const groovinAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 			msg.channel.send (groovinAttachment);
 			return;
 		case 'BotInfo':
