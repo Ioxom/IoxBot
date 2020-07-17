@@ -15,6 +15,7 @@ client.once ('ready', () => {
 	//sets the bot's activity to "E"
 	client.user.setActivity('E', {
 		//sets the type of activity, types are https://discord.js.org/#/docs/main/stable/typedef/ActivityType
+		//note that for the streaming type you need to specify the URL
 		type: 'PLAYING',
 	  });
 });
@@ -24,7 +25,9 @@ client.on ('message', msg => {
 	//prefixless commands
 	//checks if the message begins with "E"
 	if (msg.content.startsWith ('E')) {
+		//checks if the author of the message is a bot to stop loops
 		if (msg.author.bot) return;
+		//sends "E" in the same channel as the message
 		msg.channel.send ('E');
 		return;
 	//checks if the message ends with "E"
@@ -86,35 +89,43 @@ client.on ('message', msg => {
 			msg.channel.send (groovinAttachment);
 			return;
 		case 'BotInfo':
+			//creates a second switch for arguments after the original "BotInfo" command
 			switch (args[1]) {
 				case 'creation_date':
+					//creates an embed, which is then edited by the .set code
 					const dateEmbed = new MessageEmbed ()
+						//adds a field at the top of the embed which shows "IoxBot", with a small image dictated by the link
+						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						//set the title of the embed
 						.setTitle ('Created on June 17th, 2020')
+						// Set the color of the embed's side thingy, in this case green
 						.setColor (0x00FF00)
+						// Set the main content of the embed
 						.setDescription ('Last update was ' + (lastUpdate));
+						// Send the embed to the same channel as the command
 					msg.channel.send (dateEmbed);
 					return;
 				case 'version':
 					const versionEmbed = new MessageEmbed ()
+						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle (version)
 						.setColor (0x00FF00);
 					msg.channel.send (versionEmbed);
 					return;
 				case 'author':
 					const authorEmbed = new MessageEmbed ()
-						//set the title of the embed
+						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot has been programmed by Ioxom')
-						// Set the color of the embed's side thingy, in this case green
 						.setColor (0x00FF00)
-    					// Set the main content of the embed
 						.setDescription ('Ioxom is cool give him your cash money');
-					// Send the embed to the same channel as the message
 					msg.channel.send (authorEmbed);
 					return;
 				case 'commands':
 					const commandsEmbed = new MessageEmbed ()
+						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot\'s commands are :')
 						.setColor (0x00FF00)
+						//adds fields, which are different sections of the embed
 						.addFields (
 							{ name: 'Normal Commands', value: (commands)},
 							{ name: 'Prefixless Commands', value: (prefixlessCommands)}
@@ -123,6 +134,7 @@ client.on ('message', msg => {
 					return;
 				case 'GitHub':
 					const githubEmbed = new MessageEmbed()
+						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('Source code For IoxBot can be found here')
     					.setColor (0x00FF00)
     					.setURL ("https://github.com/Ioxom/Ioxbot");
