@@ -16,7 +16,7 @@ client.once ('ready', () => {
 	client.user.setActivity ('E', {
 		//sets the type of activity, types are https://discord.js.org/#/docs/main/stable/typedef/ActivityType
 		//note that for the streaming type you need to specify the URL
-		type: 'PLAYING',
+		type: 'PLAYING'
 	  });
 });
 
@@ -24,19 +24,10 @@ client.once ('ready', () => {
 client.on ('message', msg => {
 	//prefixless commands
 	//checks if the message begins with "E"
-	if (msg.content.startsWith ('E')) {
+	if (msg.content === 'E') {
 		//checks if the author of the message is a bot to stop loops
 		if (msg.author.bot) return;
 		//sends "E" in the same channel as the message
-		msg.channel.send ('E');
-		return;
-	//checks if the message ends with "E"
-	} else if (msg.content.endsWith('E')) {
-		if (msg.author.bot) return;
-		msg.channel.send ('E');
-		return;
-	} else if (msg.content.startsWith ('e')) {
-		if (msg.author.bot) return;
 		msg.channel.send ('E');
 		return;
 	}
