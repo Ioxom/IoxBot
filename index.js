@@ -1,13 +1,10 @@
+const config = require('./config.json');
 const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
 const prefix = ('-');
-//a couple variables for making updating things easier
-const version = '1.5.0';
-const prefixlessCommands = 'no u, E, rip, hello IoxBot and IoxBot';
-const commands = 'BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card and are_they_groovin?';
-const lastUpdate = 'July 18th, 2020';
+//we're storing variables in the config now, makes this file very clean
 //logs in the bot
-client.login ('NzIyODM1MjkwNjQ0ODA3NzEx.XwO7dQ.cP9YmT3glo_bTUcCRKdrjLlNqoE');
+client.login (config.token);
 
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
@@ -23,7 +20,7 @@ client.once ('ready', () => {
 //this is where new commands are added
 client.on ('message', msg => {
 	//prefixless commands
-	//checks if the message begins with "E"
+	//checks if the message is "E"
 	if (msg.content === 'E') {
 		//checks if the author of the message is a bot to stop loops
 		if (msg.author.bot) return;
@@ -31,6 +28,7 @@ client.on ('message', msg => {
 		msg.channel.send ('E');
 		return;
 	}
+	//checks if the message begins with "no u"
 	if (msg.content.startsWith ('no u')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('no u');
@@ -92,14 +90,14 @@ client.on ('message', msg => {
 						// Set the color of the embed's side thingy, in this case green
 						.setColor (0x00FF00)
 						// Set the main content of the embed
-						.setDescription ('Last update was ' + (lastUpdate));
+						.setDescription ('Last update was ' + (config.lastUpdate));
 						// Send the embed to the same channel as the command
 					msg.channel.send (dateEmbed);
 					return;
 				case 'version':
 					const versionEmbed = new MessageEmbed ()
 						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
-						.setTitle (version)
+						.setTitle (config.version)
 						.setColor (0x00FF00);
 					msg.channel.send (versionEmbed);
 					return;
@@ -118,13 +116,13 @@ client.on ('message', msg => {
 						.setColor (0x00FF00)
 						//adds fields, which are different sections of the embed
 						.addFields (
-							{ name: 'Normal Commands', value: (commands)},
-							{ name: 'Prefixless Commands', value: (prefixlessCommands)}
+							{ name: 'Normal Commands', value: (config.commands)},
+							{ name: 'Prefixless Commands', value: (config.prefixlessCommands)}
 						)
 					msg.channel.send (commandsEmbed);
 					return;
 				case 'GitHub', 'github':
-					const githubEmbed = new MessageEmbed()
+					const githubEmbed = new MessageEmbed ()
 						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('Source code For IoxBot can be found here')
     					.setColor (0x00FF00)
