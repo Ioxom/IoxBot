@@ -13,6 +13,8 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
+2020/07/18 - Add -i as an alternative because typing BotInfo is cringe
+
 2020/07/16 - Add status and more comments 
 
 2020/07/15 - Tweak prefixless commands so they trigger more often, then fix all the fabulous bugs I created
@@ -28,4 +30,4 @@ And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up
 2020/07/04 - Remove links for images using function MessageAttachment
 
 # E
-Get absolutely and completely E'd on.
+Get absolutely and completely E-ificated on.
