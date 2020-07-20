@@ -130,8 +130,8 @@ client.on ('message', msg => {
 						.setColor (0x00FF00)
 						//adds fields, which are different sections of the embed
 						.addFields (
-							{ name: 'Normal Commands', value: (config.commands)},
-							{ name: 'Prefixless Commands', value: (config.prefixlessCommands)}
+							{ name: 'Normal Commands', value: (config.commands), inline: false },
+							{ name: 'Prefixless Commands', value: (config.prefixlessCommands), inline: false }
 						)
 					msg.channel.send (commandsEmbed);
 					return;
