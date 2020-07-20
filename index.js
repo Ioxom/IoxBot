@@ -74,17 +74,31 @@ client.on ('message', msg => {
 			msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.');
 			return;
 		case 'are_they_groovin?', 'aretheygroovin?':
-			const groovinAttachment = new MessageAttachment('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
+			const groovinAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 			msg.channel.send (groovinAttachment);
 			return;
-		case 'BotInfo', 'botinfo', 'i':
+		case 'BotInfo', 'botinfo':
+			const infoEmbed = new MessageEmbed ()
+				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+				.setTitle ('General Information')
+				.addFields (
+					{ name: 'Creation Date', value: '`June 17th, 2020`', inline: true },
+					{ name: 'Gender', value: '`Female♀`', inline: true },
+					{ name: 'Version', value: '`' + (config.version) + '`', inline: true },
+					{ name: 'GitHub', value: '`Ioxom/IoxBot`', inline: true },
+					{ name: 'Creator', value: '`Ioxom`', inline: true },
+					{ name: 'Prefix', value: '`-`', inline: true },
+				);
+			msg.channel.send (infoEmbed);
+			return;
+		case 'Info', 'info', 'i':
 			//creates a second switch for arguments after the original "BotInfo" command
 			switch (args[1]) {
 				case 'creation_date', 'creationdate':
 					//creates an embed, which is then edited by the .set code
 					const dateEmbed = new MessageEmbed ()
 						//adds a field at the top of the embed which shows "IoxBot", with a small image dictated by the link
-						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						//set the title of the embed
 						.setTitle ('Created on June 17th, 2020')
 						// Set the color of the embed's side thingy, in this case green
@@ -96,14 +110,14 @@ client.on ('message', msg => {
 					return;
 				case 'version':
 					const versionEmbed = new MessageEmbed ()
-						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle (config.version)
 						.setColor (0x00FF00);
 					msg.channel.send (versionEmbed);
 					return;
 				case 'author':
 					const authorEmbed = new MessageEmbed ()
-						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot has been programmed by Ioxom')
 						.setColor (0x00FF00)
 						.setDescription ('Ioxom is cool give him your cash money');
@@ -111,7 +125,7 @@ client.on ('message', msg => {
 					return;
 				case 'commands':
 					const commandsEmbed = new MessageEmbed ()
-						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot\'s commands are :')
 						.setColor (0x00FF00)
 						//adds fields, which are different sections of the embed
@@ -123,7 +137,7 @@ client.on ('message', msg => {
 					return;
 				case 'GitHub', 'github':
 					const githubEmbed = new MessageEmbed ()
-						.setAuthor('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('Source code For IoxBot can be found here')
     					.setColor (0x00FF00)
     					.setURL ("https://github.com/Ioxom/Ioxbot");

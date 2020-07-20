@@ -4,7 +4,7 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 # Commands
 -belt | Abuse your friends!
 
--BotInfo | Information about the bot. Includes author, GitHub, commands, creation_date and version.
+-Info | Information about the bot. Includes author, GitHub, commands, creation_date and version. Alternatively you can use -botinfo to get a limited info page.
 
 -uno_reverse_card | Pull a no u on the haters.
 
@@ -13,7 +13,7 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
-2020/07/19 - Create config.json to store variables and clean up index.js
+2020/07/19 - Create config.json to store variables, add general botinfo page
 
 2020/07/18 - Add -i as an alternative because typing BotInfo is cringe
 

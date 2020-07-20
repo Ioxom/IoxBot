@@ -2,6 +2,6 @@
     "token": "NzIyODM1MjkwNjQ0ODA3NzEx.XxSqFQ.lOyDuT-BzEh1DzrUaBxRIzss8fc",
     "version": "1.6.0",
     "lastUpdate": "July 19th, 2020",
-    "commands": "BotInfo version, BotInfo author, BotInfo commands, BotInfo GitHub, BotInfo creation_date, belt, uno_reverse_card and are_they_groovin?",
+    "commands": "Info version, Info author, Info commands, Info GitHub, Info creation_date, belt, uno_reverse_card, botinfo and are_they_groovin?",
     "prefixlessCommands": "no u, E, rip, hello IoxBot and IoxBot"
 }
