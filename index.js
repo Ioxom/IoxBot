@@ -120,7 +120,8 @@ client.on ('message', msg => {
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot has been programmed by Ioxom')
 						.setColor (0x00FF00)
-						.setDescription ('Ioxom is cool give him your cash money');
+						.setDescription ('Ioxom is cool give him your cash money')
+						.setFooter ('you don\'t want to know what happens if you don\'t')
 					msg.channel.send (authorEmbed);
 					return;
 				case 'commands':
