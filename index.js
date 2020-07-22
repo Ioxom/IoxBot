@@ -91,6 +91,10 @@ client.on ('message', msg => {
 				);
 			msg.channel.send (infoEmbed);
 			return;
+		case 'die':
+			const veryfineattachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/618926084750180363/735560345854148619/crab_shoot_ioxbot.jpg')
+			msg.channel.send (veryfineattachment);
+			return;
 		case 'Info', 'info', 'i':
 			//creates a second switch for arguments after the original "BotInfo" command
 			switch (args[1]) {
