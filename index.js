@@ -21,11 +21,11 @@ client.once ('ready', () => {
 client.on ('message', msg => {
 	//prefixless commands
 	//checks if the message is "E"
-	if (msg.content === 'E') {
+	if (msg.content === config.E) {
 		//checks if the author of the message is a bot to stop loops
 		if (msg.author.bot) return;
 		//sends "E" in the same channel as the message
-		msg.channel.send ('E');
+		msg.channel.send (config.E);
 		return;
 	}
 	//checks if the message begins with "no u"
