@@ -2,6 +2,7 @@ const config = require('./config.json');
 const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
 const prefix = ('-');
+const something = ('');
 //we're storing variables in the config now, makes this file very clean
 //logs in the bot
 client.login (config.token);
@@ -20,37 +21,34 @@ client.once ('ready', () => {
 //this is where new commands are added
 client.on ('message', msg => {
 	//prefixless commands
-	//checks if the message is "E"
-	if (msg.content === config.E) {
-		//checks if the author of the message is a bot to stop loops
-		if (msg.author.bot) return;
-		//sends "E" in the same channel as the message
-		msg.channel.send (config.E);
-		return;
-	}
-	//checks if the message begins with "no u"
-	if (msg.content.startsWith ('no u')) {
-		if (msg.author.bot) return;
-		msg.channel.send ('no u');
-		return;
-	}
-	if (msg.content.startsWith ('IoxBot')) {
-		const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
-		if (msg.author.bot) return;
-		msg.channel.send (whomstAttachment);
-		return;
-	}
-	if (msg.content.startsWith ('rip')) {
-		const ripAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058159140954/rip.jpg');
-		if (msg.author.bot) return;
-		msg.channel.send (ripAttachment);
-		return;
-	}
-	if (msg.content.startsWith ('hello IoxBot')) {
-		if (msg.author.bot) return;
-		//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
-		msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
-		return;
+	var args = msg.content.substring (something.length) .split (" ");
+	switch (args[0]) {
+		//checks if the message is "E"
+		case 'E':
+			//checks if the author of the message is a bot to stop loops
+			if (msg.author.bot) return;
+			//sends "E" in the same channel as the message
+			msg.channel.send (config.E);
+			return;
+		case 'no u':
+			if (msg.author.bot) return;
+			msg.channel.send ('no u');
+			return;
+		case 'IoxBot':
+			const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
+			if (msg.author.bot) return;
+			msg.channel.send (whomstAttachment);
+			return;
+		case 'rip':
+			const ripAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058159140954/rip.jpg');
+			if (msg.author.bot) return;
+			msg.channel.send (ripAttachment);
+			return;
+		case 'hello IoxBot', 'Hello IoxBot', 'hello ioxbot', 'Hello ioxbot':
+			if (msg.author.bot) return;
+			//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
+			msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
+			return;
 	}
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;

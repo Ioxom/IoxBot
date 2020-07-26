@@ -13,6 +13,8 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
+2020/07/26 - Big code improvements such as putting prefixless commands in a switch
+
 2020/07/19 - Create config.json to store variables, add general botinfo page
 
 2020/07/18 - Add -i as an alternative because typing BotInfo is cringe
