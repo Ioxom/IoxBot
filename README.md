@@ -1,5 +1,5 @@
 # IoxBot
-A simple discord bot that has no advanced functions yet. This will probably never become public as no one would understand all our jank functions that don't actually moderate or anything.
+A simple discord bot that has no advanced functions yet. This will probably never become public as no one would understand all our jank functions that don't actually moderate or anything. At least the code is respectable.
 
 # Commands
 -belt | Abuse your friends!
