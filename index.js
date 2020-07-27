@@ -34,22 +34,34 @@ client.on ('message', msg => {
 			const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
 			if (msg.author.bot) return;
 			msg.channel.send (whomstAttachment);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used IoxBot')
+			}
 			return;
 		case 'rip':
 			const ripAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058159140954/rip.jpg');
 			if (msg.author.bot) return;
 			msg.channel.send (ripAttachment);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used rip')
+			}
 			return;
 	}
 	if (msg.content === ('no u')) {
 		if (msg.author.bot) return;
 		msg.channel.send ('no u');
+		if (config.logCommandUses === 'true') {
+			console.log (msg.author + ' used no u')
+		}
 		return;
 	}
 	if (msg.content === ('hello IoxBot')) {
 		if (msg.author.bot) return;
 		//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
 		msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
+		if (config.logCommandUses === 'true') {
+			console.log (msg.author + ' used hello IoxBot')
+		}
 		return;
 	}
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
@@ -64,18 +76,32 @@ client.on ('message', msg => {
 			msg.channel.send ('ALRIGHT YOU AIN\'T LISTENIN\' SO YOU\'RE GETTING THE BELT!');
 			//send the attachment made a couple lines ago
 			msg.channel.send (beltAttachment);
+			//checks if logCommandUses in the config is true
+			if (config.logCommandUses === 'true') {
+				//prints the id of the user and "used belt"
+				console.log (msg.author + ' used belt')
+			}
 			//makes sure that the next command isn't executed immediately after this one
 			return;
 		case 'uno_reverse_card', 'unoreversecard', 'uno_reverse_card':
 			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 			msg.channel.send (unoAttachment);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used uno reverse card')
+			}
 			return;
 		case 'what\'s_a_tortoise', 'whatsatortoise':
 			msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.');
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used tortoise')
+			}
 			return;
 		case 'are_they_groovin?', 'aretheygroovin?', 'are_they_groovin':
 			const groovinAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 			msg.channel.send (groovinAttachment);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used groovin\'')
+			}
 			return;
 		case 'BotInfo', 'botinfo', 'BotInfo':
 			const infoEmbed = new MessageEmbed ()
@@ -90,10 +116,16 @@ client.on ('message', msg => {
 					{ name: 'Prefix', value: '`-`', inline: true },
 				);
 			msg.channel.send (infoEmbed);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used BotInfo')
+			}
 			return;
 		case 'die':
 			const veryfineattachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/618926084750180363/735560345854148619/crab_shoot_ioxbot.jpg')
 			msg.channel.send (veryfineattachment);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used die')
+			}
 			return;
 		case 'i':
 			//creates a second switch for arguments after the original "BotInfo" command
@@ -111,6 +143,9 @@ client.on ('message', msg => {
 						.setDescription ('Last update was ' + (config.lastUpdate));
 						// Send the embed to the same channel as the command
 					msg.channel.send (dateEmbed);
+					if (config.logCommandUses === 'true') {
+						console.log (msg.author + 'used info: creation date')
+					}
 					return;
 				case 'version', 'version':
 					const versionEmbed = new MessageEmbed ()
@@ -118,6 +153,9 @@ client.on ('message', msg => {
 						.setTitle (config.version)
 						.setColor (0x00FF00);
 					msg.channel.send (versionEmbed);
+					if (config.logCommandUses === 'true') {
+						console.log (msg.author + ' used info: version')
+					}
 					return;
 				case 'author', 'author':
 					const authorEmbed = new MessageEmbed ()
@@ -127,6 +165,9 @@ client.on ('message', msg => {
 						.setDescription ('Ioxom is cool give him your cash money')
 						.setFooter ('you don\'t want to know what happens if you don\'t')
 					msg.channel.send (authorEmbed);
+					if (config.logCommandUses === 'true') {
+						console.log (msg.author + ' used info: author')
+					}
 					return;
 				case 'commands', 'commands':
 					const commandsEmbed = new MessageEmbed ()
@@ -139,6 +180,9 @@ client.on ('message', msg => {
 							{ name: 'Prefixless Commands', value: (config.prefixlessCommands), inline: false }
 						)
 					msg.channel.send (commandsEmbed);
+					if (config.logCommandUses === 'true') {
+						console.log (msg.author + ' used info: commands')
+					}
 					return;
 				case 'GitHub', 'github', 'GitHub':
 					const githubEmbed = new MessageEmbed ()
@@ -147,6 +191,9 @@ client.on ('message', msg => {
     					.setColor (0x00FF00)
     					.setURL ("https://github.com/Ioxom/Ioxbot");
 					msg.channel.send (githubEmbed);
+					if (config.logCommandUses === 'true') {
+						console.log (msg.author + ' used info: commands')
+					}
 					return;
 			}
 	}
