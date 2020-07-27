@@ -1,7 +1,7 @@
 {
     "token": "NzIyODM1MjkwNjQ0ODA3NzEx.XxSqFQ.lOyDuT-BzEh1DzrUaBxRIzss8fc",
-    "version": "2.0",
-    "lastUpdate": "July 26th, 2020",
+    "version": "2.1",
+    "lastUpdate": "July 27th, 2020",
     "commands": "Info version, Info author, Info commands, Info GitHub, Info creation_date, belt, uno_reverse_card, botinfo and are_they_groovin?",
     "prefixlessCommands": "no u, E, rip, hello IoxBot and IoxBot",
     "E": "E",
