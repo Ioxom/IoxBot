@@ -79,7 +79,7 @@ client.on ('message', msg => {
 			//checks if logCommandUses in the config is true
 			if (config.logCommandUses === 'true') {
 				//prints the id of the user and "used belt"
-				console.log (msg.author + ' used belt')
+				console.log (msg.author + ' used -belt')
 			}
 			//makes sure that the next command isn't executed immediately after this one
 			return;
@@ -87,20 +87,20 @@ client.on ('message', msg => {
 			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 			msg.channel.send (unoAttachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used uno reverse card')
+				console.log (msg.author + ' used -uno reverse card')
 			}
 			return;
 		case 'what\'s_a_tortoise', 'whatsatortoise':
 			msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.');
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used tortoise')
+				console.log (msg.author + ' used -tortoise')
 			}
 			return;
 		case 'are_they_groovin?', 'aretheygroovin?', 'are_they_groovin':
 			const groovinAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 			msg.channel.send (groovinAttachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used groovin\'')
+				console.log (msg.author + ' used -groovin\'')
 			}
 			return;
 		case 'BotInfo', 'botinfo', 'BotInfo':
@@ -117,14 +117,14 @@ client.on ('message', msg => {
 				);
 			msg.channel.send (infoEmbed);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used BotInfo')
+				console.log (msg.author + ' used -BotInfo')
 			}
 			return;
 		case 'die':
 			const veryfineattachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/618926084750180363/735560345854148619/crab_shoot_ioxbot.jpg')
 			msg.channel.send (veryfineattachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used die')
+				console.log (msg.author + ' used -die')
 			}
 			return;
 		case 'i':
