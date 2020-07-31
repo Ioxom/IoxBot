@@ -1,9 +1,12 @@
 {
     "token": "NzIyODM1MjkwNjQ0ODA3NzEx.XxSqFQ.lOyDuT-BzEh1DzrUaBxRIzss8fc",
-    "version": "2.1",
+    "version": "2.2",
     "lastUpdate": "July 27th, 2020",
     "commands": "Info version, Info author, Info commands, Info GitHub, Info creation_date, belt, uno_reverse_card, botinfo and are_they_groovin?",
     "prefixlessCommands": "no u, E, rip, hello IoxBot and IoxBot",
     "E": "E",
-    "logCommandUses": "true"
+    "logCommandUses": "true",
+    "prefix": "-",
+    "literallyNothing": "",
+    "githubURL": "https://github.com/Ioxom/Ioxbot"
 }

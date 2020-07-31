@@ -13,6 +13,8 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
+2020/07/31 - Move everything possible to the config file
+
 2020/07/27 - Add an option for logging which commands are used in the console
 
 2020/07/26 - Big code improvements such as putting prefixless commands in a switch
@@ -25,7 +27,7 @@ And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up
 
 2020/07/15 - Tweak prefixless commands so they trigger more often, then fix all the fabulous bugs I created
 
-2020/07/11 - Add prefixless commands, anticipate lillia launch
+2020/07/11 - Add prefixless commands
 
 2020/07/09 - Make the code a bit easier easier to understand using comments
 

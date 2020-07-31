@@ -1,8 +1,6 @@
 const config = require('./config.json');
 const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
-const prefix = ('-');
-const something = ('');
 //we're storing variables in the config now, makes this file very clean
 //logs in the bot
 client.login (config.token);
@@ -21,7 +19,7 @@ client.once ('ready', () => {
 //this is where new commands are added
 client.on ('message', msg => {
 	//prefixless commands
-	var args = msg.content.substring (something.length) .split (" ");
+	var args = msg.content.substring ((config.literallyNothing).length) .split (" ");
 	switch (args[0]) {
 		//checks if the message is "E"
 		case 'E':
@@ -29,6 +27,9 @@ client.on ('message', msg => {
 			if (msg.author.bot) return;
 			//sends "E" in the same channel as the message
 			msg.channel.send (config.E);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used E')
+			}
 			return;
 		case 'IoxBot':
 			const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
@@ -65,9 +66,9 @@ client.on ('message', msg => {
 		return;
 	}
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
-	if (msg.author.bot || !msg.content.startsWith (prefix) ) return;
+	if (msg.author.bot || !msg.content.startsWith (config.prefix) ) return;
 	//splits the arguments at every space
-	var args = msg.content.substring (prefix.length) .split (" ");
+	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
 		case 'belt', 'Belt', 'belt':
 			// Create the belt attachment using MessageAttachment
@@ -189,7 +190,7 @@ client.on ('message', msg => {
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('Source code For IoxBot can be found here')
     					.setColor (0x00FF00)
-    					.setURL ("https://github.com/Ioxom/Ioxbot");
+    					.setURL (config.githubURL);
 					msg.channel.send (githubEmbed);
 					if (config.logCommandUses === 'true') {
 						console.log (msg.author + ' used info: commands')
