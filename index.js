@@ -47,9 +47,9 @@ client.on ('message', msg => {
 				console.log (msg.author + ' used rip');
 			}
 			return;
-		case 'hello':
+		case 'hello', 'Hello':
 			switch (args[1]) {
-				case 'IoxBot':
+				case 'IoxBot', 'ioxbot':
 					if (msg.author.bot) return;
 					//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
 					msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
@@ -75,7 +75,7 @@ client.on ('message', msg => {
 	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
-		case 'belt', 'Belt', 'belt':
+		case 'belt', 'Belt':
 			// Create the belt attachment using MessageAttachment
 			const beltAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807048956837928/belt.jpg');
 			//send some text to the channel that the command was sent to
@@ -89,7 +89,7 @@ client.on ('message', msg => {
 			}
 			//makes sure that the next command isn't executed immediately after this one
 			return;
-		case 'uno_reverse_card', 'unoreversecard', 'uno_reverse_card':
+		case 'uno_reverse_card', 'unoreversecard':
 			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 			msg.channel.send (unoAttachment);
 			if (config.logCommandUses === 'true') {
@@ -109,7 +109,7 @@ client.on ('message', msg => {
 				console.log (msg.author + ' used -groovin\'');
 			}
 			return;
-		case 'BotInfo', 'botinfo', 'BotInfo':
+		case 'BotInfo', 'botinfo':
 			const infoEmbed = new MessageEmbed ()
 				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 				.setTitle ('General Information')
@@ -170,7 +170,7 @@ client.on ('message', msg => {
 		case 'i', 'info':
 			//creates a second switch for arguments after the original "-info" command
 			switch (args[1]) {
-				case 'creation_date', 'creationdate', 'creation_date':
+				case 'creation_date', 'creationdate':
 					//creates an embed, which is then edited by the .set code
 					const dateEmbed = new MessageEmbed ()
 						//adds a field at the top of the embed which shows "IoxBot", with a small image dictated by the link
@@ -187,7 +187,7 @@ client.on ('message', msg => {
 						console.log (msg.author + 'used info: creation date');
 					}
 					return;
-				case 'version', 'version':
+				case 'version':
 					const versionEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle (config.version)
@@ -197,7 +197,7 @@ client.on ('message', msg => {
 						console.log (msg.author + ' used info: version');
 					}
 					return;
-				case 'author', 'author':
+				case 'author':
 					const authorEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot has been programmed by Ioxom')
@@ -209,7 +209,7 @@ client.on ('message', msg => {
 						console.log (msg.author + ' used info: author');
 					}
 					return;
-				case 'commands', 'commands':
+				case 'commands':
 					const commandsEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot\'s commands are :')
@@ -224,7 +224,7 @@ client.on ('message', msg => {
 						console.log (msg.author + ' used info: commands');
 					}
 					return;
-				case 'GitHub', 'github', 'GitHub':
+				case 'GitHub', 'github':
 					const githubEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('Source code For IoxBot can be found here')

@@ -10,9 +10,15 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 
 -are_they_groovin? | Are they?
 
+-die | Kills IoxBot.
+
+-coinflip | Flips a coin.
+
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
+2020/08/01 - Add coinflip command, the most complicated command yet
+
 2020/07/31 - Move everything possible to the config file
 
 2020/07/27 - Add an option for logging which commands are used in the console
