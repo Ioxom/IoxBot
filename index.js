@@ -28,7 +28,7 @@ client.on ('message', msg => {
 			//sends "E" in the same channel as the message
 			msg.channel.send (config.E);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used E')
+				console.log (msg.author + ' used E');
 			}
 			return;
 		case 'IoxBot':
@@ -36,7 +36,7 @@ client.on ('message', msg => {
 			if (msg.author.bot) return;
 			msg.channel.send (whomstAttachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used IoxBot')
+				console.log (msg.author + ' used IoxBot');
 			}
 			return;
 		case 'rip':
@@ -44,7 +44,7 @@ client.on ('message', msg => {
 			if (msg.author.bot) return;
 			msg.channel.send (ripAttachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used rip')
+				console.log (msg.author + ' used rip');
 			}
 			return;
 		case 'hello':
@@ -54,7 +54,7 @@ client.on ('message', msg => {
 					//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
 					msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
 					if (config.logCommandUses === 'true') {
-						console.log (msg.author + ' used hello IoxBot')
+						console.log (msg.author + ' used hello IoxBot');
 					}
 					return;
 			}
@@ -64,7 +64,7 @@ client.on ('message', msg => {
 					if (msg.author.bot) return;
 					msg.channel.send ('no u');
 					if (config.logCommandUses === 'true') {
-						console.log (msg.author + ' used no u')
+						console.log (msg.author + ' used no u');
 					}
 					return;
 			}
@@ -85,7 +85,7 @@ client.on ('message', msg => {
 			//checks if logCommandUses in the config is true
 			if (config.logCommandUses === 'true') {
 				//prints the id of the user and "used belt"
-				console.log (msg.author + ' used -belt')
+				console.log (msg.author + ' used -belt');
 			}
 			//makes sure that the next command isn't executed immediately after this one
 			return;
@@ -93,20 +93,20 @@ client.on ('message', msg => {
 			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 			msg.channel.send (unoAttachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used -uno reverse card')
+				console.log (msg.author + ' used -uno reverse card');
 			}
 			return;
 		case 'what\'s_a_tortoise', 'whatsatortoise':
 			msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.');
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used -tortoise')
+				console.log (msg.author + ' used -tortoise');
 			}
 			return;
 		case 'are_they_groovin?', 'aretheygroovin?', 'are_they_groovin':
 			const groovinAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 			msg.channel.send (groovinAttachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used -groovin\'')
+				console.log (msg.author + ' used -groovin\'');
 			}
 			return;
 		case 'BotInfo', 'botinfo', 'BotInfo':
@@ -123,18 +123,18 @@ client.on ('message', msg => {
 				);
 			msg.channel.send (infoEmbed);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used -BotInfo')
+				console.log (msg.author + ' used -BotInfo');
 			}
 			return;
 		case 'die':
-			const veryfineattachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/618926084750180363/735560345854148619/crab_shoot_ioxbot.jpg')
+			const veryfineattachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/618926084750180363/735560345854148619/crab_shoot_ioxbot.jpg');
 			msg.channel.send (veryfineattachment);
 			if (config.logCommandUses === 'true') {
-				console.log (msg.author + ' used -die')
+				console.log (msg.author + ' used -die');
 			}
 			return;
-		case 'i':
-			//creates a second switch for arguments after the original "BotInfo" command
+		case 'i', 'info':
+			//creates a second switch for arguments after the original "-info" command
 			switch (args[1]) {
 				case 'creation_date', 'creationdate', 'creation_date':
 					//creates an embed, which is then edited by the .set code
@@ -150,7 +150,7 @@ client.on ('message', msg => {
 						// Send the embed to the same channel as the command
 					msg.channel.send (dateEmbed);
 					if (config.logCommandUses === 'true') {
-						console.log (msg.author + 'used info: creation date')
+						console.log (msg.author + 'used info: creation date');
 					}
 					return;
 				case 'version', 'version':
@@ -160,7 +160,7 @@ client.on ('message', msg => {
 						.setColor (0x00FF00);
 					msg.channel.send (versionEmbed);
 					if (config.logCommandUses === 'true') {
-						console.log (msg.author + ' used info: version')
+						console.log (msg.author + ' used info: version');
 					}
 					return;
 				case 'author', 'author':
@@ -169,10 +169,10 @@ client.on ('message', msg => {
 						.setTitle ('IoxBot has been programmed by Ioxom')
 						.setColor (0x00FF00)
 						.setDescription ('Ioxom is cool give him your cash money')
-						.setFooter ('you don\'t want to know what happens if you don\'t')
+						.setFooter ('you don\'t want to know what happens if you don\'t');
 					msg.channel.send (authorEmbed);
 					if (config.logCommandUses === 'true') {
-						console.log (msg.author + ' used info: author')
+						console.log (msg.author + ' used info: author');
 					}
 					return;
 				case 'commands', 'commands':
@@ -184,10 +184,10 @@ client.on ('message', msg => {
 						.addFields (
 							{ name: 'Normal Commands', value: (config.commands), inline: false },
 							{ name: 'Prefixless Commands', value: (config.prefixlessCommands), inline: false }
-						)
+						);
 					msg.channel.send (commandsEmbed);
 					if (config.logCommandUses === 'true') {
-						console.log (msg.author + ' used info: commands')
+						console.log (msg.author + ' used info: commands');
 					}
 					return;
 				case 'GitHub', 'github', 'GitHub':
@@ -198,7 +198,7 @@ client.on ('message', msg => {
     					.setURL (config.githubURL);
 					msg.channel.send (githubEmbed);
 					if (config.logCommandUses === 'true') {
-						console.log (msg.author + ' used info: commands')
+						console.log (msg.author + ' used info: commands');
 					}
 					return;
 			}
