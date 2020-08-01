@@ -133,6 +133,40 @@ client.on ('message', msg => {
 				console.log (msg.author + ' used -die');
 			}
 			return;
+		case 'coinflip':
+			//generates a random number between 1 and 2 and stores it in "random"
+			var random = (Math.ceil (Math.random () * 2));
+			//logs the generated number in the console
+			console.log (random);
+			//declares a variable, "messageToSend", which will be used to store the message text
+			var messageToSend;
+			//declares a variable, "coinFace", which will be used to store an image link for the corresponding side of the coin
+			var coinFace;
+			//checks if the random number is one
+			if (random === 1) {
+				//changes messageToSend to "Your coin landed on heads!"
+				messageToSend = 'Your coin landed on heads!';
+				//sets coinFace to a picture of a coin on heads
+				coinFace = 'https://cdn.discordapp.com/attachments/728781398911221795/739249818081296384/coin_heads.jpg';
+			//checks if the random number is not one
+			} else {
+				//changes messageToSend to "Your coin landed on tails!"
+				messageToSend = 'Your coin landed on tails!';
+				//sets coinFace to a picture of a coin on tails
+				coinFace = 'https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg';
+			}
+			//sends "messageToSend" in an embed with some added things
+			const coinEmbed = new MessageEmbed ()
+				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+				.setTitle ('You flipped a coin!')
+				.setDescription (messageToSend)
+				.setColor (0x00FF00)
+				.setThumbnail (coinFace);
+			msg.channel.send (coinEmbed);
+			if (config.logCommandUses === 'true') {
+				console.log (msg.author + ' used -coinflip');
+			}
+			return;
 		case 'i', 'info':
 			//creates a second switch for arguments after the original "-info" command
 			switch (args[1]) {
