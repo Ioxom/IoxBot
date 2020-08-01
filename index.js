@@ -47,24 +47,29 @@ client.on ('message', msg => {
 				console.log (msg.author + ' used rip')
 			}
 			return;
+		case 'hello':
+			switch (args[1]) {
+				case 'IoxBot':
+					if (msg.author.bot) return;
+					//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
+					msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
+					if (config.logCommandUses === 'true') {
+						console.log (msg.author + ' used hello IoxBot')
+					}
+					return;
+			}
+		case 'no':
+			switch (args[1]) {
+				case 'u':
+					if (msg.author.bot) return;
+					msg.channel.send ('no u');
+					if (config.logCommandUses === 'true') {
+						console.log (msg.author + ' used no u')
+					}
+					return;
+			}
 	}
-	if (msg.content === ('no u')) {
-		if (msg.author.bot) return;
-		msg.channel.send ('no u');
-		if (config.logCommandUses === 'true') {
-			console.log (msg.author + ' used no u')
-		}
-		return;
-	}
-	if (msg.content === ('hello IoxBot')) {
-		if (msg.author.bot) return;
-		//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
-		msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
-		if (config.logCommandUses === 'true') {
-			console.log (msg.author + ' used hello IoxBot')
-		}
-		return;
-	}
+
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (config.prefix) ) return;
 	//splits the arguments at every space
