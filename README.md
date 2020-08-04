@@ -1,5 +1,5 @@
 # IoxBot
-A simple discord bot that has no advanced functions yet. This will probably never become public as no one would understand all our jank functions that don't actually moderate or anything. At least the code is respectable.
+A simple discord bot that has no advanced functions yet. This will probably never become public as no one would understand all our jank functions that don't actually moderate or anything.
 
 # Commands
 -belt | Abuse your friends!
@@ -17,6 +17,8 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
+2020/08/04 - Move command logging to a function to clean code and decrease file size
+
 2020/08/01 - Add coinflip command, the most complicated command yet
 
 2020/07/31 - Move everything possible to the config file
