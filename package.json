@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ."
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ioxom/IoxBot"
+  },
   "author": "Ioxom",
   "license": "ISC",
   "dependencies": {
