@@ -30,16 +30,19 @@ client.on ('message', msg => {
 	}
 
 	//prefixless commands
+	//checks if the message is "E"
+	if (msg.content === 'E') {
+		//checks if the author of the message is a bot to stop loops
+		if (msg.author.bot) return;
+		//sends "E" in the same channel as the message
+		msg.channel.send ('E');
+		//uses the logUsedCommand funtion to print "[userid] used E"
+		logUsedCommand ('E');
+		return;
+	}
 	var args = msg.content.substring ((config.literallyNothing).length) .split (" ");
 	switch (args[0]) {
-		//checks if the message is "E"
-		case 'E':
-			//checks if the author of the message is a bot to stop loops
-			if (msg.author.bot) return;
-			//sends "E" in the same channel as the message
-			msg.channel.send ('E');
-			logUsedCommand ('E');
-			return;
+		//checks if the message starts with "IoxBot"
 		case 'IoxBot':
 			const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
 			if (msg.author.bot) return;
@@ -72,7 +75,7 @@ client.on ('message', msg => {
 	}
 
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
-	if (msg.author.bot || !msg.content.startsWith (config.prefix) ) return;
+	if (msg.author.bot || !msg.content.startsWith (config.prefix)) return;
 	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
