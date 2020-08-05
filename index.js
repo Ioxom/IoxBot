@@ -2,7 +2,7 @@ const config = require('./config.json');
 const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
 //we're storing variables in the config now, makes this file very clean
-//logs in the bot
+//logs in the bot using the token from the config file
 client.login (config.token);
 
 //sends a message in console when the bot successfully starts up
@@ -20,6 +20,7 @@ client.once ('ready', () => {
 client.on ('message', msg => {
 
 	//function for logging used commands in the console
+	//creates the function with a parameter for what command was used
 	function logUsedCommand (commandUsed) {
 		//checks if logCommandUses in the config is true
 		if (config.logCommandUses === 'true') {
@@ -123,8 +124,6 @@ client.on ('message', msg => {
 		case 'coinflip' || 'Coinflip':
 			//generates a random number between 1 and 2 and stores it in "random"
 			var random = (Math.ceil (Math.random () * 2));
-			//logs the generated number in the console
-			console.log (random);
 			//declares a variable, "messageToSend", which will be used to store the message text
 			var messageToSend;
 			//declares a variable, "coinFace", which will be used to store an image link for the corresponding side of the coin
