@@ -29,6 +29,26 @@ client.on ('message', msg => {
 		}
 	}
 
+	//funtion for generating a random shade of the selected colour for embeds
+	//creates the function
+	function generateRandomShade (colour) {
+		//generates two random numbers between 0 and 75
+		var integer1 = (Math.floor (Math.random () * (75 + 1)));
+		var integer2 = (Math.ceil (Math.random () * (75 + 1)));
+		//adds a zero to the end of the number if it's below 10, preventing the result from being blue
+		if (integer1 < 10) {
+			integer1 = (integer1) + ('0');
+		}
+		//does the same for integer2
+		if (integer2 < 10) {
+			integer2 = (integer2) + ('0');
+		}
+		//adds the values to the selected colour to create a colour hex code
+		shadeResult = ((integer1) + (colour) + (integer2))
+		//sends the result to the line where the funtion was called
+		return shadeResult;
+	}
+
 	//prefixless commands
 	//checks if the message is "E"
 	if (msg.content === ('E')) {
@@ -149,7 +169,7 @@ client.on ('message', msg => {
 				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 				.setTitle ('You flipped a coin!')
 				.setDescription (messageToSend)
-				.setColor (0x00FF00)
+				.setColor (generateRandomShade ('FF'))
 				.setThumbnail (coinFace);
 			msg.channel.send (coinEmbed);
 			logUsedCommand ('coinflip');
@@ -165,7 +185,7 @@ client.on ('message', msg => {
 						//set the title of the embed
 						.setTitle ('Created on June 17th, 2020')
 						// Set the color of the embed's side thingy, in this case green
-						.setColor (0x00FF00)
+						.setColor (generateRandomShade ('FF'))
 						// Set the main content of the embed
 						.setDescription ('Last update was ' + (config.lastUpdate));
 						// Send the embed to the same channel as the command
@@ -176,7 +196,7 @@ client.on ('message', msg => {
 					const versionEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle (config.version)
-						.setColor (0x00FF00);
+						.setColor (generateRandomShade ('FF'));
 					msg.channel.send (versionEmbed);
 					logUsedCommand ('info : version');
 					return;
@@ -184,7 +204,7 @@ client.on ('message', msg => {
 					const authorEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot has been programmed by Ioxom')
-						.setColor (0x00FF00)
+						.setColor (generateRandomShade ('FF'))
 						.setDescription ('Ioxom is cool give him your cash money')
 						.setFooter ('you don\'t want to know what happens if you don\'t');
 					msg.channel.send (authorEmbed);
@@ -194,7 +214,7 @@ client.on ('message', msg => {
 					const commandsEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot\'s commands are :')
-						.setColor (0x00FF00)
+						.setColor (generateRandomShade ('FF'))
 						//adds fields, which are different sections of the embed
 						.addFields (
 							{ name: 'Normal Commands', value: (config.commands), inline: false },
@@ -207,7 +227,7 @@ client.on ('message', msg => {
 					const githubEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('Source code For IoxBot can be found here')
-    					.setColor (0x00FF00)
+    					.setColor (generateRandomShade ('FF'))
     					.setURL (config.githubURL);
 					msg.channel.send (githubEmbed);
 					logUsedCommand ('info : github');

@@ -17,6 +17,8 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 
 # Recent Updates
+2020/08/06 - All embeds now use a random shade of green instead of the generic 0x00FF00
+
 2020/08/04 - Move command logging to a function to clean code and decrease file size
 
 2020/08/01 - Add coinflip command, the most complicated command yet
