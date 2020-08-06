@@ -12,7 +12,7 @@ client.once ('ready', () => {
 	client.user.setActivity ('E', {
 		//sets the type of activity, types are https://discord.js.org/#/docs/main/stable/typedef/ActivityType
 		//note that for the streaming type you need to specify the URL
-		type: 'PLAYING'
+		type: ('PLAYING')
 	  });
 });
 
@@ -25,13 +25,13 @@ client.on ('message', msg => {
 		//checks if logCommandUses in the config is true
 		if (config.logCommandUses === 'true') {
 			//prints the id of the user and then "used [command]"
-			console.log (msg.author + ' used ' + (commandUsed));
+			console.log ((msg.author.tag) + ' used ' + (commandUsed));
 		}
 	}
 
 	//prefixless commands
 	//checks if the message is "E"
-	if (msg.content === 'E') {
+	if (msg.content === ('E')) {
 		//checks if the author of the message is a bot to stop loops
 		if (msg.author.bot) return;
 		//sends "E" in the same channel as the message
@@ -60,7 +60,7 @@ client.on ('message', msg => {
 				case 'IoxBot' || 'ioxbot':
 					if (msg.author.bot) return;
 					//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
-					msg.channel.send ('Hello ' + '<@'  + msg.author + '>' );
+					msg.channel.send (('Hello ') + ('<@')  + (msg.author) + ('>'));
 					logUsedCommand ('hello IoxBot');
 					return;
 			}
