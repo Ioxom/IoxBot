@@ -35,7 +35,7 @@ client.on ('message', msg => {
 		//generates two random numbers between 0 and 75
 		var integer1 = (Math.floor (Math.random () * (75 + 1)));
 		var integer2 = (Math.ceil (Math.random () * (75 + 1)));
-		//adds a zero to the end of the number if it's below 10, preventing the result from being blue
+		//adds a zero to the end of the number if it's below 10, preventing the result from being the wrong colour
 		if (integer1 < 10) {
 			integer1 = (integer1) + ('0');
 		}
@@ -99,7 +99,7 @@ client.on ('message', msg => {
 	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
-		case 'belt' || 'Belt':
+		case 'belt', 'Belt':
 			// Create the belt attachment using MessageAttachment
 			const beltAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807048956837928/belt.jpg');
 			//send some text to the channel that the command was sent to
@@ -110,21 +110,21 @@ client.on ('message', msg => {
 			logUsedCommand ('belt');
 			//makes sure that the next command isn't executed immediately after this one
 			return;
-		case 'uno_reverse_card' || 'unoreversecard':
+		case 'uno_reverse_card', 'unoreversecard':
 			const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 			msg.channel.send (unoAttachment);
 			logUsedCommand ('uno reverse card');
 			return;
-		case 'what\'s_a_tortoise' || 'whatsatortoise':
+		case 'what\'s_a_tortoise', 'whatsatortoise':
 			msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.');
 			logUsedCommand ('what\'s a tortoise');
 			return;
-		case 'are_they_groovin?' || 'aretheygroovin?' || 'are_they_groovin':
+		case 'are_they_groovin?', 'aretheygroovin?', 'are_they_groovin':
 			const groovinAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 			msg.channel.send (groovinAttachment);
 			logUsedCommand ('are they groovin\'?');
 			return;
-		case 'BotInfo' || 'botinfo':
+		case 'BotInfo', 'botinfo':
 			const infoEmbed = new MessageEmbed ()
 				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 				.setTitle ('General Information')
@@ -139,12 +139,12 @@ client.on ('message', msg => {
 			msg.channel.send (infoEmbed);
 			logUsedCommand ('BotInfo');
 			return;
-		case 'die' || 'Die':
+		case 'die', 'Die':
 			const veryfineattachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/618926084750180363/735560345854148619/crab_shoot_ioxbot.jpg');
 			msg.channel.send (veryfineattachment);
 			logUsedCommand ('die');
 			return;
-		case 'coinflip' || 'Coinflip':
+		case 'coinflip', 'Coinflip':
 			//generates a random number between 1 and 2 and stores it in "random"
 			var random = (Math.ceil (Math.random () * 2));
 			//declares a variable, "messageToSend", which will be used to store the message text
@@ -174,7 +174,7 @@ client.on ('message', msg => {
 			msg.channel.send (coinEmbed);
 			logUsedCommand ('coinflip');
 			return;
-		case 'i' || 'info' || 'Info':
+		case 'i', 'info', 'Info':
 			//creates a second switch for arguments after the original "-info" command
 			switch (args[1]) {
 				case 'creation_date', 'creationdate':
@@ -192,7 +192,7 @@ client.on ('message', msg => {
 					msg.channel.send (dateEmbed);
 					logUsedCommand ('info : creation date');
 					return;
-				case 'version' || 'Version':
+				case 'version', 'Version':
 					const versionEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle (config.version)
@@ -200,7 +200,7 @@ client.on ('message', msg => {
 					msg.channel.send (versionEmbed);
 					logUsedCommand ('info : version');
 					return;
-				case 'author' || 'Author':
+				case 'author', 'Author':
 					const authorEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot has been programmed by Ioxom')
@@ -210,7 +210,7 @@ client.on ('message', msg => {
 					msg.channel.send (authorEmbed);
 					logUsedCommand ('info : author');
 					return;
-				case 'commands' || 'Commands':
+				case 'commands', 'Commands':
 					const commandsEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('IoxBot\'s commands are :')
@@ -223,7 +223,7 @@ client.on ('message', msg => {
 					msg.channel.send (commandsEmbed);
 					logUsedCommand ('info : commands');
 					return;
-				case 'GitHub' || 'github' || 'Github':
+				case 'GitHub', 'github', 'Github':
 					const githubEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
 						.setTitle ('Source code For IoxBot can be found here')
