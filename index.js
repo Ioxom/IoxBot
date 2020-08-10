@@ -21,6 +21,14 @@ client.on ('message', msg => {
 
 	//functions
 
+	//function for generating random numbers within parameters
+	//creates the function with parameters for the maximum value and the minimum value
+	function getrndInteger (min, max) {
+		//generates a random number between the parameters using the power of math
+		var result = (Math.floor (Math.random () * (max - min) ) + min);
+		return result;
+	}
+
 	//function for logging used commands in the console
 	//creates the function with a parameter for what command was used
 	function logUsedCommand (commandUsed) {
@@ -35,8 +43,8 @@ client.on ('message', msg => {
 	//creates the function
 	function generateRandomShade (colour) {
 		//generates two random numbers between 0 and 75
-		var integer1 = (Math.floor (Math.random () * (75 + 1)));
-		var integer2 = (Math.ceil (Math.random () * (75 + 1)));
+		var integer1 = (getrndInteger (0, 75));
+		var integer2 = (getrndInteger (0, 75));
 		//adds a zero to the end of the number if it's below 10, preventing the result from being the wrong colour
 		if (integer1 < 10) {
 			integer1 = (integer1) + ('0');
@@ -77,9 +85,9 @@ client.on ('message', msg => {
 			msg.channel.send (ripAttachment);
 			logUsedCommand ('rip');
 			return;
-		case 'hello' || 'Hello':
+		case 'hello':
 			switch (args[1]) {
-				case 'IoxBot' || 'ioxbot':
+				case 'IoxBot':
 					if (msg.author.bot) return;
 					//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
 					msg.channel.send (('Hello ') + ('<@')  + (msg.author) + ('>'));
@@ -147,7 +155,7 @@ client.on ('message', msg => {
 			msg.channel.send (veryfineattachment);
 			logUsedCommand ('die');
 			return;
-		case 'coinflip', 'Coinflip':
+		case 'coinflip':
 			//generates a random number between 1 and 2 and stores it in "random"
 			var random = (Math.ceil (Math.random () * 2));
 			//declares a variable, "messageToSend", which will be used to store the message text
