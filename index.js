@@ -19,6 +19,8 @@ client.once ('ready', () => {
 //this is where new commands are added
 client.on ('message', msg => {
 
+	//functions
+
 	//function for logging used commands in the console
 	//creates the function with a parameter for what command was used
 	function logUsedCommand (commandUsed) {
@@ -94,6 +96,7 @@ client.on ('message', msg => {
 			}
 	}
 
+	//normal commands
 	//checks if the author of the message is a bot or doesn't have the prefix, in both cases it cancels the command
 	if (msg.author.bot || !msg.content.startsWith (config.prefix)) return;
 	//splits the arguments at every space
