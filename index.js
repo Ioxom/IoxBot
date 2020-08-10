@@ -129,7 +129,7 @@ client.on ('message', msg => {
 			return;
 		case 'BotInfo', 'botinfo':
 			const infoEmbed = new MessageEmbed ()
-				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 				.setTitle ('General Information')
 				.addFields (
 					{ name: 'Creation Date', value: '`June 17th, 2020`', inline: true },
@@ -169,7 +169,7 @@ client.on ('message', msg => {
 			}
 			//sends "messageToSend" in an embed with some added things
 			const coinEmbed = new MessageEmbed ()
-				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 				.setTitle ('You flipped a coin!')
 				.setDescription (messageToSend)
 				.setColor (generateRandomShade ('FF'))
@@ -184,7 +184,7 @@ client.on ('message', msg => {
 					//creates an embed, which is then edited by the .set code
 					const dateEmbed = new MessageEmbed ()
 						//adds a field at the top of the embed which shows "IoxBot", with a small image dictated by the link
-						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 						//set the title of the embed
 						.setTitle ('Created on June 17th, 2020')
 						// Set the color of the embed's side thingy, in this case green
@@ -197,7 +197,7 @@ client.on ('message', msg => {
 					return;
 				case 'version', 'Version':
 					const versionEmbed = new MessageEmbed ()
-						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 						.setTitle (config.version)
 						.setColor (generateRandomShade ('FF'));
 					msg.channel.send (versionEmbed);
@@ -205,7 +205,7 @@ client.on ('message', msg => {
 					return;
 				case 'author', 'Author':
 					const authorEmbed = new MessageEmbed ()
-						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 						.setTitle ('IoxBot has been programmed by Ioxom')
 						.setColor (generateRandomShade ('FF'))
 						.setDescription ('Ioxom is cool give him your cash money')
@@ -215,7 +215,7 @@ client.on ('message', msg => {
 					return;
 				case 'commands', 'Commands':
 					const commandsEmbed = new MessageEmbed ()
-						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 						.setTitle ('IoxBot\'s commands are :')
 						.setColor (generateRandomShade ('FF'))
 						//adds fields, which are different sections of the embed
@@ -228,7 +228,7 @@ client.on ('message', msg => {
 					return;
 				case 'GitHub', 'github', 'Github':
 					const githubEmbed = new MessageEmbed ()
-						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/733759142820315256/I.png')
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 						.setTitle ('Source code For IoxBot can be found here')
     					.setColor (generateRandomShade ('FF'))
     					.setURL (config.githubURL);
