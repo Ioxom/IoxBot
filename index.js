@@ -110,7 +110,7 @@ client.on ('message', msg => {
 	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
-		case 'belt', 'Belt':
+		case 'belt':
 			// Create the belt attachment using MessageAttachment
 			const beltAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807048956837928/belt.jpg');
 			//send some text to the channel that the command was sent to
@@ -162,18 +162,21 @@ client.on ('message', msg => {
 			var messageToSend;
 			//declares a variable, "coinFace", which will be used to store an image link for the corresponding side of the coin
 			var coinFace;
+			switch (random) {
 			//checks if the random number is one
-			if (random === 1) {
+			case '1':
 				//changes messageToSend to "Your coin landed on heads!"
 				messageToSend = 'Your coin landed on heads!';
 				//sets coinFace to a picture of a coin on heads
 				coinFace = 'https://cdn.discordapp.com/attachments/728781398911221795/739249818081296384/coin_heads.jpg';
-			//checks if the random number is not one
-			} else {
+				//break because switches are a bit jank in that they'll execute the next case if you don't break or return
+				break;
+			case '2':
 				//changes messageToSend to "Your coin landed on tails!"
 				messageToSend = 'Your coin landed on tails!';
 				//sets coinFace to a picture of a coin on tails
 				coinFace = 'https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg';
+				break;
 			}
 			//sends "messageToSend" in an embed with some added things
 			const coinEmbed = new MessageEmbed ()
@@ -185,7 +188,7 @@ client.on ('message', msg => {
 			msg.channel.send (coinEmbed);
 			logUsedCommand ('coinflip');
 			return;
-		case 'i', 'info', 'Info':
+		case 'i', 'info':
 			//creates a second switch for arguments after the original "-info" command
 			switch (args[1]) {
 				case 'creation_date', 'creationdate':
