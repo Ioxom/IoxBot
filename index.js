@@ -189,6 +189,8 @@ client.on ('message', msg => {
 				//sets coinFace to a picture of a coin on tails
 				coinFace = 'https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg';
 				break;
+			default:
+				console.log ('invalid number; command failed to execute');
 			}
 			//sends "messageToSend" in an embed with some added things
 			const coinEmbed = new MessageEmbed ()
