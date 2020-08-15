@@ -94,7 +94,7 @@ client.on ('message', msg => {
 				case 'Ioxbot':
 				case 'ioxbot':
 					if (msg.author.bot) return;
-					//sends "hello" accompanied by the author of the command message, plus angle brackets and an @ so it's a ping
+					//sends "hello" accompanied by the id of the author of the command message, plus angle brackets and an @ so it's a ping
 					msg.channel.send (('Hello ') + ('<@')  + (msg.author) + ('>'));
 					logUsedCommand ('hello IoxBot');
 					break;
