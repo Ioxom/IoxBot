@@ -25,8 +25,7 @@ client.on ('message', msg => {
 	//creates the function with parameters for the maximum value and the minimum value
 	function getrndInteger (min, max) {
 		//generates a random number between the parameters using the power of math
-		var result = (Math.floor (Math.random () * (max - min) ) + min);
-		return result;
+		return (Math.floor (Math.random () * (max - min) ) + min);
 	}
 
 	//function for logging used commands in the console
