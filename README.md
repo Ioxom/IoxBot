@@ -23,6 +23,8 @@ logCommandUses - set this to "false" if you do not want information about used c
 
 prefix - the prefix used for executing commands
 
+enablePrefixlessCommands - enables a few fun commands that don't use the prefix when true
+
 githubURL - change this if your edit of the bot is available on github
 # Recent Updates
 2020/08/12 - Commands will now work if not capitalized properly
