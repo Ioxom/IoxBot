@@ -59,6 +59,8 @@ client.on ('message', msg => {
 	}
 
 	//prefixless commands
+	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
+	if (config.enablePrefixlessCommands === 'true') {
 	//checks if the message is "E"
 	if (msg.content === ('E')) {
 		//checks if the author of the message is a bot to stop loops
@@ -106,6 +108,7 @@ client.on ('message', msg => {
 					logUsedCommand ('no u');
 					break;
 			}
+	}
 	}
 
 	//normal commands
