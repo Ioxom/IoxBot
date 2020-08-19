@@ -1,6 +1,5 @@
 # IoxBot
 A simple discord bot that has no advanced functions yet. This will probably never become public as no one would understand all our jank functions that don't actually moderate or anything.
-
 # Commands
 -belt | Abuse your friends!
 
@@ -15,7 +14,16 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 -coinflip | Flips a coin.
 
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
+# Config
+token - enter your token here
 
+version, lastUpdate, commands, prefixlessCommands - makes updating easier
+
+logCommandUses - set this to "false" if you do not want information about used commands in the console
+
+prefix - the prefix used for executing commands
+
+githubURL - change this if your edit of the bot is available on github
 # Recent Updates
 2020/08/12 - Commands will now work if not capitalized properly
 
