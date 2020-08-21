@@ -58,6 +58,15 @@ client.on ('message', msg => {
 		return shadeResult;
 	}
 
+	function generateRandomColour1() {
+		const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		const numbers = '0123456789';
+		var characters = (letters + numbers + numbers + numbers + numbers + numbers + numbers);
+		var result = (numbers[(Math.ceil (Math.random () * 10))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))]);
+		console.log (result);
+		return result;
+	}
+
 	//prefixless commands
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
 	if (config.enablePrefixlessCommands === 'true') {
@@ -117,6 +126,12 @@ client.on ('message', msg => {
 	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
+		case 'embedtest':
+			const embed = new MessageEmbed () 
+				.setColor ('0x' + generateRandomColour1())
+				.setTitle ('this is a test');
+			msg.channel.send (embed);
+			break;
 		case 'belt':
 		case 'Belt':
 			// Create the belt attachment using MessageAttachment
