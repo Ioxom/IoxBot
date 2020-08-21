@@ -58,12 +58,14 @@ client.on ('message', msg => {
 		return shadeResult;
 	}
 
-	function generateRandomColour1() {
+	//function to generate a random hex colour for use in embeds
+	function generateRandomColour1 () {
 		const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		const numbers = '0123456789';
+		//add all the characters together, giving numbers a 2/3 chance to be the result and letters 1/3
 		var characters = (letters + numbers + numbers + numbers + numbers + numbers + numbers);
+		//first character can only be a number to prevent invalid colours
 		var result = (numbers[(Math.ceil (Math.random () * 10))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))] + characters[(Math.ceil (Math.random () * 87))]);
-		console.log (result);
 		return result;
 	}
 
@@ -131,6 +133,7 @@ client.on ('message', msg => {
 				.setColor ('0x' + generateRandomColour1())
 				.setTitle ('this is a test');
 			msg.channel.send (embed);
+			logUsedCommand ('embedtest');
 			break;
 		case 'belt':
 		case 'Belt':
