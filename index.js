@@ -61,8 +61,8 @@ client.on ('message', msg => {
 	//prefixless commands
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
 	if (config.enablePrefixlessCommands === 'true') {
-	//checks if the message is "E"
-	if (msg.content === ('E')) {
+		//checks if the message is "E"
+		if (msg.content === ('E')) {
 		//checks if the author of the message is a bot to stop loops
 		if (msg.author.bot) return;
 		//sends "E" in the same channel as the message
@@ -70,45 +70,45 @@ client.on ('message', msg => {
 		//uses the logUsedCommand funtion to print "[userid] used E"
 		logUsedCommand ('E');
 		return;
-	}
-	var args = msg.content.substring ((config.literallyNothing).length) .split (" ");
-	switch (args[0]) {
-		//checks if the message starts with "IoxBot"
-		case 'IoxBot':
-		case 'Ioxbot':
-		case 'ioxbot':
-			const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
-			if (msg.author.bot) return;
-			msg.channel.send (whomstAttachment);	
-			logUsedCommand ('IoxBot');
-			break;
-		case 'rip':
-			const ripAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058159140954/rip.jpg');
-			if (msg.author.bot) return;
-			msg.channel.send (ripAttachment);
-			logUsedCommand ('rip');
-			break;
-		case 'hello':
-		case 'Hello':
-			switch (args[1]) {
-				case 'IoxBot':
-				case 'Ioxbot':
-				case 'ioxbot':
-					if (msg.author.bot) return;
-					//sends "hello" accompanied by the id of the author of the command message, plus angle brackets and an @ so it's a ping
-					msg.channel.send (('Hello ') + ('<@')  + (msg.author) + ('>'));
-					logUsedCommand ('hello IoxBot');
-					break;
-			}
-		case 'no':
-			switch (args[1]) {
-				case 'u':
-					if (msg.author.bot) return;
-					msg.channel.send ('no u');
-					logUsedCommand ('no u');
-					break;
-			}
-	}
+		}
+		var args = msg.content.substring ((config.literallyNothing).length) .split (" ");
+		switch (args[0]) {
+			//checks if the message starts with "IoxBot"
+			case 'IoxBot':
+			case 'Ioxbot':
+			case 'ioxbot':
+				const whomstAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807045874286622/whomst.jpg');
+				if (msg.author.bot) return;
+				msg.channel.send (whomstAttachment);	
+				logUsedCommand ('IoxBot');
+				break;
+			case 'rip':
+				const ripAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058159140954/rip.jpg');
+				if (msg.author.bot) return;
+				msg.channel.send (ripAttachment);
+				logUsedCommand ('rip');
+				break;
+			case 'hello':
+			case 'Hello':
+				switch (args[1]) {
+					case 'IoxBot':
+					case 'Ioxbot':
+					case 'ioxbot':
+						if (msg.author.bot) return;
+						//sends "hello" accompanied by the id of the author of the command message, plus angle brackets and an @ so it's a ping
+						msg.channel.send (('Hello ') + ('<@')  + (msg.author) + ('>'));
+						logUsedCommand ('hello IoxBot');
+						break;
+				}
+			case 'no':
+				switch (args[1]) {
+					case 'u':
+						if (msg.author.bot) return;
+						msg.channel.send ('no u');
+						logUsedCommand ('no u');
+						break;
+				}
+		}
 	}
 
 	//normal commands
