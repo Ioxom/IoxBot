@@ -128,13 +128,16 @@ client.on ('message', msg => {
 	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
+		//experimental commands
 		case 'embedtest':
+		if (config.enableExperimentalCommands === 'true') {
 			const embed = new MessageEmbed () 
 				.setColor ('0x' + generateRandomColour1())
 				.setTitle ('this is a test');
 			msg.channel.send (embed);
 			logUsedCommand ('embedtest');
 			break;
+		}
 		case 'belt':
 		case 'Belt':
 			// Create the belt attachment using MessageAttachment
