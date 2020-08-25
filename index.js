@@ -82,7 +82,7 @@ client.on ('message', msg => {
 		logUsedCommand ('E');
 		return;
 		}
-		var args = msg.content.substring ((config.literallyNothing).length) .split (" ");
+		var args = msg.content.substring ("".length) .split (" ");
 		switch (args[0]) {
 			//checks if the message starts with "IoxBot"
 			case 'IoxBot':
