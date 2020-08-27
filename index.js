@@ -72,16 +72,6 @@ client.on ('message', msg => {
 	//prefixless commands
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
 	if (config.enablePrefixlessCommands === 'true') {
-		//checks if the message is "E"
-		if (msg.content === ('E')) {
-		//checks if the author of the message is a bot to stop loops
-		if (msg.author.bot) return;
-		//sends "E" in the same channel as the message
-		msg.channel.send ('E');
-		//uses the logUsedCommand funtion to print "[userid] used E"
-		logUsedCommand ('E');
-		return;
-		}
 		var args = msg.content.substring ("".length) .split (" ");
 		switch (args[0]) {
 			//checks if the message starts with "IoxBot"
@@ -128,14 +118,37 @@ client.on ('message', msg => {
 	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
+
 		//experimental commands
-		case 'embedtest':
+		case 'E':
+		case 'e':
+		case 'experimental':
 		if (config.enableExperimentalCommands === 'true') {
-			const embed = new MessageEmbed () 
-				.setColor ('0x' + generateRandomColour1())
-				.setTitle ('this is a test');
-			msg.channel.send (embed);
-			logUsedCommand ('embedtest');
+			switch (args[1]) {
+				case 'colouredembed':
+					const embed = new MessageEmbed () 
+						.setColor ('0x' + generateRandomColour1())
+						.setTitle ('this is a test');
+					msg.channel.send (embed);
+					logUsedCommand ('embedtest');
+					break;
+				case 'loop':
+					switch (args[2]) {
+						default:
+							//sets the number of times to loop to the third part of the sent message (must be a number)
+							var amountToLoop = (args[2]);
+						switch (args[3]) {
+							default:
+								//sets the message to send based on the final argument of the command
+								var messageToSend = (args[3]);
+								//repeats sending the message for the amount of times defined in amountToLoop
+								for (var loopCounter = 0; loopCounter < amountToLoop; loopCounter++) {
+									msg.channel.send (messageToSend);
+								}
+								break;
+							}
+					}
+			}
 			break;
 		}
 		case 'belt':
