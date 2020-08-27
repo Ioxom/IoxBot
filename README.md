@@ -13,6 +13,8 @@ A simple discord bot that has no advanced functions yet. This will probably neve
 
 -coinflip | Flips a coin.
 
+-experimental | interesting experimental commands. Includes loop and colouredembed. Use -e help to find out more
+
 And a couple prefixless commands, no u, E, rip, hello IoxBot and IoxBot. It's up to you to find out what they return.
 # Config
 token - enter your token here
@@ -25,8 +27,12 @@ prefix - the prefix used for executing commands
 
 enablePrefixlessCommands - enables a few fun commands that don't use the prefix when true
 
+enableExperimentalCommands - enables -e, which includes a few intersting commands
+
 githubURL - change this if your edit of the bot is available on github
 # Recent Updates
+2020/08/27
+
 2020/08/12 - Commands will now work if not capitalized properly
 
 2020/08/06 - All embeds now use a random shade of green instead of the generic 0x00FF00
