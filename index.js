@@ -145,10 +145,11 @@ client.on ('message', msg => {
 								for (var loopCounter = 0; loopCounter < amountToLoop; loopCounter++) {
 									msg.channel.send (messageToSend);
 								}
-								logUsedCommand ('-experimental loop ' + '[repeats: ' + (amountToLoop) + '] [message: ' (messageToSend) + ']');
+								logUsedCommand ('-experimental loop ' + '[repeats: ' + (amountToLoop) + ']' + ' [message: ' + (messageToSend) + ']');
 								break;
 							}
 					}
+					break;
 				case 'help':
 					const helpEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
