@@ -59,7 +59,7 @@ client.on ('message', msg => {
 	}
 
 	//function to generate a random hex colour for use in embeds
-	function generateRandomColour1 () {
+	function generateRandomColour () {
 		const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		const numbers = '0123456789';
 		//add all the characters together, giving numbers a 2/3 chance to be the result and letters 1/3
@@ -127,10 +127,10 @@ client.on ('message', msg => {
 			switch (args[1]) {
 				case 'colouredembed':
 					const embed = new MessageEmbed () 
-						.setColor ('0x' + generateRandomColour1())
+						.setColor ('0x' + generateRandomColour())
 						.setTitle ('this is a test');
 					msg.channel.send (embed);
-					logUsedCommand ('embedtest');
+					logUsedCommand ('-experimental colouredembed');
 					break;
 				case 'loop':
 					switch (args[2]) {
@@ -145,6 +145,7 @@ client.on ('message', msg => {
 								for (var loopCounter = 0; loopCounter < amountToLoop; loopCounter++) {
 									msg.channel.send (messageToSend);
 								}
+								logUsedCommand ('-experimental loop ' + '[repeats: ' + (amountToLoop) + '] [message: ' (messageToSend) + ']');
 								break;
 							}
 					}
@@ -158,10 +159,13 @@ client.on ('message', msg => {
 							{ name: '`colouredembed`', value: 'sends a randomly coloured embed', inline: false}
 						);
 					msg.channel.send (helpEmbed);
+					logUsedCommand('-experimental help');
 					break;
 			}
 			break;
 		}
+
+		//normal commands
 		case 'belt':
 		case 'Belt':
 			// Create the belt attachment using MessageAttachment
