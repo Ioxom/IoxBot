@@ -31,7 +31,7 @@ enableExperimentalCommands - enables -e, which includes a few intersting command
 
 githubURL - change this if your edit of the bot is available on github
 # Recent Updates
-2020/08/27
+2020/08/27 - Repurpose E to trigger experimental commands, add -E loop
 
 2020/08/12 - Commands will now work if not capitalized properly
 
