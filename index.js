@@ -148,6 +148,17 @@ client.on ('message', msg => {
 								break;
 							}
 					}
+				case 'help':
+					const helpEmbed = new MessageEmbed ()
+						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
+						.setColor (generateRandomShade('FF'))
+						.setTitle ('Using Experimental Commands')
+						.addFields (
+							{ name: '`loop`', value: '-e loop [repeat count] [message]', inline: false },
+							{ name: '`colouredembed`', value: 'sends a randomly coloured embed', inline: false}
+						);
+					msg.channel.send (helpEmbed);
+					break;
 			}
 			break;
 		}
