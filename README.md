@@ -1,5 +1,5 @@
 # IoxBot
-A discord bot made by yours truly. This bot has no servers, so you'd have to run it yourself to add an edit to your server.
+A discord bot made by yours truly. This bot has no servers, so you'd have to run it yourself to add an edit to your server. There's some weird stuff going on with this repository as I've just made it public through github destop but ignore that.
 # Commands
 -belt | Abuse your friends!
 
