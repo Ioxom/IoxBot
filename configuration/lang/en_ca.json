@@ -23,13 +23,13 @@
         "message": "As we all know, an underdeveloped sad excuse for a turtle.",
         "log": "what's a tortoise",
         "trigger": {
-            "one": "what's_a_tortoise",
-            "two": "whatsatortoise",
+            "A": "what's_a_tortoise",
+            "B": "whatsatortoise",
             "separated": {
-                "oneA": "what's",
-                "oneB": "whats",
-                "two": "a",
-                "three": "tortoise"
+                "A1": "what's",
+                "A2": "whats",
+                "B": "a",
+                "C": "tortoise"
             }
         }
     },
@@ -86,6 +86,19 @@
         "trigger": {
             "A": "coinflip",
             "B": "Coinflip"
+        }
+    },
+    "info:creationdate": {
+        "log": "info: [creationdate]",
+        "title": "Created on June 17th, 2020",
+        "description": "Last update was ",
+        "trigger": {
+            "A": "creation_date",
+            "B": "creationdate",
+            "separated": {
+                "A": "creation",
+                "B": "date"
+            }
         }
     }
 }

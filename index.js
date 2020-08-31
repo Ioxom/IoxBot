@@ -191,11 +191,11 @@ client.on ('message', msg => {
 				}
 			}
 			break;
-		case lang.tortoise.trigger.one: case lang.tortoise.trigger.two: case lang.tortoise.trigger.separated.oneA: case lang.tortoise.trigger.separated.oneB:
+		case lang.tortoise.trigger.A: case lang.tortoise.trigger.B: case lang.tortoise.trigger.separated.A1: case lang.tortoise.trigger.separated.A2:
 			switch (args[1]) {
-			default: case lang.tortoise.trigger.separated.two:
+			default: case lang.tortoise.trigger.separated.B:
 				switch (args[2]) {
-				default: case lang.tortoise.trigger.separated.three:
+				default: case lang.tortoise.trigger.separated.C:
 					msg.channel.send (lang.tortoise.message);
 					logUsedCommand (lang.tortoise.log);
 					break;
@@ -266,26 +266,25 @@ client.on ('message', msg => {
 			msg.channel.send (coinEmbed);
 			logUsedCommand (lang.coinflip.log);
 			break;
-		case 'i':
-		case 'info':
+		case 'i': case 'info':
 			//creates a second switch for arguments after the original "-info" command
 			switch (args[1]) {
-				case 'creation_date': case 'creationdate': case 'creation':
+				case lang["info:creationdate"].trigger.A: case lang["info:creationdate"].trigger.B: case lang["info:creationdate"].trigger.separated.A:
 					switch (args[2]) {
-					default: case 'date':
+					default: case lang["info:creationdate"].trigger.separated.B:
 						//creates an embed, which is then edited by the .set code
 						const dateEmbed = new MessageEmbed ()
 							//adds a field at the top of the embed which shows "IoxBot", with a small image dictated by the link
 							.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 							//set the title of the embed
-							.setTitle ('Created on June 17th, 2020')
+							.setTitle (lang["info:creationdate"].title)
 							// Set the color of the embed, in this case green
 							.setColor (generateRandomShade ('FF'))
 							// Set the main content of the embed
-							.setDescription ('Last update was ' + (config.lastUpdate));
+							.setDescription (lang["info:creationdate"].description + (config.lastUpdate));
 							// Send the embed to the same channel as the command
 						msg.channel.send (dateEmbed);
-						logUsedCommand ('info : creation date');
+						logUsedCommand (lang["info:creationdate"].log);
 						break;
 					}
 				case 'version': case 'Version':
