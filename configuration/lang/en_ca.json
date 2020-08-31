@@ -18,5 +18,19 @@
                 "three": "card"
             }
         }
+    },
+    "tortoise": {
+        "message": "As we all know, an underdeveloped sad excuse for a turtle.",
+        "log": "what's a tortoise",
+        "trigger": {
+            "one": "what's_a_tortoise",
+            "two": "whatsatortoise",
+            "separated": {
+                "oneA": "what's",
+                "oneB": "whats",
+                "two": "a",
+                "three": "tortoise"
+            }
+        }
     }
 }

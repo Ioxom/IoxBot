@@ -191,13 +191,13 @@ client.on ('message', msg => {
 				}
 			}
 			break;
-		case 'what\'s_a_tortoise': case 'whatsatortoise': case 'what\'s': case 'whats':
+		case lang.tortoise.trigger.one: case lang.tortoise.trigger.two: case lang.tortoise.trigger.separated.oneA: case lang.tortoise.trigger.separated.oneB:
 			switch (args[1]) {
-			default: case 'a':
+			default: case lang.tortoise.trigger.separated.two:
 				switch (args[2]) {
-				default: case 'tortoise':
-					msg.channel.send ('As we all know, an underdeveloped sad excuse for a turtle.');
-					logUsedCommand ('what\'s a tortoise');
+				default: case lang.tortoise.trigger.separated.three:
+					msg.channel.send (lang.tortoise.message);
+					logUsedCommand (lang.tortoise.log);
 					break;
 				}
 			}
