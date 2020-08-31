@@ -76,5 +76,16 @@
             "B": "Botinfo",
             "C": "BotInfo"
         }
+    },
+    "coinflip": {
+        "log": "coinflip",
+        "messageHeads": "Your coin landed on heads!",
+        "messageTails": "Your coin landed on tails!",
+        "messageTitle": "You flipped a coin!",
+        "error": "invalid number; command failed to execute",
+        "trigger": {
+            "A": "coinflip",
+            "B": "Coinflip"
+        }
     }
 }
