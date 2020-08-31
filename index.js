@@ -167,7 +167,7 @@ client.on ('message', msg => {
 		}
 
 		//normal commands
-		case lang.belt.trigger.one: case lang.belt.trigger.two:
+		case lang.belt.trigger.A: case lang.belt.trigger.B:
 			// Create the belt attachment using MessageAttachment
 			const beltAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807048956837928/belt.jpg');
 			//send some text to the channel that the command was sent to
@@ -178,12 +178,12 @@ client.on ('message', msg => {
 			logUsedCommand (lang.belt.log);
 			//makes sure that the next command isn't executed immediately after this one
 			break;
-		case lang.uno.trigger.one: case lang.uno.trigger.two: case lang.uno.trigger.separated.one:
+		case lang.uno.trigger.A: case lang.uno.trigger.B: case lang.uno.trigger.separated.A:
 			//uses the "default" case to allow -uno reverse card (spaces)
 			switch (args[1]) {
-			default: case lang.uno.trigger.separated.two:
+			default: case lang.uno.trigger.separated.B:
 				switch (args[2]) {
-				default: case lang.uno.trigger.separated.two:
+				default: case lang.uno.trigger.separated.C:
 					const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 					msg.channel.send (unoAttachment);
 					logUsedCommand (lang.uno.log);
@@ -287,45 +287,45 @@ client.on ('message', msg => {
 						logUsedCommand (lang["info:creationdate"].log);
 						break;
 					}
-				case 'version': case 'Version':
+				case lang["info:version"].trigger.A: case lang["info:version"].trigger.B:
 					const versionEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 						.setTitle (config.version)
 						.setColor (generateRandomShade ('FF'));
 					msg.channel.send (versionEmbed);
-					logUsedCommand ('info : version');
+					logUsedCommand (lang["info:version"].log + ' [' + (updates.version) + ']');
 					break;
-				case 'author': case 'Author':
+				case lang["info:author"].trigger.A: case lang["info:author"].trigger.B:
 					const authorEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
-						.setTitle ('IoxBot has been programmed by Ioxom')
+						.setTitle (lang["info:author"].title)
 						.setColor (generateRandomShade ('FF'))
-						.setDescription ('Ioxom is cool give him your cash money')
-						.setFooter ('you don\'t want to know what happens if you don\'t');
+						.setDescription (lang["info:author"].description)
 					msg.channel.send (authorEmbed);
-					logUsedCommand ('info : author');
+					logUsedCommand (lang["info:author"].log);
 					break;
-				case 'commands': case 'Commands':
+				case lang["info:commands"].trigger.A: case lang["info:commands"].trigger.B:
 					const commandsEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
-						.setTitle ('IoxBot\'s commands are :')
+						.setTitle (lang["info:commands"].title)
 						.setColor (generateRandomShade ('FF'))
 						//adds fields, which are different sections of the embed
 						.addFields (
-							{ name: 'Normal Commands', value: (updates.commands), inline: false },
-							{ name: 'Prefixless Commands', value: (updates.prefixlessCommands), inline: false }
+							{ name: lang["info:commands"].fields.field1, value: (updates.commands), inline: false },
+							{ name: lang["info:commands"].fields.field2, value: (updates.prefixlessCommands), inline: false }
 						);
 					msg.channel.send (commandsEmbed);
-					logUsedCommand ('info : commands');
+					logUsedCommand (lang["info:commands"].log);
 					break;
-				case 'GitHub': case 'Github': case 'github': case 'gitHub':
+				case lang["info:github"].trigger.A: case lang["info:github"].trigger.B:
+				case lang["info:github"].trigger.C: case lang["info:github"].trigger.D:
 					const githubEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
-						.setTitle ('Source code For IoxBot can be found here')
+						.setTitle (lang["info:github"].title)
     					.setColor (generateRandomShade ('FF'))
     					.setURL ('https://github.com/Ioxom/IoxBot');
 					msg.channel.send (githubEmbed);
-					logUsedCommand ('info : github');
+					logUsedCommand (lang["info:github"].log);
 					break;
 			}
 	}

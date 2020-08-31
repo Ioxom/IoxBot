@@ -3,19 +3,19 @@
         "message": "ALRIGHT YOU AIN'T LISTENIN' SO YOU'RE GETTING THE BELT!",
         "log": "belt",
         "trigger": {
-            "one": "belt",
-            "two": "Belt"
+            "A": "belt",
+            "B": "Belt"
         }
     },
     "uno": {
         "log": "uno reverse card",
         "trigger": {
-            "one": "unoreversecard",
-            "two": "uno_reverse_card",
+            "A": "unoreversecard",
+            "B": "uno_reverse_card",
             "separated": {
-                "one": "uno",
-                "two": "reverse",
-                "three": "card"
+                "A": "uno",
+                "B": "reverse",
+                "C": "card"
             }
         }
     },
@@ -99,6 +99,44 @@
                 "A": "creation",
                 "B": "date"
             }
+        }
+    },
+    "info:version": {
+        "log": "info: [version]",
+        "trigger": {
+            "A": "Version",
+            "B": "version"
+        }
+    },
+    "info:author": {
+        "log": "info: [author]",
+        "title": "IoxBot has been programmed by Ioxom",
+        "description": "Ioxom is cool give him your cash money",
+        "trigger": {
+            "A": "Author",
+            "B": "author"
+        }
+    },
+    "info:commands": {
+        "log": "info: [commands]",
+        "title": "IoxBot's commands are :",
+        "fields": {
+            "field1": "Normal Commands",
+            "field2": "Prefixless Commands"
+        },
+        "trigger": {
+            "A": "commands",
+            "B": "Commands"
+        }
+    },
+    "info:github": {
+        "log": "info: [github]",
+        "title": "Source code For IoxBot can be found here",
+        "trigger": {
+            "A": "GitHub",
+            "B": "Github",
+            "C": "github",
+            "D": "gitHub"
         }
     }
 }
