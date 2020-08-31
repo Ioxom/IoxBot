@@ -202,14 +202,15 @@ client.on ('message', msg => {
 				}
 			}
 			break;
-		case 'are_they_groovin?': case 'aretheygroovin?': case 'are':
+		case lang.groovin.trigger.A: case lang.groovin.trigger.B: case lang.groovin.trigger.separated.A:
 			switch (args[1]) {
-			default: case 'they':
+			default: case lang.groovin.trigger.separated.B:
 				switch (args[2]) {
-				default: case 'groovin\'': case 'groovin': case 'groovin\'?': case 'groovin?':
+				default: case lang.groovin.trigger.separated.C1: case lang.groovin.trigger.separated.C2:
+				case lang.groovin.trigger.separated.C3: case lang.groovin.trigger.separated.C4:
 					const groovinAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 					msg.channel.send (groovinAttachment);
-					logUsedCommand ('are they groovin\'?');
+					logUsedCommand (lang.groovin.log);
 					break;
 				}
 			}

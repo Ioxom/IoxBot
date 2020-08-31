@@ -32,5 +32,20 @@
                 "three": "tortoise"
             }
         }
+    },
+    "groovin": {
+        "log": "are they groovin'",
+        "trigger": {
+            "A": "are_they_groovin?",
+            "B": "aretheygroovin?",
+            "separated": {
+                "A": "are",
+                "B": "they",
+                "C1": "groovin",
+                "C2": "groovin'",
+                "C3": "groovin?",
+                "C4": "groovin'?"
+            }
+        }
     }
 }
