@@ -214,20 +214,20 @@ client.on ('message', msg => {
 					break;
 				}
 			}
-		case 'BotInfo': case 'botinfo':
+		case lang.botinfo.trigger.A: case lang.botinfo.trigger.B: case lang.botinfo.trigger.C:
 			const infoEmbed = new MessageEmbed ()
 				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
-				.setTitle ('General Information')
+				.setTitle (lang.botinfo.title)
 				.addFields (
-					{ name: 'Creation Date', value: '`June 17th, 2020`', inline: true },
-					{ name: 'Gender', value: '`Female♀`', inline: true },
-					{ name: 'Version', value: '`' + (config.version) + '`', inline: true },
+					{ name: lang.botinfo.fields.Creation_date.name, value: lang.botinfo.fields.Creation_date.value, inline: true },
+					{ name: lang.botinfo.fields.Gender.name, value: lang.botinfo.fields.Gender.value, inline: true },
+					{ name: lang.botinfo.fields.Version.name, value: '`' + (updates.version) + '`', inline: true },
 					{ name: 'GitHub', value: '`Ioxom/IoxBot`', inline: true },
-					{ name: 'Creator', value: '`Ioxom`', inline: true },
-					{ name: 'Prefix', value: '`-`', inline: true },
+					{ name: lang.botinfo.fields.Creator.name, value: lang.botinfo.fields.Creator.value, inline: true },
+					{ name: lang.botinfo.fields.Prefix.name, value: '`' + (config.prefix) + '`', inline: true },
 				);
 			msg.channel.send (infoEmbed);
-			logUsedCommand ('BotInfo');
+			logUsedCommand (lang.botinfo.log);
 			break;
 		case 'die':
 		case 'Die':

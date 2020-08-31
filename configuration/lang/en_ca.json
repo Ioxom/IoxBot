@@ -47,5 +47,34 @@
                 "C4": "groovin'?"
             }
         }
+    },
+    "botinfo": {
+        "log": "botinfo",
+        "title": "General Information",
+        "fields": {
+            "Gender": {
+                "name": "`Gender`",
+                "value": "`Female ♀`"
+            },
+            "Creation_date": {
+                "name": "`Creation Date`",
+                "value": "`June 17th, 2020`"
+            },
+            "Version": {
+                "name": "`Version`"
+            },
+            "Creator": {
+                "name": "`Creator`",
+                "value": "`Ioxom`"
+            },
+            "Prefix": {
+                "name": "`Prefix`"
+            }
+        },
+        "trigger": {
+            "A": "botinfo",
+            "B": "Botinfo",
+            "C": "BotInfo"
+        }
     }
 }
