@@ -134,9 +134,7 @@ client.on ('message', msg => {
 						switch (args[3]) {
 						default:
 							//error messages
-							if (isNaN(args[2]) && Array.isArray(args[2])) {
-								msg.channel.send ('invalid third argument found. use -e help for the proper command usage');
-							} else if ((!args[2]) && (!args[3])) {
+							if ((!args[2]) && (!args[3])) {
 								msg.channel.send ('missing third and fourth argument. use -e help for the proper command usage');
 							}
 							//sets the message to send based on the final argument of the command
