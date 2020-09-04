@@ -131,8 +131,13 @@ client.on ('message', msg => {
 					default:
 						//sets the number of times to loop to the third part of the sent message (must be a number)
 						var amountToLoop = (args[2]);
+						var deleteLog = '[deleted?: false]';
 						switch (args[3]) {
-						default:
+						default: switch (args[4]) {
+							case 'delete':
+								msg.delete({ timeout: 100 });
+								deleteLog = '[deleted?: true]';
+						}
 							//error messages
 							if ((!args[2]) && (!args[3])) {
 								msg.channel.send ('missing third and fourth argument. use -e help for the proper command usage');
@@ -143,7 +148,7 @@ client.on ('message', msg => {
 							for (var loopCounter = 0; loopCounter < amountToLoop; loopCounter++) {
 								msg.channel.send (messageToSend);
 							}
-							logUsedCommand ('-experimental loop ' + '[repeats: ' + (amountToLoop) + ']' + ' [message: ' + (messageToSend) + ']');
+							logUsedCommand ('-experimental loop ' + '[repeats: ' + (amountToLoop) + ']' + ' [message: ' + (messageToSend) + '] ' + deleteLog);
 							break;
 						}
 					}
@@ -154,7 +159,7 @@ client.on ('message', msg => {
 						.setColor (generateRandomShade('FF'))
 						.setTitle ('Using Experimental Commands')
 						.addFields (
-							{ name: '`loop`', value: '-e loop [repeat count] [message]', inline: false },
+							{ name: '`loop`', value: '-e loop [repeat count] [message] [delete(optional)]', inline: false },
 							{ name: '`colouredembed`', value: 'sends a randomly coloured embed', inline: false}
 						);
 					msg.channel.send (helpEmbed);
