@@ -227,12 +227,6 @@ client.on ('message', msg => {
 			msg.channel.send (infoEmbed);
 			logUsedCommand (lang.botinfo.log);
 			break;
-		case 'die':
-		case 'Die':
-			const veryfineattachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/618926084750180363/735560345854148619/crab_shoot_ioxbot.jpg');
-			msg.channel.send (veryfineattachment);
-			logUsedCommand ('die');
-			break;
 		case lang.coinflip.trigger.A: case lang.coinflip.trigger.B:
 			//generates a random number between 1 and 2 and stores it in "random"
 			var random = (Math.ceil (Math.random () * 2));
