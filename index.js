@@ -4,7 +4,7 @@ if (config.lang === 'en_ca') var lang = require ('./configuration/lang/en_ca.jso
 const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const updates = require('./configuration/update.json');
 const client = new Client ();
-//we're storing variables in the config now, makes this file very clean
+//we're storing variables in the config/updates.json now, makes this file very clean
 //logs in the bot using the token from the config file
 client.login (config.token);
 
@@ -28,7 +28,7 @@ client.on ('message', msg => {
 	//creates the function with parameters for the maximum value and the minimum value
 	//generates a random number between the minimum and maximum defined earlier
 	function getrndInteger (min, max) {
-		return (Math.floor (Math.random () * (max - min) ) + min);
+		return (Math.floor(Math.random() * (max - min)) + min);
 	}
 
 	//function for logging used commands in the console
@@ -54,28 +54,25 @@ client.on ('message', msg => {
 			integer2 = (integer2) + ('0');
 		}
 		//adds the values to the selected colour to create a colour hex code
-		shadeResult = ((integer1) + (colour) + (integer2))
-		return shadeResult;
+		return ((integer1) + (colour) + (integer2))
 	}
 
 	//function to generate a random hex colour for use in embeds
 	function generateRandomColour () {
-		const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 		const numbers = '0123456789';
 		//add all the characters together, giving numbers a 2/3 chance to be the result and letters 1/3
-		var characters = (letters + numbers + numbers + numbers + numbers + numbers + numbers);
+		var characters = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ' + (numbers + numbers + numbers + numbers + numbers + numbers) );
 		function selectchars() {
 			return (characters[(Math.ceil (Math.random () * 87))]);
 		}
 		//first character can only be a number to prevent invalid colours
-		var result = (numbers[(Math.ceil (Math.random () * 10))] + selectchars() + selectchars() + selectchars() + selectchars() + selectchars());
-		return result;
+		return (numbers[(Math.ceil(Math.random() * 10))] + selectchars() + selectchars() + selectchars() + selectchars() + selectchars());
 	}
 
 	//prefixless commands
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
 	if (config.enablePrefixlessCommands === 'true') {
-		var args = msg.content.substring ("".length) .split (" ");
+		var args = msg.content.substring("".length).split (" ");
 		switch (args[0]) {
 			//checks if the message starts with "IoxBot" in any capitalization, hooray for case spam
 			case 'IoxBot': case 'Ioxbot': case 'ioxbot': case 'ioxBot':
@@ -107,8 +104,7 @@ client.on ('message', msg => {
 						logUsedCommand ('no u');
 						break;
 				}
-			case 'E':
-				msg.react('🇪');
+			if (msg.content === 'E') msg.react('🇪');
 		}
 	}
 
@@ -181,7 +177,7 @@ client.on ('message', msg => {
 			logUsedCommand (lang.belt.log);
 			//makes sure that the next command isn't executed immediately after this one
 			break;
-		case lang.uno.trigger.A: case lang.uno.trigger.B: case lang.uno.trigger.separated.A:
+		case lang.uno.trigger.A: case lang.uno.trigger.B: case lang.uno.trigger.separated.C:
 			//uses the "default" case to allow -uno reverse card (spaces)
 			switch (args[1]) {
 			default: case lang.uno.trigger.separated.B:
@@ -190,7 +186,6 @@ client.on ('message', msg => {
 					const unoAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807057811275797/uno_u.jpg');
 					msg.channel.send (unoAttachment);
 					logUsedCommand (lang.uno.log);
-					break;
 				}
 			}
 			break;
@@ -201,7 +196,6 @@ client.on ('message', msg => {
 				default: case lang.tortoise.trigger.separated.C:
 					msg.channel.send (lang.tortoise.message);
 					logUsedCommand (lang.tortoise.log);
-					break;
 				}
 			}
 			break;
@@ -214,9 +208,9 @@ client.on ('message', msg => {
 					const groovinAttachment = new MessageAttachment ('https://cdn.discordapp.com/attachments/719955731821887602/733807058654068756/groovin.jpg');
 					msg.channel.send (groovinAttachment);
 					logUsedCommand (lang.groovin.log);
-					break;
 				}
 			}
+			break;
 		case lang.botinfo.trigger.A: case lang.botinfo.trigger.B: case lang.botinfo.trigger.C:
 			const infoEmbed = new MessageEmbed ()
 				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
@@ -275,7 +269,7 @@ client.on ('message', msg => {
 							.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 							//set the title of the embed
 							.setTitle (lang["info:creationdate"].title)
-							// Set the color of the embed, in this case green
+							// Set the color of the embed, in this case a random shade of green created by our function
 							.setColor (generateRandomShade ('FF'))
 							// Set the main content of the embed
 							.setDescription (lang["info:creationdate"].description + (config.lastUpdate));
@@ -287,7 +281,7 @@ client.on ('message', msg => {
 				case lang["info:version"].trigger.A: case lang["info:version"].trigger.B:
 					const versionEmbed = new MessageEmbed ()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
-						.setTitle (config.version)
+						.setTitle (updates.version)
 						.setColor (generateRandomShade ('FF'));
 					msg.channel.send (versionEmbed);
 					logUsedCommand (lang["info:version"].log + ' [' + (updates.version) + ']');
