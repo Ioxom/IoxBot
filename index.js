@@ -107,11 +107,11 @@ client.on ('message', msg => {
 						logUsedCommand ('no u');
 						break;
 				}
+			case 'E':
+				msg.react('🇪');
 		}
 	}
 
-	//normal commands
-	//splits the arguments at every space
 	var args = msg.content.substring ((config.prefix).length) .split (" ");
 	switch (args[0]) {
 
