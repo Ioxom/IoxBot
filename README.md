@@ -1,5 +1,5 @@
 # IoxBot
-A discord bot made by yours truly. This bot has no servers, so you'd have to run it yourself to add an edit to your server. There's some weird stuff going on with this repository as I've just made it public through github destop but ignore that.
+A discord bot made by yours truly. This bot has no servers, so you'd have to run it yourself to add an edit to your server. There's some weird stuff going on with this repository as I've just made it public through github desktop but ignore that.
 # Commands
 -belt | Abuse your friends!
 
@@ -25,7 +25,7 @@ enablePrefixlessCommands - enables a few fun commands that don't use the prefix 
 
 enableExperimentalCommands - enables -e, which includes a few interesting commands
 
-lang - not functional yet but will be useful once it's fully implemented and translated
+lang - not functional yet but will be useful once there's another translation available
 # Recent Updates
 2020/08/30 - IoxBot 1.0! Changelog - add lang file, reorganise configuration, clean code, delete -die, allow spaces to be used in commands such as -unoreversecard, edit comments so it almost seems like I know what I'm doing
 
