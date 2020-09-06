@@ -328,17 +328,19 @@ client.on ('message', msg => {
 	switch (args) {
 		default:
 			var currentScore = 0;
-			fs.readFile("stats.txt", "utf-8", function(err, data) {
-				console.log (data);
-				data.split (' - ');
-				currentScore += (data[1]);
-				console.log (data[1]);
-			});
-			console.log (currentScore);
+			var user;
+			fs.readFile('stats.txt', 'utf8', (err, data) => { 
+				console.log(data);
+				var splitData = data.split(' - ');
+				currentScore += splitData[1];
+				console.log (currentScore);
+				user = splitData[0]
+				console.log (user);
+			}) 
 			var score = currentScore + (Math.floor (args.length / 4));
 			var data = msg.author + ' - ' + score;
-			fs.writeFile("stats.txt", data, (err) => {
-				console.log("successfully written to file.");
-			});
+			//fs.writeFile("stats.txt", data, (err) => {
+			//	console.log("successfully written to file.");
+			//});
 	}
 });
