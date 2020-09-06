@@ -8,6 +8,7 @@ const client = new Client ();
 //logs in the bot using the token from the config file
 client.login (config.token);
 
+var fs = require("fs");
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
 	console.log ('bot initialized successfully');
@@ -320,4 +321,24 @@ client.on ('message', msg => {
 					break;
 			}
 	}
-})
+});
+
+client.on ('message', msg => {
+	var args = msg.content;
+	switch (args) {
+		default:
+			var currentScore = 0;
+			fs.readFile("stats.txt", "utf-8", function(err, data) {
+				console.log (data);
+				data.split (' - ');
+				currentScore += (data[1]);
+				console.log (data[1]);
+			});
+			console.log (currentScore);
+			var score = currentScore + (Math.floor (args.length / 4));
+			var data = msg.author + ' - ' + score;
+			fs.writeFile("stats.txt", data, (err) => {
+				console.log("successfully written to file.");
+			});
+	}
+});
