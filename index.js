@@ -339,8 +339,9 @@ client.on ('message', msg => {
 			}) 
 			var score = currentScore + (Math.floor (args.length / 4));
 			var data = msg.author + ' - ' + score;
-			//fs.writeFile("stats.txt", data, (err) => {
-			//	console.log("successfully written to file.");
-			//});
+			// fs.writeFile("stats.txt", data, 'utf8', function(err) {
+			// 	if (err) return console.log(err);
+			// 	console.log("successfully written to file.");
+			// });
 	}
 });
