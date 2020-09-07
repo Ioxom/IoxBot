@@ -329,19 +329,21 @@ client.on ('message', msg => {
 		default:
 			var currentScore = 0;
 			var user;
-			fs.readFile('stats.txt', 'utf8', (err, data) => { 
+			fs.readFile('stats.txt', 'utf8', (err, data) => {
 				console.log(data);
 				var splitData = data.split(' - ');
 				currentScore += splitData[1];
 				console.log (currentScore);
-				user = splitData[0]
+				user = splitData[0];
 				console.log (user);
-			}) 
+			});
 			var score = currentScore + (Math.floor (args.length / 4));
 			var data = msg.author + ' - ' + score;
-			// fs.writeFile("stats.txt", data, 'utf8', function(err) {
-			// 	if (err) return console.log(err);
-			// 	console.log("successfully written to file.");
-			// });
+			// if (score > currentScore) {
+			// 	fs.writeFile("stats.txt", data, 'utf8', function(err) {
+			// 		if (err) return console.log(err);
+			// 		console.log("successfully written to file.");
+			// 	});
+			// }
 	}
 });
