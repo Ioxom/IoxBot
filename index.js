@@ -329,7 +329,9 @@ client.on ('message', msg => {
 		default:
 			var currentScore = 0;
 			var user;
+			//reads stats.txt and saves the contents to "data"
 			fs.readFile('stats.txt', 'utf8', (err, data) => {
+				//in "splitData"(array), stores the user and their score (user: splitData[0]) (score: splitData[1])
 				console.log(data);
 				var splitData = data.split(' - ');
 				currentScore += splitData[1];
@@ -337,8 +339,11 @@ client.on ('message', msg => {
 				user = splitData[0];
 				console.log (user);
 			});
+			//adds the amount of characters in the user's score to their old score
 			var score = currentScore + (Math.floor (args.length / 4));
+			//combines the data
 			var data = msg.author + ' - ' + score;
+			//should write their score to stats.txt, however right now it just breaks the whole function
 			// if (score > currentScore) {
 			// 	fs.writeFile("stats.txt", data, 'utf8', function(err) {
 			// 		if (err) return console.log(err);
