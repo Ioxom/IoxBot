@@ -336,7 +336,7 @@ client.on ('message', msg => {
 				console.log ('score: ' + splitData[1])
 				//adds the amount of characters in the user's score to their old score
 				console.log ('current score: ' + splitData[1]);
-				var score = (Math.round(splitData[1])) + (Math.round(args.length / 4));
+				var score = (Math.round(splitData[1])) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
 				console.log ('updated score: ' + score);
 				//combines the data
 				data = msg.author + ' - ' + score;
