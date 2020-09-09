@@ -331,20 +331,15 @@ client.on ('message', msg => {
 			fs.readFile('stats.txt', 'utf8', (err, data) => {
 				if (err) return console.log(err);
 				//in "splitData"(array), stores the user and their score (user: splitData[0]) (score: splitData[1])
-				console.log ('current data: ' + data);
 				var splitData = data.split(' - ');
-				console.log ('score: ' + splitData[1])
 				//adds the amount of characters in the user's score to their old score
-				console.log ('current score: ' + splitData[1]);
 				var score = (Math.round(splitData[1])) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
-				console.log ('updated score: ' + score);
 				//combines the data
 				data = msg.author + ' - ' + score;
 				//writes the score to stats.txt
 				if (score > splitData[1]) {
 					fs.writeFile('stats.txt', (data), 'utf8', function(err) {
 						if (err) return console.log(err);
-						console.log('successfully written to file.');
 					});
 				}
 			});
