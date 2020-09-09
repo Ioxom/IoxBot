@@ -323,32 +323,34 @@ client.on ('message', msg => {
 	}
 });
 
+var user = 0, currentScore = 0, score = 0;
 client.on ('message', msg => {
 	var args = msg.content;
 	switch (args) {
 		default:
-			var currentScore = 0;
-			var user;
 			//reads stats.txt and saves the contents to "data"
 			fs.readFile('stats.txt', 'utf8', (err, data) => {
+				if (err) return console.log(err);
 				//in "splitData"(array), stores the user and their score (user: splitData[0]) (score: splitData[1])
-				console.log(data);
+				console.log ('current data: ' + data);
 				var splitData = data.split(' - ');
-				currentScore += splitData[1];
-				console.log (currentScore);
+				console.log ('score: ' + splitData[1])
+				currentScore = splitData[1];
 				user = splitData[0];
-				console.log (user);
+				//adds the amount of characters in the user's score to their old score
+				console.log ('current score: ' + currentScore);
+				score = currentScore + (Math.floor (args.length / 4));
+				console.log ('updated score: ' + score);
+				//combines the data
+				user = msg.author
+				data = user + ' - ' + score;
+				//adds their updated score to a newline in stats.txt
+				if (score > currentScore) {
+					fs.appendFile("stats.txt", ('\n' + data), 'utf8', function(err) {
+						if (err) return console.log(err);
+						console.log("successfully written to file.");
+					});
+				}
 			});
-			//adds the amount of characters in the user's score to their old score
-			var score = currentScore + (Math.floor (args.length / 4));
-			//combines the data
-			var data = msg.author + ' - ' + score;
-			//should write their score to stats.txt, however right now it just breaks the whole function
-			// if (score > currentScore) {
-			// 	fs.writeFile("stats.txt", data, 'utf8', function(err) {
-			// 		if (err) return console.log(err);
-			// 		console.log("successfully written to file.");
-			// 	});
-			// }
 	}
 });
