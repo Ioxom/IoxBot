@@ -323,7 +323,6 @@ client.on ('message', msg => {
 	}
 });
 
-var user = 0, currentScore = 0, score = 0;
 client.on ('message', msg => {
 	var args = msg.content;
 	switch (args) {
@@ -335,20 +334,17 @@ client.on ('message', msg => {
 				console.log ('current data: ' + data);
 				var splitData = data.split(' - ');
 				console.log ('score: ' + splitData[1])
-				currentScore = splitData[1];
-				user = splitData[0];
 				//adds the amount of characters in the user's score to their old score
-				console.log ('current score: ' + currentScore);
-				score = currentScore + (Math.floor (args.length / 4));
+				console.log ('current score: ' + splitData[1]);
+				var score = (Math.round(splitData[1])) + (Math.round(args.length / 4));
 				console.log ('updated score: ' + score);
 				//combines the data
-				user = msg.author
-				data = user + ' - ' + score;
-				//adds their updated score to a newline in stats.txt
-				if (score > currentScore) {
-					fs.appendFile("stats.txt", ('\n' + data), 'utf8', function(err) {
+				data = msg.author + ' - ' + score;
+				//writes the score to stats.txt
+				if (score > splitData[1]) {
+					fs.writeFile('stats.txt', (data), 'utf8', function(err) {
 						if (err) return console.log(err);
-						console.log("successfully written to file.");
+						console.log('successfully written to file.');
 					});
 				}
 			});
