@@ -323,24 +323,33 @@ client.on ('message', msg => {
 	}
 });
 
+//xp system
+var lineReader = require('line-reader');
 client.on ('message', msg => {
 	var args = msg.content;
 	switch (args) {
 		default:
-			//reads stats.txt and saves the contents to "data"
-			fs.readFile('stats.txt', 'utf8', (err, data) => {
-				if (err) return console.log(err);
-				//in "splitData"(array), stores the user and their score (user: splitData[0]) (score: splitData[1])
-				var splitData = data.split(' - ');
-				//adds the amount of characters in the user's score to their old score
-				var score = (Math.round(splitData[1])) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
-				//combines the data
-				data = msg.author + ' - ' + score;
-				//writes the score to stats.txt
-				if (score > splitData[1]) {
-					fs.writeFile('stats.txt', (data), 'utf8', function(err) {
-						if (err) return console.log(err);
-					});
+			lineReader.eachLine('stats.txt', function(line) {
+				var data = line;
+				//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
+				data = line.split(' - ');
+				if (data[0] === msg.author.id) {
+					//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
+					var score = (Math.round(data[1])) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
+					var newData = msg.author + ' - ' + score;
+					//writes the score to stats.txt, giving them a newline if they have no existing score
+					if (score > data[1]) {
+						fs.writeFile ('stats.txt', (newData), 'utf8', function(err) {
+							if (err) return err;
+							console.log ('wrote new data successfully.');
+						});
+					} else if (msg.author.id === !data[0] && score > data[1]) {
+						fs.writeFile ('stats.txt', ('\n' + newData), 'utf8', function(err) {
+							if (err) return err;
+						});
+					}
+					//stops lineReader from continuing to read the file
+					return false;
 				}
 			});
 	}
