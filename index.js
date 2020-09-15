@@ -37,7 +37,7 @@ client.on ('message', msg => {
 	function logUsedCommand (commandUsed) {
 		//checks if logCommandUses in the config is true
 		//prints the id of the user and then "used [command]"
-		if (config.logCommandUses === 'true') {
+		if (config.logCommandUses === true) {
 			console.log ((msg.author.tag) + ' used ' + (commandUsed));
 		}
 	}
@@ -72,7 +72,7 @@ client.on ('message', msg => {
 
 	//prefixless commands
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
-	if (config.enablePrefixlessCommands === 'true') {
+	if (config.enablePrefixlessCommands === true) {
 		var args = msg.content.substring("".length).split (" ");
 		switch (args[0]) {
 			//checks if the message starts with "IoxBot" in any capitalization, hooray for case spam
@@ -114,7 +114,7 @@ client.on ('message', msg => {
 
 		//experimental commands
 		case 'E': case 'e': case 'experimental':
-		if (config.enableExperimentalCommands === 'true') {
+		if (config.enableExperimentalCommands === true) {
 			switch (args[1]) {
 				case 'colouredembed':
 					const embed = new MessageEmbed () 
