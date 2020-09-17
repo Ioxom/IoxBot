@@ -1,14 +1,17 @@
-//requires
+//json requires
 const config = require ('./configuration/config.json');
 if (config.lang === 'en_ca') var lang = require ('./configuration/lang/en_ca.json');
-const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const updates = require('./configuration/update.json');
+//requires for xp system
+const fs = require("fs");
+const lineReader = require('line-reader');
+//initializes djs
+const { Client, MessageAttachment, MessageEmbed } = require ('discord.js');
 const client = new Client ();
 //we're storing variables in the config/updates.json now, makes this file very clean
 //logs in the bot using the token from the config file
 client.login (config.token);
 
-var fs = require("fs");
 //sends a message in console when the bot successfully starts up
 client.once ('ready', () => {
 	console.log ('bot initialized successfully');
@@ -37,7 +40,7 @@ client.on ('message', msg => {
 	function logUsedCommand (commandUsed) {
 		//checks if logCommandUses in the config is true
 		//prints the id of the user and then "used [command]"
-		if (config.logCommandUses === true) {
+		if (config.logCommandUses) {
 			console.log ((msg.author.tag) + ' used ' + (commandUsed));
 		}
 	}
@@ -72,7 +75,7 @@ client.on ('message', msg => {
 
 	//prefixless commands
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
-	if (config.enablePrefixlessCommands === true) {
+	if (config.enablePrefixlessCommands) {
 		var args = msg.content.substring("".length).split (" ");
 		switch (args[0]) {
 			//checks if the message starts with "IoxBot" in any capitalization, hooray for case spam
@@ -114,7 +117,7 @@ client.on ('message', msg => {
 
 		//experimental commands
 		case 'E': case 'e': case 'experimental':
-		if (config.enableExperimentalCommands === true) {
+		if (config.enableExperimentalCommands) {
 			switch (args[1]) {
 				case 'colouredembed':
 					const embed = new MessageEmbed () 
@@ -324,7 +327,6 @@ client.on ('message', msg => {
 });
 
 //xp system
-var lineReader = require('line-reader');
 client.on ('message', msg => {
 	var args = msg.content;
 	switch (args) {
