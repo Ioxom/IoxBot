@@ -331,28 +331,37 @@ client.on ('message', msg => {
 	var args = msg.content;
 	switch (args) {
 		default:
-			lineReader.eachLine('stats.txt', function(line) {
-				var data = line;
-				//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
-				data = line.split(' - ');
-				if (data[0] === msg.author.id) {
-					//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
-					var score = (Math.round(data[1])) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
-					var newData = msg.author + ' - ' + score;
-					//writes the score to stats.txt, giving them a newline if they have no existing score
-					if (score > data[1]) {
-						fs.writeFile ('stats.txt', (newData), 'utf8', function(err) {
+			fs.readFile('stats.txt', 'utf8', function(err, fulldata) {
+				var i = -1;
+				lineReader.eachLine('stats.txt', function(data) {
+					//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
+					data = data.split(' - ');
+					i++;
+					console.log (i, ' ', data[0]);
+					if (data[0] == msg.author.id) {
+						var fullDataArray = fulldata.split('\n');
+						console.log(fullDataArray);
+						delete fullDataArray[i];
+						console.log(fullDataArray);
+						fullDataArray = fullDataArray.join('\n');
+						//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
+						var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
+						console.log(score, ' ', data[1], ' ', args.length)
+						var newData = msg.author + ' - ' + score;
+						//writes the score to stats.txt, giving them a newline if they have no existing score
+						fs.writeFile ('stats.txt', (fullDataArray), 'utf8', function(err) {
 							if (err) return err;
 							console.log ('wrote new data successfully.');
+							fs.appendFile('stats.txt', ('\n' + newData), 'utf8', function(err) {
+								if (err) throw err;
+								console.log('appended successfully')
+							});
 						});
-					} else if (msg.author.id === !data[0] && score > data[1]) {
-						fs.writeFile ('stats.txt', ('\n' + newData), 'utf8', function(err) {
-							if (err) return err;
-						});
+						//stops lineReader from continuing to read the file
+						return false;
 					}
-					//stops lineReader from continuing to read the file
-					return false;
-				}
-			});
+				})
+			})
+			break;
 	}
-});
+})
