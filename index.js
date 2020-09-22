@@ -354,9 +354,9 @@ client.on ('message', msg => {
 							console.log ('wrote new data successfully.');
 							fs.appendFile('stats.txt', ('\n' + newData), 'utf8', function(err) {
 								if (err) throw err;
-								console.log('appended successfully')
-							});
-						});
+								console.log('appended successfully');
+							})
+						})
 						//stops lineReader from continuing to read the file
 						return false;
 					}
