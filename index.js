@@ -343,7 +343,19 @@ client.on ('message', msg => {
 						console.log(fullDataArray);
 						delete fullDataArray[i];
 						console.log(fullDataArray);
+						//would remove empty sections of the array if it worked
+						function fixArray() {
+							var arrayLength = (Object.keys(fullDataArray).length);
+							var fixedArray = [];
+							for (let h = arrayLength; h < 0; h--) {
+								if (fullDataArray[h] == ('' || 'undefined')) return;
+								fixedArray = [fixedArray + fullDataArray[h]]
+							}
+							return fixedArray;
+						}
+						fullDataArray = fixArray();
 						fullDataArray = fullDataArray.join('\n');
+						console.log (fullDataArray);
 						//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
 						var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
 						console.log(score, ' ', data[1], ' ', args.length)
