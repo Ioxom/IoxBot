@@ -332,6 +332,7 @@ client.on ('message', msg => {
 	switch (args) {
 		default:
 			fs.readFile('stats.txt', 'utf8', function(err, fulldata) {
+				var isComplete = false;
 				if (err) throw(err);
 				var i = -1;
 				lineReader.eachLine('stats.txt', function(data) {
@@ -372,10 +373,18 @@ client.on ('message', msg => {
 								console.log('appended successfully');
 							})
 						})
+						//stops new data being created
+						isComplete = true;
 						//stops lineReader from continuing to read the file
 						return false;
 					}
 				})
+				if (isComplete == false) {
+					fs.appendFile('stats.txt', ('\n' + msg.author.id + ' - ' + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75))), 'utf8', function(err) {
+						if(err) throw(err);
+						console.log('added new user sucessfully');
+					})
+				}
 			})
 			break;
 	}
