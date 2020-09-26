@@ -333,55 +333,58 @@ client.on ('message', msg => {
 		default:
 			fs.readFile('stats.txt', 'utf8', function(err, fulldata) {
 				var isComplete = false;
-				if (err) throw(err);
+				if (err) throw err;
 				var i = -1;
 				lineReader.eachLine('stats.txt', function(data) {
+					i++;
 					//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
 					data = data.split(' - ');
-					i++;
 					console.log (i, ' ', data[0]);
 					if (data[0] == msg.author.id) {
-						var fullDataArray = fulldata.split('\n');
-						console.log(fullDataArray);
-						delete fullDataArray[i];
-						console.log(fullDataArray);
-						//would remove empty sections of the array if it worked
-						function fixArray() {
-							var arrayLength = (Object.keys(fullDataArray).length);
+						//deletes the user's old score
+						var dataArray = fulldata.split('\n');
+						console.log(dataArray);
+						delete(dataArray[i]);
+						console.log(dataArray);
+						//removes empty sections of the array
+						function fixArray(arrayName) {
+							var arrayLength = (Object.keys(arrayName[h]).length);
 							var fixedArray = [];
 							for (let h = arrayLength; h < 0; h--) {
-								if (fullDataArray[h] == (!'' || !'undefined')) {
-									fixedArray = [fixedArray + fullDataArray[h]]
+								if (arrayName[h] == (!'' || !'undefined')) {
+									fixedArray = [fixedArray + arrayName[h]]
 								}
-							}
 							return fixedArray;
+							}
 						}
-						fullDataArray = fixArray();
-						fullDataArray = fullDataArray.join('\n');
-						console.log (fullDataArray);
+						//prepares dataArray to be written
+						dataArray = fixArray(dataArray);
+						dataArray = dataArray.join('\n');
+						console.log (dataArray);
 						//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
 						var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
-						console.log(score, ' ', data[1], ' ', args.length)
+						console.log(score, ' ', data[1], ' ', args.length);
 						var newData = msg.author + ' - ' + score;
 						console.log(newData + '\n' + score + '\n' + data[1]);
-						//writes the score to stats.txt, giving them a newline if they have no existing score
-						fs.writeFile ('stats.txt', (fullDataArray), 'utf8', function(err) {
-							if (err) return err;
+						//deletes their old score by overwriting the full file then appends the new one
+						fs.writeFile ('stats.txt', (dataArray), 'utf8', function(err) {
+							if (err) throw err;
 							console.log ('wrote new data successfully.');
 							fs.appendFile('stats.txt', (newData), 'utf8', function(err) {
 								if (err) throw err;
 								console.log('appended successfully');
 							})
 						})
-						//stops new data being created
+						//stops new data from being created
 						isComplete = true;
 						//stops lineReader from continuing to read the file
 						return false;
 					}
 				})
+				//gives the user a newline if they have no existing score
 				if (isComplete == false) {
 					fs.appendFile('stats.txt', ('\n' + msg.author.id + ' - ' + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75))), 'utf8', function(err) {
-						if(err) throw(err);
+						if(err) throw err;
 						console.log('added new user sucessfully');
 					})
 				}
