@@ -332,6 +332,7 @@ client.on ('message', msg => {
 	switch (args) {
 		default:
 			fs.readFile('stats.txt', 'utf8', function(err, fulldata) {
+				if (err) throw(err);
 				var i = -1;
 				lineReader.eachLine('stats.txt', function(data) {
 					//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
@@ -348,8 +349,9 @@ client.on ('message', msg => {
 							var arrayLength = (Object.keys(fullDataArray).length);
 							var fixedArray = [];
 							for (let h = arrayLength; h < 0; h--) {
-								if (fullDataArray[h] == ('' || 'undefined')) return;
-								fixedArray = [fixedArray + fullDataArray[h]]
+								if (fullDataArray[h] == (!'' || !'undefined')) {
+									fixedArray = [fixedArray + fullDataArray[h]]
+								}
 							}
 							return fixedArray;
 						}
@@ -360,11 +362,12 @@ client.on ('message', msg => {
 						var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
 						console.log(score, ' ', data[1], ' ', args.length)
 						var newData = msg.author + ' - ' + score;
+						console.log(newData + '\n' + score + '\n' + data[1]);
 						//writes the score to stats.txt, giving them a newline if they have no existing score
 						fs.writeFile ('stats.txt', (fullDataArray), 'utf8', function(err) {
 							if (err) return err;
 							console.log ('wrote new data successfully.');
-							fs.appendFile('stats.txt', ('\n' + newData), 'utf8', function(err) {
+							fs.appendFile('stats.txt', (newData), 'utf8', function(err) {
 								if (err) throw err;
 								console.log('appended successfully');
 							})
