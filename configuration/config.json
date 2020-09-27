@@ -1,8 +1,9 @@
 {
     "prefix": "-",
-    "logCommandUses": "true",
-    "enablePrefixlessCommands": "true",
-    "enableExperimentalCommands": "true",
-    "token": "nop",
+    "logCommandUses": true,
+    "enablePrefixlessCommands": true,
+    "enableExperimentalCommands": true,
+    "enableXPsystem": false,
+    "token": "NzIyODM1MjkwNjQ0ODA3NzEx.Xuo20g.mUo0PL1YkWXBEW_RDDxDRxrNGug",
     "lang": "en_ca"
 }
