@@ -327,69 +327,71 @@ client.on ('message', msg => {
 });
 
 //xp system
-client.on ('message', msg => {
-	var args = msg.content;
-	switch (args) {
-		default:
-			fs.readFile('stats.txt', 'utf8', function(err, fulldata) {
-				var isComplete = false;
-				if (err) throw(err);
-				var i = -1;
-				lineReader.eachLine('stats.txt', function(data) {
-					//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
-					data = data.split(' - ');
-					i++;
-					console.log (i, ' ', data[0]);
-					if (data[0] == msg.author.id) {
-						var dataArray = fulldata.split('\n');
-						console.log(dataArray);
-						delete dataArray[i];
-						console.log(dataArray);
-						//would remove empty sections of the array if it worked
-						function fixArray() {
-							var fixedArray = [];
-							for (let h = (Object.keys(dataArray).length); h > 0; h--) {
-								if (dataArray[h] == '' || undefined) return;
-								console.log('pushing')
-								fixedArray.push(dataArray[h])
-								console.log('pushed: ' + dataArray[h])
+if (config.enableXPsystem) {
+	client.on ('message', msg => {
+		var args = msg.content;
+		switch (args) {
+			default:
+				fs.readFile('stats.txt', 'utf8', function(err, fulldata) {
+					var isComplete = false;
+					if (err) throw(err);
+					var i = -1;
+					lineReader.eachLine('stats.txt', function(data) {
+						//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
+						data = data.split(' - ');
+						i++;
+						console.log (i, ' ', data[0]);
+						if (data[0] == msg.author.id) {
+							var dataArray = fulldata.split('\n');
+							console.log(dataArray);
+							delete dataArray[i];
+							console.log(dataArray);
+							//would remove empty sections of the array if it worked
+							function fixArray() {
+								var fixedArray = [];
+								for (let h = (Object.keys(dataArray).length); h > 0; h--) {
+									if (dataArray[h] == '' || undefined) return;
+									console.log('pushing')
+									fixedArray.push(dataArray[h])
+									console.log('pushed: ' + dataArray[h])
+								}
+								console.log(fixedArray)
+								return fixedArray;
 							}
-							console.log(fixedArray)
-							return fixedArray;
-						}
-						dataArray = fixArray();
-						var array = ['e', 'e', 'e']
-						console.log(dataArray)
-						console.log(array)
-						console.log ('e' + array.join('\n'))
-						console.log ('joined array: ' + dataArray.join('\n'));
-						dataArray = dataArray.join('\n')
-						//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
-						var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
-						console.log('score: ' + score + ' old score: ', data[1], ' character count: ', args.length)
-						var newData = '\n' + msg.author + ' - ' + score;
-						//writes the score to stats.txt, giving them a newline if they have no existing score
-						fs.writeFile ('stats.txt', (dataArray), 'utf8', function(err) {
-							if (err) return err;
-							console.log ('wrote new data successfully.');
-							fs.appendFile('stats.txt', (newData), 'utf8', function(err) {
-								if (err) throw err;
-								console.log('appended successfully');
+							dataArray = fixArray();
+							var array = ['e', 'e', 'e']
+							console.log(dataArray)
+							console.log(array)
+							console.log ('e' + array.join('\n'))
+							console.log ('joined array: ' + dataArray.join('\n'));
+							dataArray = dataArray.join('\n')
+							//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
+							var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
+							console.log('score: ' + score + ' old score: ', data[1], ' character count: ', args.length)
+							var newData = '\n' + msg.author + ' - ' + score;
+							//writes the score to stats.txt, giving them a newline if they have no existing score
+							fs.writeFile ('stats.txt', (dataArray), 'utf8', function(err) {
+								if (err) return err;
+								console.log ('wrote new data successfully.');
+								fs.appendFile('stats.txt', (newData), 'utf8', function(err) {
+									if (err) throw err;
+									console.log('appended successfully');
+								})
 							})
+							//stops new data being created
+							isComplete = true;
+							//stops lineReader from continuing to read the file
+							return false;
+						}
+					})
+					if (isComplete == false) {
+						fs.appendFile('stats.txt', ('\n' + msg.author.id + ' - ' + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75))), 'utf8', function(err) {
+							if(err) throw(err);
+							console.log('added new user sucessfully');
 						})
-						//stops new data being created
-						isComplete = true;
-						//stops lineReader from continuing to read the file
-						return false;
 					}
 				})
-				if (isComplete == false) {
-					fs.appendFile('stats.txt', ('\n' + msg.author.id + ' - ' + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75))), 'utf8', function(err) {
-						if(err) throw(err);
-						console.log('added new user sucessfully');
-					})
-				}
-			})
-			break;
-	}
-})
+				break;
+		}
+	})
+}
