@@ -341,31 +341,35 @@ client.on ('message', msg => {
 					i++;
 					console.log (i, ' ', data[0]);
 					if (data[0] == msg.author.id) {
-						var fullDataArray = fulldata.split('\n');
-						console.log(fullDataArray);
-						delete fullDataArray[i];
-						console.log(fullDataArray);
+						var dataArray = fulldata.split('\n');
+						console.log(dataArray);
+						delete dataArray[i];
+						console.log(dataArray);
 						//would remove empty sections of the array if it worked
 						function fixArray() {
-							var arrayLength = (Object.keys(fullDataArray).length);
 							var fixedArray = [];
-							for (let h = arrayLength; h < 0; h--) {
-								if (fullDataArray[h] == (!'' || !'undefined')) {
-									fixedArray = [fixedArray + fullDataArray[h]]
-								}
+							for (let h = (Object.keys(dataArray).length); h > 0; h--) {
+								if (dataArray[h] == '' || undefined) return;
+								console.log('pushing')
+								fixedArray.push(dataArray[h])
+								console.log('pushed: ' + dataArray[h])
 							}
+							console.log(fixedArray)
 							return fixedArray;
 						}
-						fullDataArray = fixArray();
-						fullDataArray = fullDataArray.join('\n');
-						console.log (fullDataArray);
+						dataArray = fixArray();
+						var array = ['e', 'e', 'e']
+						console.log(dataArray)
+						console.log(array)
+						console.log ('e' + array.join('\n'))
+						console.log ('joined array: ' + dataArray.join('\n'));
+						dataArray = dataArray.join('\n')
 						//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4
 						var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75));
-						console.log(score, ' ', data[1], ' ', args.length)
-						var newData = msg.author + ' - ' + score;
-						console.log(newData + '\n' + score + '\n' + data[1]);
+						console.log('score: ' + score + ' old score: ', data[1], ' character count: ', args.length)
+						var newData = '\n' + msg.author + ' - ' + score;
 						//writes the score to stats.txt, giving them a newline if they have no existing score
-						fs.writeFile ('stats.txt', (fullDataArray), 'utf8', function(err) {
+						fs.writeFile ('stats.txt', (dataArray), 'utf8', function(err) {
 							if (err) return err;
 							console.log ('wrote new data successfully.');
 							fs.appendFile('stats.txt', (newData), 'utf8', function(err) {
