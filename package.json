@@ -14,6 +14,7 @@
   "author": "Ioxom",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.3.1",
+    "line-reader": "^0.4.0"
   }
 }
