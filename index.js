@@ -231,33 +231,29 @@ client.on ('message', msg => {
 			logUsedCommand (lang.botinfo.log);
 			break;
 		case lang.coinflip.trigger.A: case lang.coinflip.trigger.B:
-			//generates a random number between 1 and 2 and stores it in "random"
-			var random = (Math.ceil (Math.random () * 2));
-			//declares two variables to be used later
-			var messageToSend;
-			var coinFace;
-			switch (random) {
+			//declares "messages so that it isn't local to the switch"
+			var messages;
+			//random number between 1 and 2
+			switch (Math.ceil(Math.random() * 2)) {
 				//checks if the random number is one/two
 				//then sets variables to the corresponding heads/tails messages/images
 				case '1':
-					messageToSend = lang.coinflip.messageHeads;
-					coinFace = 'https://cdn.discordapp.com/attachments/728781398911221795/739249818081296384/coin_heads.jpg';
+					messages = ['https://cdn.discordapp.com/attachments/728781398911221795/739249818081296384/coin_heads.jpg', lang.coinflip.messageHeads];
 					break;
 				case '2':
-					messageToSend = lang.coinflip.messageTails;
-					coinFace = 'https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg';
+					messages = ['https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg', lang.coinflip.messageTails]
 					break;
 				//error message
 				default:
 					console.log (lang.coinflip.error);
 			}
-			//sends "messageToSend" in an embed along with an image of the coin side
+			//sends messages[0] in an embed along with an image of the coin side
 			const coinEmbed = new MessageEmbed ()
 				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 				.setTitle (lang.coinflip.messageTitle)
-				.setDescription (messageToSend)
+				.setDescription (messages[1])
 				.setColor (generateRandomShade ('FF'))
-				.setThumbnail (coinFace);
+				.setThumbnail (messages[0]);
 			msg.channel.send (coinEmbed);
 			logUsedCommand (lang.coinflip.log);
 			break;
