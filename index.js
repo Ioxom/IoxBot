@@ -65,6 +65,7 @@ client.on ('message', msg => {
 	function generateRandomColour () {
 		const numbers = '0123456789';
 		//add all the characters together, giving numbers a 2/3 chance to be the result and letters 1/3
+		//there's probably a better way to do this but eh
 		var characters = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ' + (numbers + numbers + numbers + numbers + numbers + numbers) );
 		function selectchars() {
 			return (characters[(Math.ceil (Math.random () * 87))]);
@@ -77,6 +78,7 @@ client.on ('message', msg => {
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
 	if (config.enablePrefixlessCommands) {
 		var args = msg.content.substring("".length).split (" ");
+		if (msg.author.bot) return;
 		switch (args[0]) {
 			//checks if the message starts with "IoxBot" in any capitalization, hooray for case spam
 			case 'IoxBot': case 'Ioxbot': case 'ioxbot': case 'ioxBot':
@@ -112,9 +114,8 @@ client.on ('message', msg => {
 		}
 	}
 
-	var args = msg.content.substring ((config.prefix).length) .split (" ");
+	var args = msg.content.substring((config.prefix).length).split (" ");
 	switch (args[0]) {
-
 		//experimental commands
 		case 'E': case 'e': case 'experimental':
 		if (config.enableExperimentalCommands) {
@@ -138,7 +139,7 @@ client.on ('message', msg => {
 								msg.delete({ timeout: 100 });
 								deleteLog = '[deleted?: true]';
 						}
-							//error messages
+							//error message
 							if ((!args[2]) && (!args[3])) {
 								msg.channel.send ('missing third and fourth argument. use -e help for the proper command usage');
 							}
@@ -148,7 +149,7 @@ client.on ('message', msg => {
 							for (var loopCounter = 0; loopCounter < amountToLoop; loopCounter++) {
 								msg.channel.send (messageToSend);
 							}
-							logUsedCommand ('-experimental loop ' + '[repeats: ' + (amountToLoop) + ']' + ' [message: ' + (messageToSend) + '] ' + deleteLog);
+							logUsedCommand('-experimental loop ' + '[repeats: ' + (amountToLoop) + ']' + ' [message: ' + (messageToSend) + '] ' + deleteLog);
 							break;
 						}
 					}
