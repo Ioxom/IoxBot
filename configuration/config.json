@@ -4,6 +4,7 @@
     "enablePrefixlessCommands": true,
     "enableExperimentalCommands": true,
     "enableXPsystem": false,
-    "token": "NzIyODM1MjkwNjQ0ODA3NzEx.Xuo20g.mUo0PL1YkWXBEW_RDDxDRxrNGug",
+    "enableDebugLogging": true,
+    "token": "nop",
     "lang": "en_ca"
 }

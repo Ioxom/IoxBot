@@ -1,6 +1,6 @@
 {
-    "version": "1.05",
-    "lastUpdate": "September 5th, 2020",
+    "version": "1.1",
+    "lastUpdate": "October 9th, 2020",
     "commands": "E loop, E help, E colouredembed, Info version, Info author, Info commands, Info GitHub, Info creation date, belt, uno reverse card, botinfo, coinflip and are they groovin?",
     "prefixlessCommands": "no u, rip, hello IoxBot and IoxBot"
 }

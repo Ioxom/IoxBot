@@ -47,7 +47,7 @@ client.on ('message', msg => {
 
 	//funtion for generating a random shade of the selected colour for embeds
 	//creates the function
-	function generateRandomShade (colour) {
+	function generateRandomShade(colour) {
 		//generates two random numbers between 0 and 75
 		var integer1 = (getrndInteger (0, 75));
 		var integer2 = (getrndInteger (0, 75));
@@ -61,8 +61,8 @@ client.on ('message', msg => {
 		return ((integer1) + (colour) + (integer2))
 	}
 
-	//function to generate a random hex colour for use in embeds
-	function generateRandomColour () {
+	//archived function
+	function generateRandomColourOld() {
 		const numbers = '0123456789';
 		//add all the characters together, giving numbers a 2/3 chance to be the result and letters 1/3
 		//there's probably a better way to do this but eh
@@ -73,12 +73,18 @@ client.on ('message', msg => {
 		//first character can only be a number to prevent invalid colours
 		return (numbers[(Math.ceil(Math.random() * 10))] + selectchars() + selectchars() + selectchars() + selectchars() + selectchars());
 	}
+	//function to generate a random hex colour for use in embeds
+	function generateRandomColour() {
+		var colours = ["00ff00", "48ddf7", "c211aa", "d91139", "1010e3", "ebe717", "fa7d16"]
+		return colours[Math.round(Math.random() * 7)]
+	}
 
 	//prefixless commands
 	//checks if enablePrefixlessCommands in the config is true, in which case prefixless commands are available for use
 	if (config.enablePrefixlessCommands) {
-		var args = msg.content.substring("".length).split (" ");
+		var args = msg.content.substring(0).split(" ");
 		if (msg.author.bot) return;
+		if (msg.content === 'E') msg.react('🇪');
 		switch (args[0]) {
 			//checks if the message starts with "IoxBot" in any capitalization, hooray for case spam
 			case 'IoxBot': case 'Ioxbot': case 'ioxbot': case 'ioxBot':
@@ -110,7 +116,6 @@ client.on ('message', msg => {
 						logUsedCommand ('no u');
 						break;
 				}
-			if (msg.content === 'E') msg.react('🇪');
 		}
 	}
 
@@ -155,7 +160,7 @@ client.on ('message', msg => {
 					}
 					break;
 				case 'help': case 'Help':
-					const helpEmbed = new MessageEmbed ()
+					const helpEmbed = new MessageEmbed()
 						.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 						.setColor (generateRandomShade('FF'))
 						.setTitle ('Using Experimental Commands')
@@ -217,7 +222,7 @@ client.on ('message', msg => {
 			}
 			break;
 		case lang.botinfo.trigger.A: case lang.botinfo.trigger.B: case lang.botinfo.trigger.C:
-			const infoEmbed = new MessageEmbed ()
+			const infoEmbed = new MessageEmbed()
 				.setAuthor ('IoxBot', 'https://cdn.discordapp.com/attachments/618926084750180363/742202185454190692/ioxbot_profile_photo.png')
 				.setTitle (lang.botinfo.title)
 				.addFields (
@@ -337,39 +342,39 @@ if (config.enableXPsystem) {
 						//in "data"(array), stores the user and their score (user: data[0]) (score: data[1]);
 						data.split(' - ');
 						line++;
-						console.log (line, ' ', data[0]);
+						if (config.enableDebugLogging) console.log (line, ' ', data[0]);
 						if (data[0] == msg.author.id) {
 							dataArray,split('\n');
-							console.log(dataArray);
+							if (config.enableDebugLogging) console.log(dataArray);
 							delete dataArray[line];
-							console.log(dataArray);
+							if (config.enableDebugLogging) console.log(dataArray);
 							//removes empty sections of the array
 							function fixArray() {
 								var fixedArray = [];
 								for (let h = (Object.keys(dataArray).length); h > 0; h--) {
 									if (dataArray[h] == '' || undefined) return;
-									console.log('pushing')
+									if (config.enableDebugLogging) console.log('pushing')
 									fixedArray.push(dataArray[h])
-									console.log('pushed: ' + dataArray[h])
+									if (config.enableDebugLogging) console.log('pushed: ' + dataArray[h])
 								}
 								console.log(fixedArray);
 								return fixedArray;
 							}
 							dataArray = fixArray();
-							console.log(dataArray)
+							if (config.enableDebugLogging) console.log(dataArray);
 							dataArray.join('\n');
-							console.log ('joined array: ' + dataArray);
+							if (config.enableDebugLogging) console.log ('joined array: ' + dataArray);
 							//adds the user's old score to a stupidly complicated equation that's about (characters in their message) / 4 + number of words
 							var score = parseInt(data[1]) + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75 + Object.keys(args.split(' ')).length));
-							console.log('score: ' + score + ' old score: ', data[1], ' character count: ', args.length);
+							if (config.enableDebugLogging) console.log('score: ' + score + ' old score: ', data[1], ' character count: ', args.length);
 							var newData = '\n' + msg.author + ' - ' + score;
 							//writes the score to stats.txt
 							fs.writeFile ('stats.txt', (dataArray), 'utf8', function(err) {
 								if (err) return err;
-								console.log ('wrote new data successfully.');
+								if (congi.enableDebugLogging) console.log ('wrote new data successfully.');
 								fs.appendFile('stats.txt', (newData), 'utf8', function(err) {
 									if (err) throw err;
-									console.log('appended successfully');
+									if (config.enableDebugLogging) console.log('appended successfully');
 								})
 							})
 							//stops new data being created
@@ -382,7 +387,7 @@ if (config.enableXPsystem) {
 					if (isComplete == false) {
 						fs.appendFile('stats.txt', ('\n' + msg.author.id + ' - ' + (Math.round((args.length * 13 / (25 / 0.987) + 0.43 / 0.89 - 0.19) / 2.75))), 'utf8', function(err) {
 							if(err) throw(err);
-							console.log('added new user sucessfully');
+							if (config.enableDebugLogging) console.log('added new user sucessfully');
 						})
 					}
 				})
