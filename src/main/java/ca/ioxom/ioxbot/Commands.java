@@ -15,14 +15,14 @@ public class Commands {
             if (!event.getMessage().getContentRaw().startsWith("-")) return;
             String messageContent = event.getMessage().getContentRaw().split("-", 2)[1].toLowerCase();
             switch (messageContent) {
-                case "ping" -> {
+                case "ping":
                     long start = System.nanoTime();
                     event.getChannel().sendMessage("calculating ze ping").queue();
                     long end = System.nanoTime();
                     event.getChannel().deleteMessageById(event.getChannel().getLatestMessageId()).queue();
                     event.getChannel().sendMessage("ze ping is: " + 10. * (end - start) / 1000000 + "ms").queue();
                     Main.frame.logCommand("check ping", event);
-                }
+                    break;
             }
         }
     }
