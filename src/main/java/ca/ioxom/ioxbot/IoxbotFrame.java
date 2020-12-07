@@ -2,8 +2,9 @@ package ca.ioxom.ioxbot;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JTextArea;
+import java.awt.Color;
 
 public class IoxbotFrame {
     public JTextArea console;
