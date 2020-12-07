@@ -16,11 +16,11 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }
+        JDA api = JDABuilder.createDefault(TOKEN).build();
+        api.addEventListener(new Commands.Listener());
         JFrame frame = new JFrame("ioxbot v " + VERSION);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(250, 100);
         frame.setVisible(true);
-        JDA api = JDABuilder.createDefault(TOKEN).build();
-        api.addEventListener(new Commands.Listener());
     }
 }
