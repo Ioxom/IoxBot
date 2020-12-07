@@ -1,0 +1,24 @@
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+mainClassName = 'ca.ioxom.ioxbot.Bot'
+
+group 'ca.ioxom'
+version '0.1.0'
+def jdaVersion = '4.2.0_222'
+
+sourceCompatibility = targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "net.dv8tion:JDA:$jdaVersion"
+}
+
+compileJava.options.encoding = 'UTF-8'
