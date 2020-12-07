@@ -3,7 +3,6 @@ package ca.ioxom.ioxbot;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
-import javax.swing.JFrame;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
@@ -16,11 +15,10 @@ public class Main {
         } catch (Exception e) {
             System.out.println(e);
         }
+        IoxbotFrame frame = new IoxbotFrame();
+        frame.init();
         JDA api = JDABuilder.createDefault(TOKEN).build();
         api.addEventListener(new Commands.Listener());
-        JFrame frame = new JFrame("ioxbot v " + VERSION);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(250, 100);
-        frame.setVisible(true);
+        frame.log("initialized jda; ioxbot is ready to go");
     }
 }
