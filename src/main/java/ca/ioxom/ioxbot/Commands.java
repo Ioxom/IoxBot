@@ -12,12 +12,14 @@ public class Commands {
             if (event.getAuthor().getId().equals("382659726778957858") && message.getContentRaw().startsWith("https://www.youtu")) {
                 message.delete().queue();
                 event.getChannel().sendMessage("bad").queue();
+                Main.frame.log("forg used very bad");
             } else if (message.getContentRaw().equals("-ping")) {
                 long start = System.nanoTime();
                 event.getChannel().sendMessage("calculating ze ping").queue();
                 long end = System.nanoTime();
                 event.getChannel().deleteMessageById(event.getChannel().getLatestMessageId()).queue();
                 event.getChannel().sendMessage("ze ping is: " + 10. * (end - start) / 1000000 + "ms").queue();
+                Main.frame.logCommand("check ping", event);
             }
         }
     }
