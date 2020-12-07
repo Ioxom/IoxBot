@@ -17,7 +17,7 @@ public class Main {
         try (Scanner scanner = new Scanner(Paths.get("token.txt"))) {
             TOKEN = scanner.nextLine();
         } catch (Exception e) {
-            frame.log("no token found; closing ioxbot");
+            frame.log("[error] no token found; closing ioxbot");
             try {
                 Thread.sleep(5000);
                 System.exit(2);
@@ -27,6 +27,6 @@ public class Main {
         }
         JDA api = JDABuilder.createDefault(TOKEN).build();
         api.addEventListener(new Commands.Listener());
-        frame.log("initialized jda; ioxbot is ready to go");
+        frame.log("[init] initialized jda; ioxbot is ready to go");
     }
 }

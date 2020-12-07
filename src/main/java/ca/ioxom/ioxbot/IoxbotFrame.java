@@ -11,7 +11,7 @@ public class IoxbotFrame {
     public JFrame frame;
     public IoxbotFrame() {
         this.frame = new JFrame("ioxbot v " + Main.VERSION);
-        this.console = new JTextArea("loading ioxbot");
+        this.console = new JTextArea("[init] loading ioxbot");
     }
 
     public void init() {
@@ -22,7 +22,7 @@ public class IoxbotFrame {
         this.frame.add(this.console);
         this.frame.setSize(500, 250);
         this.frame.setVisible(true);
-        this.log("initialized frame");
+        this.log("[init] initialized frame");
     }
 
     public void log(String message) {
@@ -30,6 +30,6 @@ public class IoxbotFrame {
     }
 
     public void logCommand(String command, MessageReceivedEvent event) {
-        this.console.append("\n" + event.getAuthor().getAsTag() + " used " + command);
+        this.console.append("\n[command] " + event.getAuthor().getAsTag() + " used " + command);
     }
 }

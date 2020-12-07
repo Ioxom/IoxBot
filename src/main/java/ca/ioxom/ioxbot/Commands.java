@@ -17,11 +17,14 @@ public class Commands {
             switch (messageContent) {
                 case "ping":
                     long start = System.nanoTime();
-                    event.getChannel().sendMessage("calculating ze ping").queue();
+                    event.getChannel().sendMessage("calculating ping...").queue();
                     long end = System.nanoTime();
-                    event.getChannel().deleteMessageById(event.getChannel().getLatestMessageId()).queue();
-                    event.getChannel().sendMessage("ze ping is: " + 10. * (end - start) / 1000000 + "ms").queue();
+                    event.getChannel().sendMessage("ioxbot's ping is: " + 10. * (end - start) / 1000000 + "ms").queue();
                     Main.frame.logCommand("check ping", event);
+                    break;
+                case "help":
+                    event.getChannel().sendMessage("help is under construction").queue();
+                    Main.frame.logCommand("help", event);
                     break;
             }
         }
