@@ -19,7 +19,7 @@ public class Commands {
             ExtraCommands.noYoutube(event);
 
             if (!event.getMessage().getContentRaw().startsWith("-")) return;
-            String messageContent = event.getMessage().getContentRaw().split("-", 2)[1].toLowerCase();
+            String messageContent = event.getMessage().getContentRaw().split("-i ", 2)[1].toLowerCase();
             switch (messageContent.split(" ")[0]) {
                 case "ping":
                     checkingPing = true;
