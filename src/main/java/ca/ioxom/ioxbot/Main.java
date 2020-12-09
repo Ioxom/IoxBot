@@ -12,8 +12,10 @@ public class Main {
     public static final String PREFIX = "-";
     public static IoxbotFrame frame;
     public static void main(String[] arguments) throws Exception {
+        //create frame
         frame = new IoxbotFrame();
         frame.init();
+        //get the token from a file contained in the same dir as ioxbot.jar
         try (Scanner scanner = new Scanner(Paths.get("token.txt"))) {
             TOKEN = scanner.nextLine();
         } catch (Exception e) {
@@ -25,6 +27,7 @@ public class Main {
                 frame.log(f.toString());
             }
         }
+        //log in
         JDA api = JDABuilder.createDefault(TOKEN).build();
         api.addEventListener(new Commands.Listener());
         frame.log("[init] initialized jda; ioxbot is ready to go");

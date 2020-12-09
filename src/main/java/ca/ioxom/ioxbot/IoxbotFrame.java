@@ -4,18 +4,20 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 import java.awt.Color;
 
 public class IoxbotFrame {
-    public JTextArea console;
-    public JFrame frame;
+    private final JTextArea console;
+    private final JFrame frame;
     public IoxbotFrame() {
         this.frame = new JFrame("ioxbot v " + Main.VERSION);
         this.console = new JTextArea("[init] loading ioxbot");
     }
 
     public void init() {
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.frame.setBackground(Color.GRAY);
         this.console.setBackground(Color.GRAY);
         this.console.setEditable(false);

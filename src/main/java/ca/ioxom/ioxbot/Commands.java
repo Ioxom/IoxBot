@@ -11,25 +11,21 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class Commands {
-    private Commands() {
-        throw new IllegalStateException("Utility class");
-    }
     public static class Listener extends ListenerAdapter {
-        long start;
-        long end;
+        double ping;
         boolean checkingPing;
         @Override
         public void onMessageReceived(@NotNull MessageReceivedEvent event) {
             //cursed solution to fixing the ping command, don't do this
             if (checkingPing) {
                 if (event.getAuthor().getId().equals("722835290644807711")) {
-                    event.getChannel().editMessageById(event.getChannel().getLatestMessageId(),"ioxbot's ping is: " + ((double) (end - start) / 100000) + "ms").queue();
+                    event.getChannel().editMessageById(event.getChannel().getLatestMessageId(),"ioxbot's ping is: " + ping + "ms").queue();
                 } else {
                     RestAction<List<Message>> past = event.getChannel().getHistory().retrievePast(10);
                     for (int i = 0; i < past.complete().size(); i ++) {
                         Message message = past.complete().get(i);
                         if (message.getAuthor().getId().equals("722835290644807711") && message.getContentRaw().equals("calculating ping...")) {
-                            message.editMessage("ioxbot's ping is: " + ((double) (end - start) / 100000) + "ms").queue();
+                            message.editMessage("ioxbot's ping is: " + ping + "ms").queue();
                         }
                     }
                 }
@@ -37,15 +33,16 @@ public class Commands {
             checkingPing = false;
             ExtraCommands.noYoutube(event);
 
-            if (!event.getMessage().getContentRaw().startsWith("-")) return;
+            if (!event.getMessage().getContentRaw().startsWith("-i ")) return;
             String messageContent = event.getMessage().getContentRaw().split("-i ", 2)[1].toLowerCase();
             switch (messageContent.split(" ")[0]) {
                 case "ping":
                     checkingPing = true;
-                    start = System.nanoTime();
+                    long start = System.nanoTime();
                     event.getChannel().sendMessage("calculating ping...").queue();
-                    end = System.nanoTime();
-                    Main.frame.logCommand("check ping", event);
+                    long end = System.nanoTime();
+                    ping = (double) (end - start) / 100000;
+                    Main.frame.logCommand("check ping [" + ping + " ms]" , event);
                     break;
                 case "help":
                     event.getChannel().sendMessage("help is under construction\nwhile you're waiting use the recently fixed -i ping").queue();
