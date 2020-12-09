@@ -33,8 +33,8 @@ public class Commands {
             checkingPing = false;
             ExtraCommands.noYoutube(event);
 
-            if (!event.getMessage().getContentRaw().startsWith("-i ")) return;
-            String messageContent = event.getMessage().getContentRaw().split("-i ", 2)[1].toLowerCase();
+            if (!event.getMessage().getContentRaw().startsWith(Config.prefix)) return;
+            String messageContent = event.getMessage().getContentRaw().split(Config.prefix, 2)[1].toLowerCase();
             switch (messageContent.split(" ")[0]) {
                 case "ping":
                     checkingPing = true;

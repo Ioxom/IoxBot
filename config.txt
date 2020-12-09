@@ -1,0 +1,4 @@
+//sets the global prefix: commands will only be processed if they start with this value
+prefix = -i
+//log what command was used by who to the console
+logCommands = false

@@ -32,6 +32,6 @@ public class IoxbotFrame {
     }
 
     public void logCommand(String command, MessageReceivedEvent event) {
-        this.console.append("\n[command] " + event.getAuthor().getAsTag() + " used " + command);
+        if (Config.logCommands) this.console.append("\n[command] " + event.getAuthor().getAsTag() + " used " + command);
     }
 }
