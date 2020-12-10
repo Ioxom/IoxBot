@@ -31,11 +31,11 @@ public class Commands {
                 }
             }
             checkingPing = false;
-            ExtraCommands.noYoutube(event);
+            ExtraCommands.bullyAlex(event);
 
             if (!event.getMessage().getContentRaw().startsWith(Config.prefix)) return;
-            String messageContent = event.getMessage().getContentRaw().split(Config.prefix, 2)[1].toLowerCase();
-            switch (messageContent.split(" ")[0]) {
+            String messageContent = event.getMessage().getContentRaw().split(Config.prefix, 2)[1].toLowerCase().strip();
+            switch (messageContent) {
                 case "ping":
                     checkingPing = true;
                     long start = System.nanoTime();
