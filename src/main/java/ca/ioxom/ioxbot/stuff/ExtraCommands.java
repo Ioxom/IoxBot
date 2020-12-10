@@ -9,7 +9,7 @@ public class ExtraCommands {
                 || event.getMessage().getContentRaw().contains("www.youtube"))) {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("bad").queue();
-            Main.frame.log("forg used very bad");
+            Main.frame.logCommand("very bad", event);
         }
     }
 }

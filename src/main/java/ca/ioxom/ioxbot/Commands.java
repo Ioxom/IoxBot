@@ -53,7 +53,7 @@ public class Commands {
                     Main.frame.logCommand("gh", event);
                     break;
                 default:
-                    Main.frame.log("[err] nonexistent command");
+                    Main.frame.throwError("nonexistent command", false);
             }
         }
     }

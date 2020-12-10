@@ -14,15 +14,15 @@ public class Config {
             //save config to a hashmap, ignoring lines starting with //
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (line.startsWith("//")) continue;
+                if (line.startsWith("//") || line.isEmpty()) continue;
                 configs.put((line.split(" = ")[0]), (line.split(" = "))[1]);
             }
         } catch (Exception e) {
-            Main.frame.throwError("could not find config.txt in the target directory");
+            Main.frame.throwError("could not find config.txt in the target directory", true);
         }
         token = configs.get("token");
         prefix = configs.get("prefix");
         logCommands = configs.get("logCommands").equals("true");
-        Main.frame.log("[init] successfully read configuration file");
+        Main.frame.logInit("successfully read configuration file");
     }
 }

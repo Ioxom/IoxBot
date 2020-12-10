@@ -1,7 +1,10 @@
+//the main configuration for ioxbot
+//enter values following NAME = VALUE
+
 //the token for your bot, get this from https://discord.com/developers/applications
 //ensure the token is pasted directly from your bot page and is valid
-token = NzIyODM1MjkwNjQ0ODA3NzEx.Xuo20g.LLyv7TjNB_IaqibEed7O1losNn8
+token = your_token_here
 //sets the global prefix: commands will only be processed if they start with this value
 prefix = -i
 //log what command was used by who to the console
-logCommands = false
+logCommands = true
