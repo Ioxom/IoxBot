@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Config {
+    public static String token;
     public static boolean logCommands;
     public static String prefix;
     public static void configure() {
@@ -19,6 +20,7 @@ public class Config {
         } catch (Exception e) {
             Main.frame.throwError("could not find config.txt in the target directory");
         }
+        token = configs.get("token");
         prefix = configs.get("prefix");
         logCommands = configs.get("logCommands").equals("true");
         Main.frame.log("[init] successfully read configuration file");
