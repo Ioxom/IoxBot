@@ -16,13 +16,7 @@ public class Config {
                 configs.put((line.split(" = ")[0]), (line.split(" = "))[1]);
             }
         } catch (Exception e) {
-            Main.frame.log("[err] could not find config.txt in the target directory; closing ioxbot");
-            try {
-                Thread.sleep(5000);
-                System.exit(2);
-            } catch (Exception f) {
-                Main.frame.log(f.toString());
-            }
+            Main.frame.throwError("could not find config.txt in the target directory");
         }
         prefix = configs.get("prefix");
         logCommands = configs.get("logCommands").equals("true");

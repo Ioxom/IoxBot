@@ -20,13 +20,7 @@ public class Main {
         try (Scanner scanner = new Scanner(Paths.get("token.txt"))) {
             TOKEN = scanner.nextLine();
         } catch (Exception e) {
-            frame.log("[err] no token found in the target directory; closing ioxbot");
-            try {
-                Thread.sleep(5000);
-                System.exit(2);
-            } catch (Exception f) {
-                frame.log(f.toString());
-            }
+            frame.throwError("no token found in the target directory");
         }
         //log in
         JDA api = JDABuilder.createDefault(TOKEN).build();
