@@ -10,6 +10,7 @@ public class Config {
     public static void configure() {
         HashMap<String, String> configs = new HashMap<>();
         try (Scanner scanner = new Scanner(Paths.get("config.txt"))) {
+            //save config to a hashmap, ignoring lines starting with //
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.startsWith("//")) continue;
