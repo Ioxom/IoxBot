@@ -4,7 +4,10 @@ import ca.ioxom.ioxbot.Config;
 import ca.ioxom.ioxbot.Main;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
+import java.security.SecureRandom;
+
 public class ExtraCommands {
+    public static final SecureRandom random = new SecureRandom();
     public static void bullyAlex(MessageReceivedEvent event) {
         if (event.getAuthor().getId().equals("382659726778957858") && (event.getMessage().getContentRaw().contains("https://www.youtu")
                 || event.getMessage().getContentRaw().contains("www.youtube"))) {
@@ -12,7 +15,13 @@ public class ExtraCommands {
             event.getChannel().sendMessage("bad").queue();
             Main.frame.logCommand("very bad", event);
         } else if (event.getMessage().getContentRaw().equals(Config.prefix + "shut up alex")) {
-            event.getChannel().sendMessage("shut up alex").queue();
+            String[] messages = {
+                    "shut up alex",
+                    "shut up and go find the lambo chevy with jams",
+                    "shut up alex you sodding tic tac",
+                    "shut down alex"
+            };
+            event.getChannel().sendMessage(messages[random.nextInt(messages.length)]).queue();
             Main.frame.logCommand("shut up alex", event);
         }
     }

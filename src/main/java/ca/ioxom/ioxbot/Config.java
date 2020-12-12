@@ -21,7 +21,7 @@ public class Config {
             Main.frame.throwError("could not find config.txt in the target directory", true);
         }
         token = configs.get("token");
-        prefix = configs.get("prefix");
+        prefix = configs.get("prefix") + (configs.get("spaceAfterPrefix").equals("true")? " " : "");
         logCommands = configs.get("logCommands").equals("true");
         Main.frame.logInit("successfully read configuration file");
     }

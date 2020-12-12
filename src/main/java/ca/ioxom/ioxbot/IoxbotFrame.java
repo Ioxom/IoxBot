@@ -49,7 +49,7 @@ public class IoxbotFrame {
     }
 
     public void throwError(String error, boolean fatal) {
-        this.console.append("\n[err] " + error + (fatal? ";closing ioxbot" : ""));
+        this.console.append((fatal?"\n[err/FATAL] " : "\n[err] ") + error + (fatal? ";closing ioxbot" : ""));
         if (fatal) {
             try {
                 Thread.sleep(5000);
