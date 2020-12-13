@@ -1,16 +1,14 @@
 package ca.ioxom.ioxbot;
 
+import ca.ioxom.ioxbot.stuff.ExtraCommands;
+
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-import ca.ioxom.ioxbot.stuff.ExtraCommands;
-import net.dv8tion.jda.api.requests.RestAction;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.Color;
-import java.util.List;
+import java.awt.*;
 
 public class Commands {
     public static class Listener extends ListenerAdapter {
@@ -19,18 +17,10 @@ public class Commands {
         @Override
         public void onMessageReceived(@NotNull MessageReceivedEvent event) {
             //cursed solution to fixing the ping command, don't do this
-            if (checkingPing && event.getAuthor().getId().equals("722835290644807711")) {
+            if (checkingPing && event.getAuthor().getId().equals("722835290644807711") && event.getMessage().getContentRaw().equals("calculating ping...")) {
                 event.getChannel().editMessageById(event.getChannel().getLatestMessageId(),"ioxbot's ping is: " + ping + "ms").queue();
-            } else if (checkingPing){
-                RestAction<List<Message>> past = event.getChannel().getHistory().retrievePast(10);
-                for (int i = 0; i < past.complete().size(); i ++) {
-                    Message message = past.complete().get(i);
-                    if (message.getAuthor().getId().equals("722835290644807711") && message.getContentRaw().equals("calculating ping...")) {
-                        message.editMessage("ioxbot's ping is: " + ping + "ms").queue();
-                    }
-                }
+                checkingPing = false;
             }
-            checkingPing = false;
             ExtraCommands.bullyAlex(event);
 
             if (!event.getMessage().getContentRaw().startsWith(Config.prefix)) return;
@@ -41,7 +31,7 @@ public class Commands {
                     long start = System.nanoTime();
                     event.getChannel().sendMessage("calculating ping...").queue();
                     long end = System.nanoTime();
-                    ping = (double) (end - start) / 100000;
+                    ping = (double) ( end -  start) / 1000000;
                     Main.frame.logCommand("check ping [" + ping + " ms]" , event);
                     break;
                 case "help":
