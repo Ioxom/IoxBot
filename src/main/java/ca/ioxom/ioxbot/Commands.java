@@ -45,21 +45,22 @@ public class Commands {
                     Main.frame.logCommand("check ping [" + ping + " ms]" , event);
                     break;
                 case "help":
-                    event.getChannel().sendMessage("help is under construction\nwhile you're waiting use the recently fixed -i ping").queue();
+                    EmbedBuilder helpEmbed = new EmbedBuilder().setAuthor("ioxbot", "https://cdn.discordapp.com/attachments/728781398911221795/786384261821104158/ioxbot_profile_photo.png");
+                    helpEmbed.setColor(new Color(0x00FF00));
+                    helpEmbed.addField("ping", "checks the current ping in ms of ioxbot", false);
+                    helpEmbed.addField("coinflip", "flips a coin", false);
+                    helpEmbed.setFooter("also includes lots of diverse functions to bully Alex with!");
+                    event.getChannel().sendMessage(helpEmbed.build()).queue();
                     Main.frame.logCommand("help", event);
                     break;
-                case "gh":
-                    event.getChannel().sendMessage("https://github.com/" + messageContent.split(" ")[1]).queue();
-                    Main.frame.logCommand("gh", event);
-                    break;
                 case "coinflip":
-                    EmbedBuilder embed = new EmbedBuilder().setAuthor("ioxbot", "https://cdn.discordapp.com/attachments/728781398911221795/786384261821104158/ioxbot_profile_photo.png");
-                    embed.setColor(new Color(0x00FF00));
-                    embed.setTitle("You flipped a coin!");
+                    EmbedBuilder coinflipEmbed = new EmbedBuilder().setAuthor("ioxbot", "https://cdn.discordapp.com/attachments/728781398911221795/786384261821104158/ioxbot_profile_photo.png");
+                    coinflipEmbed.setColor(new Color(0x00FF00));
+                    coinflipEmbed.setTitle("You flipped a coin!");
                     boolean tails = Main.random.nextBoolean();
-                    embed.setThumbnail(tails? "https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg" : "https://cdn.discordapp.com/attachments/728781398911221795/739249818081296384/coin_heads.jpg");
-                    embed.setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
-                    event.getChannel().sendMessage(embed.build()).queue();
+                    coinflipEmbed.setThumbnail(tails? "https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg" : "https://cdn.discordapp.com/attachments/728781398911221795/739249818081296384/coin_heads.jpg");
+                    coinflipEmbed.setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
+                    event.getChannel().sendMessage(coinflipEmbed.build()).queue();
                     break;
             }
         }
