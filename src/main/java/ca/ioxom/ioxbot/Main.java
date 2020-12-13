@@ -4,8 +4,10 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
 import javax.security.auth.login.LoginException;
+import java.security.SecureRandom;
 
 public class Main {
+    public static final SecureRandom random = new SecureRandom();
     public static final String VERSION = "0.1.1";
     public static IoxbotFrame frame;
     public static void main(String[] args) {
