@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 import java.awt.Color;
@@ -23,17 +25,18 @@ public class IoxbotFrame {
     public void init() {
         this.frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //set icon
-        Image image = null;
+        Image image;
         try {
             image = ImageIO.read(new URL("https://cdn.discordapp.com/attachments/728781398911221795/786384261821104158/ioxbot_profile_photo.png"));
+            this.frame.setIconImage(image);
         } catch (IOException e) {
             this.throwError("could not find icon, defaulting to java icon", false);
         }
-        if (image != null) this.frame.setIconImage(image);
-        //configure the console
+        //configure the console, adding a scroll bar and setting the colour
         this.console.setBackground(Color.GRAY);
         this.console.setEditable(false);
-        this.frame.add(this.console);
+        JScrollPane pane = new JScrollPane(this.console);
+        this.frame.getContentPane().add(pane);
         //open the frame
         this.frame.setSize(500, 250);
         this.frame.setVisible(true);
