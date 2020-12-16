@@ -1,4 +1,6 @@
-package ca.ioxom.ioxbot;
+package ca.ioxom.ioxbot.other;
+
+import ca.ioxom.ioxbot.frame.Main;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -8,6 +10,7 @@ public class Config {
     public static String token;
     public static boolean logCommands;
     public static String prefix;
+    public static String status;
     public static void configure() {
         HashMap<String, String> configs = new HashMap<>();
         try (Scanner scanner = new Scanner(Paths.get("config.txt"))) {
@@ -20,6 +23,8 @@ public class Config {
         } catch (Exception e) {
             Main.frame.throwError("could not find config.txt in the target directory", true);
         }
+        //set all the values to public variables
+        status = configs.get("status");
         token = configs.get("token");
         prefix = configs.get("prefix") + (configs.get("spaceAfterPrefix").equals("true")? " " : "");
         logCommands = configs.get("logCommands").equals("true");

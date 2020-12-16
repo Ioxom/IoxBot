@@ -1,16 +1,15 @@
-package ca.ioxom.ioxbot;
+package ca.ioxom.ioxbot.frame;
 
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import ca.ioxom.ioxbot.other.Config;
+import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-
-import java.awt.Color;
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class IoxbotFrame {
     private final JTextArea console;
@@ -23,29 +22,36 @@ public class IoxbotFrame {
     public void init() {
         this.frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //set icon
-        Image image = null;
+        Image image;
         try {
             image = ImageIO.read(new URL("https://cdn.discordapp.com/attachments/728781398911221795/786384261821104158/ioxbot_profile_photo.png"));
+            this.frame.setIconImage(image);
         } catch (IOException e) {
             this.throwError("could not find icon, defaulting to java icon", false);
         }
-        if (image != null) this.frame.setIconImage(image);
-        //configure the console
+        //configure the console, adding a scroll bar and setting the colour
         this.console.setBackground(Color.GRAY);
         this.console.setEditable(false);
-        this.frame.add(this.console);
+        JScrollPane pane = new JScrollPane(this.console);
+        pane.setPreferredSize(new Dimension(500, 250));
+        this.frame.getContentPane().add(pane);
         //open the frame
         this.frame.setSize(500, 250);
         this.frame.setVisible(true);
         this.logInit("initialized frame");
     }
 
+    //methods for logging
     public void logInit(String message) {
         this.console.append("\n[init] " + message);
     }
 
-    public void logCommand(String command, MessageReceivedEvent event) {
-        if (Config.logCommands) this.console.append("\n[command] " + event.getAuthor().getAsTag() + " used " + command);
+    public void logCommand(User user, String command) {
+        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + " used " + command);
+    }
+
+    public void logCommand(User user, String usedReplacement, String command) {
+        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + " " + usedReplacement + " " + command);
     }
 
     public void throwError(String error, boolean fatal) {

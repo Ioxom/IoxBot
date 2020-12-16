@@ -10,3 +10,5 @@ prefix = -i
 spaceAfterPrefix = true
 //log what command was used by who to the console
 logCommands = true
+//set the bot's status
+status = very cool status
