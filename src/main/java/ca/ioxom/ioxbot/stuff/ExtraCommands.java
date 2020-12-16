@@ -10,7 +10,7 @@ public class ExtraCommands {
                 || event.getMessage().getContentRaw().contains("www.youtube"))) {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("bad").queue();
-            Main.frame.logCommand("very bad", event);
+            Main.frame.logCommand("very bad", event.getAuthor());
         } else if (event.getMessage().getContentRaw().equals(Config.prefix + "shut up alex")) {
             String[] messages = {
                     "shut up alex",
@@ -19,7 +19,7 @@ public class ExtraCommands {
                     "shut down alex"
             };
             event.getChannel().sendMessage(messages[Main.random.nextInt(messages.length)]).queue();
-            Main.frame.logCommand("shut up alex", event);
+            Main.frame.logCommand("shut up alex", event.getAuthor());
         }
     }
 }

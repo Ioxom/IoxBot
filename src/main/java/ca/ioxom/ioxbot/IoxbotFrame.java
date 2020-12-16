@@ -1,18 +1,14 @@
 package ca.ioxom.ioxbot;
 
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
-
-import java.awt.Color;
-import java.awt.Image;
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class IoxbotFrame {
     private final JTextArea console;
@@ -47,8 +43,8 @@ public class IoxbotFrame {
         this.console.append("\n[init] " + message);
     }
 
-    public void logCommand(String command, MessageReceivedEvent event) {
-        if (Config.logCommands) this.console.append("\n[command] " + event.getAuthor().getAsTag() + " used " + command);
+    public void logCommand(String command, User user) {
+        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + " used " + command);
     }
 
     public void throwError(String error, boolean fatal) {
