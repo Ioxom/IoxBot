@@ -1,5 +1,6 @@
-package ca.ioxom.ioxbot;
+package ca.ioxom.ioxbot.frame;
 
+import ca.ioxom.ioxbot.other.Config;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
@@ -32,6 +33,7 @@ public class IoxbotFrame {
         this.console.setBackground(Color.GRAY);
         this.console.setEditable(false);
         JScrollPane pane = new JScrollPane(this.console);
+        pane.setPreferredSize(new Dimension(500, 250));
         this.frame.getContentPane().add(pane);
         //open the frame
         this.frame.setSize(500, 250);

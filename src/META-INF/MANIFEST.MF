@@ -1,3 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: ca.ioxom.ioxbot.Main
-
+Main-Class: ca.ioxom.ioxbot.frame.Main

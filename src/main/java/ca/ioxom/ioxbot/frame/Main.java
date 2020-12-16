@@ -1,5 +1,8 @@
-package ca.ioxom.ioxbot;
+package ca.ioxom.ioxbot.frame;
 
+import ca.ioxom.ioxbot.commands.MainListener;
+import ca.ioxom.ioxbot.other.Config;
+import ca.ioxom.ioxbot.other.StatusSetter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
@@ -24,7 +27,7 @@ public class Main {
             frame.throwError("invalid token", true);
         }
         if (api != null) {
-            api.addEventListener(new Commands.Listener());
+            api.addEventListener(new MainListener());
             api.addEventListener(new StatusSetter());
             frame.logInit("initialized jda; ioxbot is ready to go");
         }

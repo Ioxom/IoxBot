@@ -1,4 +1,4 @@
-package ca.ioxom.ioxbot;
+package ca.ioxom.ioxbot.other;
 
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.ReadyEvent;

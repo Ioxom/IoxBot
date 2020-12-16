@@ -1,4 +1,6 @@
-package ca.ioxom.ioxbot;
+package ca.ioxom.ioxbot.other;
+
+import ca.ioxom.ioxbot.frame.Main;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
