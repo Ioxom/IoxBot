@@ -23,7 +23,10 @@ public class Main {
         } catch (LoginException e) {
             frame.throwError("invalid token", true);
         }
-        if (api != null) api.addEventListener(new Commands.Listener());
-        frame.logInit("initialized jda; ioxbot is ready to go");
+        if (api != null) {
+            api.addEventListener(new Commands.Listener());
+            api.addEventListener(new StatusSetter());
+            frame.logInit("initialized jda; ioxbot is ready to go");
+        }
     }
 }
