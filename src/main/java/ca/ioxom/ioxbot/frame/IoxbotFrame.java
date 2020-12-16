@@ -41,12 +41,17 @@ public class IoxbotFrame {
         this.logInit("initialized frame");
     }
 
+    //methods for logging
     public void logInit(String message) {
         this.console.append("\n[init] " + message);
     }
 
-    public void logCommand(String command, User user) {
+    public void logCommand(User user, String command) {
         if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + " used " + command);
+    }
+
+    public void logCommand(User user, String usedReplacement, String command) {
+        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + " " + usedReplacement + " " + command);
     }
 
     public void throwError(String error, boolean fatal) {
