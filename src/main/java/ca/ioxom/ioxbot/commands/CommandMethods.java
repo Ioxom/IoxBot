@@ -20,6 +20,8 @@ public class CommandMethods {
         } else if (event.getMessage().getContentRaw().equals(Config.prefix + "shut up alex")) {
             event.getChannel().sendMessage(messages[Main.random.nextInt(messages.length)]).queue();
             Main.frame.logCommand(event.getAuthor(), "shut up alex");
+        } else if (event.getMessage().getContentRaw().equals("bo bo bo") && event.getAuthor().getId().equals("730866562189230110")) {
+            event.getMessage().delete().queue();
         }
     }
 

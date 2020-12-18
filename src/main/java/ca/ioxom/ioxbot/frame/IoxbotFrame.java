@@ -24,7 +24,7 @@ public class IoxbotFrame {
         //set icon
         Image image;
         try {
-            image = ImageIO.read(new URL("https://cdn.discordapp.com/attachments/728781398911221795/786384261821104158/ioxbot_profile_photo.png"));
+            image = ImageIO.read(new URL("https://user-images.githubusercontent.com/66223394/102388605-9ce81880-3f97-11eb-85d4-d4841103d47b.png"));
             this.frame.setIconImage(image);
         } catch (IOException e) {
             this.throwError("could not find icon, defaulting to java icon", false);

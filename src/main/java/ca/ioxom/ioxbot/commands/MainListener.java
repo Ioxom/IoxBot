@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class MainListener extends ListenerAdapter {
     @Override
@@ -32,6 +32,7 @@ public class MainListener extends ListenerAdapter {
                     EmbedBuilder helpEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
                             .setColor(new Color(0x00FF00))
+                            .addField("current prefix:", Config.prefix, false)
                             .addField("ping", "checks the current ping in ms of ioxbot", false)
                             .addField("coinflip", "flips a coin", false)
                             .setFooter("also includes lots of diverse functions to bully Alex with!");
@@ -40,13 +41,13 @@ public class MainListener extends ListenerAdapter {
                     break;
                 case "coinflip":
                     //we just generate a boolean to see which side
+                    boolean tails = Main.random.nextBoolean();
                     EmbedBuilder coinflipEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
                             .setColor(new Color(0x00FF00))
-                            .setTitle("You flipped a coin!");
-                    boolean tails = Main.random.nextBoolean();
-                    coinflipEmbed.setThumbnail(tails? "https://cdn.discordapp.com/attachments/728781398911221795/739249795469803612/coin_tails.jpg" : "https://cdn.discordapp.com/attachments/728781398911221795/739249818081296384/coin_heads.jpg");
-                    coinflipEmbed.setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
+                            .setTitle("You flipped a coin!")
+                            .setThumbnail(tails? "https://user-images.githubusercontent.com/66223394/102388590-978ace00-3f97-11eb-8b79-74c8b123f264.jpg" : "https://user-images.githubusercontent.com/66223394/102388542-8a6ddf00-3f97-11eb-9f15-60d852a2bc2b.jpg")
+                            .setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
                     channel.sendMessage(coinflipEmbed.build()).queue();
                     Main.frame.logCommand(author, "flipped", "a coin");
                     break;
