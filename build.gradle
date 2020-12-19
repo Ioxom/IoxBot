@@ -5,8 +5,8 @@ plugins {
 }
 
 group 'ca.ioxom'
-version '0.1.1'
-def jdaVersion = '4.2.0_222'
+version '0.1.2'
+def jdaVersion = '4.2.0_223'
 
 repositories {
     jcenter()
