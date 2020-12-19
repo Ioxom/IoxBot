@@ -10,7 +10,6 @@ public class Config {
     public static String token;
     public static boolean logCommands;
     public static String prefix;
-    public static String status;
     public static void configure() {
         HashMap<String, String> configs = new HashMap<>();
         try (Scanner scanner = new Scanner(Paths.get("config.txt"))) {
@@ -24,7 +23,6 @@ public class Config {
             Main.frame.throwError("could not find config.txt in the target directory", true);
         }
         //set all the values to public variables
-        status = configs.get("status");
         token = configs.get("token");
         prefix = configs.get("prefix") + (configs.get("spaceAfterPrefix").equals("true")? " " : "");
         logCommands = configs.get("logCommands").equals("true");
