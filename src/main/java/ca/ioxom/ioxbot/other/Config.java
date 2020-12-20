@@ -10,8 +10,8 @@ public class Config {
     public static String token;
     public static boolean logCommands;
     public static String prefix;
+    private static final HashMap<String, String> configs = new HashMap<>();
     public static void configure() {
-        HashMap<String, String> configs = new HashMap<>();
         try (Scanner scanner = new Scanner(Paths.get("config.txt"))) {
             //save config to a hashmap, ignoring lines starting with //
             while (scanner.hasNextLine()) {
@@ -23,9 +23,25 @@ public class Config {
             Main.frame.throwError("could not find config.txt in the target directory", true);
         }
         //set all the values to public variables
-        token = configs.get("token");
-        prefix = configs.get("prefix") + (configs.get("spaceAfterPrefix").equals("true")? " " : "");
-        logCommands = configs.get("logCommands").equals("true");
+        setValues();
         Main.frame.logInit("successfully read configuration file");
+    }
+
+    public static void setValues() {
+        try {
+            token = configs.get("token");
+        } catch (Exception e) {
+            Main.frame.throwError("error reading line \"token\" of config", true);
+        }
+        try {
+            prefix = configs.get("prefix") + (configs.get("spaceAfterPrefix").equals("true")? " " : "");
+        } catch (Exception e) {
+            Main.frame.throwError("error reading line \"prefix\" or \"spaceAfterPrefix\" of config", true);
+        }
+        try {
+            logCommands = configs.get("logCommands").equals("true");
+        } catch (Exception e) {
+            Main.frame.throwError("error reading line \"logCommands\" of config", true);
+        }
     }
 }
