@@ -20,7 +20,7 @@ public class Config {
                 configs.put((line.split(" = ")[0]), (line.split(" = "))[1]);
             }
         } catch (Exception e) {
-            Main.frame.throwError("could not find config.txt in the target directory", true);
+            Main.frame.throwError("could not find config.txt in the target directory or a value is entered incorrectly", true);
         }
         //set all the values to public variables
         setValues();
