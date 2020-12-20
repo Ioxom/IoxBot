@@ -46,12 +46,8 @@ public class IoxbotFrame {
         this.console.append("\n[init] " + message);
     }
 
-    public void logCommand(User user, String command) {
-        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + " used " + command);
-    }
-
-    public void logCommand(User user, String usedReplacement, String command) {
-        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + " " + usedReplacement + " " + command);
+    public void logCommand(User user, String command, boolean containsUsed) {
+        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + (containsUsed? " used " : " ")  + command);
     }
 
     public void throwError(String error, boolean fatal) {
@@ -60,8 +56,8 @@ public class IoxbotFrame {
             try {
                 Thread.sleep(5000);
                 System.exit(2);
-            } catch (Exception f) {
-                this.console.append("\n" + f.toString());
+            } catch (Exception e) {
+                this.console.append("\n" + e.toString());
             }
         }
     }

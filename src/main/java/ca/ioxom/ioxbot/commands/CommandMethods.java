@@ -16,10 +16,10 @@ public class CommandMethods {
                 || event.getMessage().getContentRaw().contains("www.youtube"))) {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("bad").queue();
-            Main.frame.logCommand(event.getAuthor(), "very bad");
+            Main.frame.logCommand(event.getAuthor(), "very bad", true);
         } else if (event.getMessage().getContentRaw().equals(Config.prefix + "shut up alex")) {
             event.getChannel().sendMessage(messages[Main.random.nextInt(messages.length)]).queue();
-            Main.frame.logCommand(event.getAuthor(), "shut up alex");
+            Main.frame.logCommand(event.getAuthor(), "shut up alex", true);
         } else if (event.getMessage().getContentRaw().equals("bo bo bo") && event.getAuthor().getId().equals("730866562189230110")) {
             event.getMessage().delete().queue();
         }
@@ -28,7 +28,7 @@ public class CommandMethods {
     public static void yum(MessageReceivedEvent event) {
         if (event.getAuthor().getId().equals("675553099490000926") && Main.random.nextInt(100) == 50) {
             event.getChannel().sendMessage("yum").queue();
-            Main.frame.logCommand(event.getAuthor(), "yum");
+            Main.frame.logCommand(event.getAuthor(), "yum", true);
         }
     }
 }

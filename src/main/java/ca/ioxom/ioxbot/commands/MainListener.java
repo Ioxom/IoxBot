@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class MainListener extends ListenerAdapter {
     @Override
@@ -20,13 +20,13 @@ public class MainListener extends ListenerAdapter {
             User author = event.getAuthor();
             MessageChannel channel = event.getChannel();
             String messageContent = event.getMessage().getContentRaw().split(Config.prefix, 2)[1].toLowerCase().strip();
-            switch (messageContent) {
+            switch (messageContent.split(" ")[0]) {
                 case "ping":
                     //code copied from the JDA discord, don't credit me for this
                     long time = System.currentTimeMillis();
                     channel.sendMessage("calculating ping...").queue( message ->
                             message.editMessageFormat("ioxbot's ping is: %dms", System.currentTimeMillis() - time).queue());
-                    Main.frame.logCommand(author, "checked", "ping");
+                    Main.frame.logCommand(author, "checked ping", false);
                     break;
                 case "help":
                     EmbedBuilder helpEmbed = new EmbedBuilder()
@@ -37,7 +37,7 @@ public class MainListener extends ListenerAdapter {
                             .addField("coinflip", "flips a coin", false)
                             .setFooter("also includes lots of diverse functions to bully Alex with!");
                     channel.sendMessage(helpEmbed.build()).queue();
-                    Main.frame.logCommand(author, "help");
+                    Main.frame.logCommand(author, "help", true);
                     break;
                 case "coinflip":
                     //we just generate a boolean to see which side
@@ -49,8 +49,16 @@ public class MainListener extends ListenerAdapter {
                             .setThumbnail(tails? "https://user-images.githubusercontent.com/66223394/102388590-978ace00-3f97-11eb-8b79-74c8b123f264.jpg" : "https://user-images.githubusercontent.com/66223394/102388542-8a6ddf00-3f97-11eb-9f15-60d852a2bc2b.jpg")
                             .setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
                     channel.sendMessage(coinflipEmbed.build()).queue();
-                    Main.frame.logCommand(author, "flipped", "a coin");
+                    Main.frame.logCommand(author, "flipped a coin", false);
                     break;
+                case "belt":
+                    EmbedBuilder beltEmbed = new EmbedBuilder()
+                            .setAuthor("ioxbot")
+                            .setColor(new Color(0x00FF00))
+                            .setImage("https://cdn.discordapp.com/attachments/618926084750180363/746464831317475338/belt.jpg")
+                            .setDescription((author.getAsMention() + " gives the belt to " + event.getMessage().getMentionedUsers().stream().findFirst().toString().split("Optional\\[")[1].split("]")[0]) + ":hammer:");
+                    channel.sendMessage(beltEmbed.build()).queue();
+                    Main.frame.logCommand(author, "gave someone the belt", false);
             }
         //yum
         } else {
