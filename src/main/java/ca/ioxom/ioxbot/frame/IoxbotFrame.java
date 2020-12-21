@@ -22,10 +22,10 @@ public class IoxbotFrame {
     public void init() {
         this.frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //set icon
-        Image image;
         try {
-            image = ImageIO.read(new URL("https://user-images.githubusercontent.com/66223394/102388605-9ce81880-3f97-11eb-85d4-d4841103d47b.png"));
+            Image image = ImageIO.read(new URL("https://user-images.githubusercontent.com/66223394/102388605-9ce81880-3f97-11eb-85d4-d4841103d47b.png"));
             this.frame.setIconImage(image);
+            this.logInit("added icon to frame", false);
         } catch (IOException e) {
             this.throwError("could not find icon, defaulting to java icon", false);
         }
@@ -35,15 +35,18 @@ public class IoxbotFrame {
         JScrollPane pane = new JScrollPane(this.console);
         pane.setPreferredSize(new Dimension(500, 250));
         this.frame.getContentPane().add(pane);
+        this.logInit("added console to frame", false);
         //open the frame
         this.frame.setSize(500, 250);
         this.frame.setVisible(true);
-        this.logInit("initialized frame");
+        this.logInit("initialized frame", false);
     }
 
     //methods for logging
-    public void logInit(String message) {
-        this.console.append("\n[init] " + message);
+    public void logInit(String message, boolean extra) {
+        if (!extra || Config.extraLogging) {
+            this.console.append("\n[init] " + message);
+        }
     }
 
     public void logCommand(User user, String command, boolean containsUsed) {

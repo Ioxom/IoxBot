@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Config {
+    public static boolean extraLogging;
     public static String token;
     public static boolean logCommands;
     public static String prefix;
@@ -24,7 +25,7 @@ public class Config {
         }
         //set all the values to public variables
         setValues();
-        Main.frame.logInit("successfully read configuration file");
+        Main.frame.logInit("successfully read configuration file", false);
     }
 
     public static void setValues() {
@@ -42,6 +43,11 @@ public class Config {
             logCommands = configs.get("logCommands").equals("true");
         } catch (Exception e) {
             Main.frame.throwError("error reading line \"logCommands\" of config", true);
+        }
+        try {
+            extraLogging = configs.get("extraLogging").equals("true");
+        } catch (Exception e) {
+            Main.frame.throwError("error reading line \"extraLogging\" of config", true);
         }
     }
 }

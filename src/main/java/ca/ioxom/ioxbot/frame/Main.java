@@ -16,20 +16,26 @@ public class Main {
     public static void main(String[] args) {
         //create frame
         frame = new IoxbotFrame();
-        frame.init();
         //configure
         Config.configure();
+        frame.init();
         //log in
         JDA api = null;
         try {
             api = JDABuilder.createDefault(Config.token).build();
+            Main.frame.logInit("successfully logged in JDA", true);
         } catch (LoginException e) {
             frame.throwError("invalid token", true);
         }
+        //add event listeners
         if (api != null) {
             api.addEventListener(new MainListener());
             api.addEventListener(new StatusSetter());
-            frame.logInit("initialized jda; ioxbot is ready to go");
+            if (!Config.extraLogging) {
+                frame.logInit("initialized jda; ioxbot is ready to go", false);
+            } else {
+                frame.logInit("added event listeners; ioxbot is ready to go", false);
+            }
         }
     }
 }
