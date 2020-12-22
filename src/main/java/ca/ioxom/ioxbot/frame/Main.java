@@ -16,9 +16,9 @@ public class Main {
     public static void main(String[] args) {
         //create frame
         frame = new IoxbotFrame();
+        frame.init();
         //configure
         Config.configure();
-        frame.init();
         //log in
         JDA api = null;
         try {

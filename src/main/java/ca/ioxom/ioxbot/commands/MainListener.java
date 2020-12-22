@@ -32,10 +32,13 @@ public class MainListener extends ListenerAdapter {
                     EmbedBuilder helpEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
                             .setColor(new Color(0x00FF00))
-                            .addField("current prefix:", Config.prefix, false)
-                            .addField("ping", "checks the current ping in ms of ioxbot", false)
-                            .addField("coinflip", "flips a coin", false)
-                            .setFooter("also includes lots of diverse functions to bully Alex with!");
+                            .addField("ping", "checks the current ping in ms of ioxbot" +
+                                    "\nsyntax: `" + Config.prefix + "ping`", false)
+                            .addField("coinflip", "flips a coin" +
+                                    "\nsyntax: `" + Config.prefix + "coinflip`", false)
+                            .addField("belt", "sometimes you just need to give someone the belt" +
+                                    "\nsyntax: `" + Config.prefix + "belt <@user>`", false)
+                            .setFooter("also includes lots of diverse functions to bully alex with!");
                     channel.sendMessage(helpEmbed.build()).queue();
                     Main.frame.logCommand(author, "help", true);
                     break;
@@ -52,13 +55,20 @@ public class MainListener extends ListenerAdapter {
                     Main.frame.logCommand(author, "flipped a coin", false);
                     break;
                 case "belt":
-                    EmbedBuilder beltEmbed = new EmbedBuilder()
-                            .setAuthor("ioxbot")
-                            .setColor(new Color(0x00FF00))
-                            .setImage("https://cdn.discordapp.com/attachments/618926084750180363/746464831317475338/belt.jpg")
-                            .setDescription((author.getAsMention() + " gives the belt to " + event.getMessage().getMentionedUsers().stream().findFirst().toString().split("Optional\\[")[1].split("]")[0]) + ":hammer:");
-                    channel.sendMessage(beltEmbed.build()).queue();
-                    Main.frame.logCommand(author, "gave someone the belt", false);
+                    String belter = author.getAsMention();
+                    String belted = event.getMessage().getMentionedUsers().stream().findFirst().toString().split("Optional\\[")[1].split("]")[0];
+                    if (belter.equals(belted)) {
+                        channel.sendMessage(new EmbedBuilder().setDescription("no thanks mate").build()).queue();
+                    } else {
+                        EmbedBuilder beltEmbed = new EmbedBuilder()
+                                .setAuthor("ioxbot")
+                                .setColor(new Color(0x00FF00))
+                                .setImage("https://cdn.discordapp.com/attachments/618926084750180363/746464831317475338/belt.jpg")
+                                .setDescription(belter + " gives the belt to " + belted);
+                        channel.sendMessage(beltEmbed.build()).queue();
+                        Main.frame.logCommand(author, "gave someone the belt", false);
+                    }
+                    break;
             }
         //yum
         } else {

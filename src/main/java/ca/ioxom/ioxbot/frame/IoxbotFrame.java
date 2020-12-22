@@ -14,9 +14,11 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class IoxbotFrame {
     private final JTextArea console;
     private final JFrame frame;
+    private final JPanel panel;
     public IoxbotFrame() {
         this.frame = new JFrame("ioxbot v " + Main.VERSION);
         this.console = new JTextArea("[init] loading ioxbot");
+        this.panel = new JPanel(new BorderLayout());
     }
 
     public void init() {
@@ -31,15 +33,20 @@ public class IoxbotFrame {
         }
         //configure the console, adding a scroll bar and setting the colour
         this.console.setBackground(Color.GRAY);
+        this.console.setSize(new Dimension(500, 375));
         this.console.setEditable(false);
-        JScrollPane pane = new JScrollPane(this.console);
-        pane.setPreferredSize(new Dimension(500, 250));
-        this.frame.getContentPane().add(pane);
+        JScrollPane pane = new JScrollPane();
+        pane.add(this.console);
+        pane.setPreferredSize(new Dimension(500, 375));
+        this.panel.setBackground(new Color(0x00FF00));
+        this.panel.setPreferredSize(new Dimension(500, 375));
+        this.panel.add(pane);
+        this.frame.setContentPane(this.panel);
         this.logInit("added console to frame", false);
         //open the frame
-        this.frame.setSize(500, 250);
+        this.frame.setSize(new Dimension(600, 275));
         this.frame.setVisible(true);
-        this.logInit("initialized frame", false);
+        this.logInit("finished initializing frame", false);
     }
 
     //methods for logging

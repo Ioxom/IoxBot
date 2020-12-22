@@ -18,10 +18,15 @@ public class Config {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.startsWith("//") || line.isEmpty()) continue;
-                configs.put((line.split(" = ")[0]), (line.split(" = "))[1]);
+                try  {
+                    String[] splitLine = line.split(" = ");
+                    configs.put(splitLine[0], splitLine[1]);
+                } catch (Exception e) {
+                    Main.frame.throwError("error reading line \"" + line + "\" of config", true);
+                }
             }
         } catch (Exception e) {
-            Main.frame.throwError("could not find config.txt in the target directory or a value is entered incorrectly", true);
+            Main.frame.throwError("could not find config.txt in the target directory", true);
         }
         //set all the values to public variables
         setValues();

@@ -21,8 +21,8 @@ public class StatusSetter extends ListenerAdapter {
 
     public static class StatusRunnable implements Runnable {
         private final String[] statuses = {"prefix | " + Config.prefix, "help | " + Config.prefix + "help"};
-        public int i;
-        public Presence presence;
+        private int i;
+        private final Presence presence;
         public StatusRunnable(Presence presence) {
             this.presence = presence;
             this.i = 0;
