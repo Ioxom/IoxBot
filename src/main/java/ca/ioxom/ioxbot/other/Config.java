@@ -2,6 +2,7 @@ package ca.ioxom.ioxbot.other;
 
 import ca.ioxom.ioxbot.frame.Main;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -18,6 +19,7 @@ public class Config {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.startsWith("//") || line.isEmpty()) continue;
+                //throw error if a line is entered incorrectly
                 try  {
                     String[] splitLine = line.split(" = ");
                     configs.put(splitLine[0], splitLine[1]);
@@ -25,7 +27,8 @@ public class Config {
                     Main.frame.throwError("error reading line \"" + line + "\" of config", true);
                 }
             }
-        } catch (Exception e) {
+        //throw error config.txt is not found
+        } catch (IOException e) {
             Main.frame.throwError("could not find config.txt in the target directory", true);
         }
         //set all the values to public variables

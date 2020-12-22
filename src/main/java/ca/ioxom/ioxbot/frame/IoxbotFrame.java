@@ -4,8 +4,15 @@ import ca.ioxom.ioxbot.other.Config;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JTextArea;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
 
@@ -35,10 +42,11 @@ public class IoxbotFrame {
         this.console.setBackground(Color.GRAY);
         this.console.setSize(new Dimension(500, 375));
         this.console.setEditable(false);
+        //create a pane to allow the console to have scrolling
         JScrollPane pane = new JScrollPane();
-        pane.add(this.console);
         pane.setPreferredSize(new Dimension(500, 375));
-        this.panel.setBackground(new Color(0x00FF00));
+        pane.add(this.console);
+        //configure the main background panel
         this.panel.setPreferredSize(new Dimension(500, 375));
         this.panel.add(pane);
         this.frame.setContentPane(this.panel);
