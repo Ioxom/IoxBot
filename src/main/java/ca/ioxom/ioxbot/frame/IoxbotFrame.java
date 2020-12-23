@@ -41,9 +41,8 @@ public class IoxbotFrame {
         this.console.setSize(new Dimension(550, 375));
         this.console.setEditable(false);
         //create a pane to allow the console to have scrolling
-        JScrollPane pane = new JScrollPane();
+        JScrollPane pane = new JScrollPane(this.console);
         pane.setPreferredSize(new Dimension(550, 375));
-        pane.add(this.console);
         //configure the main background panel
         this.panel.setPreferredSize(new Dimension(550, 375));
         this.panel.add(pane);
