@@ -12,7 +12,7 @@ public class Config {
     public static String token;
     public static boolean logCommands;
     public static String prefix;
-    private static final HashMap<String, String> configs = new HashMap<>();
+    public static final HashMap<String, String> configs = new HashMap<>();
     public static void configure() {
         try (Scanner scanner = new Scanner(Paths.get("config.txt"))) {
             //save config to a hashmap, ignoring lines starting with //
@@ -27,7 +27,7 @@ public class Config {
                     Main.frame.throwError("error reading line \"" + line + "\" of config", true);
                 }
             }
-        //throw error config.txt is not found
+        //throw error if config.txt is not found
         } catch (IOException e) {
             Main.frame.throwError("could not find config.txt in the target directory", true);
         }

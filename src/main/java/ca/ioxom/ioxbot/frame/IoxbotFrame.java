@@ -4,10 +4,7 @@ import ca.ioxom.ioxbot.other.Config;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
-import javax.swing.JTextArea;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -24,7 +21,8 @@ public class IoxbotFrame {
     private final JPanel panel;
     public IoxbotFrame() {
         this.frame = new JFrame("ioxbot v " + Main.VERSION);
-        this.console = new JTextArea("[init] loading ioxbot");
+        this.console = new JTextArea("[init] press the button on the right to reload config values" +
+                "\n[init] loading ioxbot");
         this.panel = new JPanel(new BorderLayout());
     }
 
@@ -40,17 +38,30 @@ public class IoxbotFrame {
         }
         //configure the console, adding a scroll bar and setting the colour
         this.console.setBackground(Color.GRAY);
-        this.console.setSize(new Dimension(500, 375));
+        this.console.setSize(new Dimension(550, 375));
         this.console.setEditable(false);
         //create a pane to allow the console to have scrolling
         JScrollPane pane = new JScrollPane();
-        pane.setPreferredSize(new Dimension(500, 375));
+        pane.setPreferredSize(new Dimension(550, 375));
         pane.add(this.console);
         //configure the main background panel
-        this.panel.setPreferredSize(new Dimension(500, 375));
+        this.panel.setPreferredSize(new Dimension(550, 375));
         this.panel.add(pane);
         this.frame.setContentPane(this.panel);
         this.logInit("added console to frame", false);
+        //add a button for reloading the config
+        JButton reloadConfig = new JButton();
+        //get the icon
+        try {
+            ImageIcon reloadIcon = new ImageIcon(new URL("https://cdn.discordapp.com/attachments/728781398911221795/786655027162120272/reload.png"));
+            reloadConfig.setIcon(reloadIcon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        reloadConfig.setPreferredSize(new Dimension(50, 50));
+        reloadConfig.setBackground(Color.DARK_GRAY);
+        reloadConfig.addActionListener(new ReloadConfig());
+        this.panel.add(reloadConfig, BorderLayout.EAST);
         //open the frame
         this.frame.setSize(new Dimension(600, 275));
         this.frame.setVisible(true);
