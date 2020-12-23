@@ -16,7 +16,7 @@ import java.net.URL;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class IoxbotFrame {
-    private final JTextArea console;
+    public final JTextArea console;
     private final JFrame frame;
     private final JPanel panel;
     public IoxbotFrame() {
@@ -74,8 +74,12 @@ public class IoxbotFrame {
         }
     }
 
+    public void logMain(String message) {
+        this.console.append("\n[main] " + message);
+    }
+
     public void logCommand(User user, String command, boolean containsUsed) {
-        if (Config.logCommands) this.console.append("\n[command] " + user.getAsTag() + (containsUsed? " used " : " ")  + command);
+        if (Config.logCommands) this.console.append("\n[cmd] " + user.getAsTag() + (containsUsed? " used " : " ")  + command);
     }
 
     public void throwError(String error, boolean fatal) {

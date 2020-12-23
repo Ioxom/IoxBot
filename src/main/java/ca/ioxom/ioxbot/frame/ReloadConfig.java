@@ -31,6 +31,6 @@ public class ReloadConfig implements ActionListener {
         }
         //set all the values to public variables
         Config.setValues();
-        Main.frame.logInit("successfully reread configuration file", false);
+        Main.frame.logMain("successfully reread configuration file");
     }
 }
