@@ -12,6 +12,7 @@ public class ReloadConfig implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        boolean reloadValues = true;
         try (Scanner scanner = new Scanner(Paths.get("config.txt"))) {
             //save config to a hashmap, ignoring lines starting with //
             while (scanner.hasNextLine()) {
@@ -22,7 +23,8 @@ public class ReloadConfig implements ActionListener {
                     String[] splitLine = line.split(" = ");
                     Config.configs.put(splitLine[0], splitLine[1]);
                 } catch (Exception exception) {
-                    Main.frame.throwError("error reading line \"" + line + "\" of config", true);
+                    Main.frame.throwError("error reading line \"" + line + "\" of config; not reloading values", false);
+                    reloadValues = false;
                 }
             }
         //throw error if config.txt is not found
@@ -30,7 +32,9 @@ public class ReloadConfig implements ActionListener {
             Main.frame.throwError("could not find config.txt in the target directory", true);
         }
         //set all the values to public variables
-        Config.setValues();
-        Main.frame.logMain("successfully reread configuration file");
+        if (reloadValues) {
+            Config.setValues();
+            Main.frame.logMain("successfully reread configuration file");
+        }
     }
 }

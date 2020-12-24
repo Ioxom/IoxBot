@@ -16,7 +16,7 @@ import java.net.URL;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class IoxbotFrame {
-    public final JTextArea console;
+    private final JTextArea console;
     private final JFrame frame;
     private final JPanel panel;
     public IoxbotFrame() {
@@ -87,7 +87,7 @@ public class IoxbotFrame {
         if (fatal) {
             try {
                 Thread.sleep(5000);
-                System.exit(2);
+                System.exit(1);
             } catch (Exception e) {
                 this.console.append("\n" + e.toString());
             }

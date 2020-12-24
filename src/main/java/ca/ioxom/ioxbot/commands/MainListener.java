@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class MainListener extends ListenerAdapter {
     @Override
@@ -63,7 +63,7 @@ public class MainListener extends ListenerAdapter {
                         EmbedBuilder beltEmbed = new EmbedBuilder()
                                 .setAuthor("ioxbot")
                                 .setColor(new Color(0x00FF00))
-                                .setImage("https://cdn.discordapp.com/attachments/618926084750180363/746464831317475338/belt.jpg")
+                                .setImage("https://cdn.discordapp.com/attachments/618926084750180363/791440175276228628/IMG_20200807_131425973.jpg")
                                 .setDescription(belter + " gives the belt to " + belted);
                         channel.sendMessage(beltEmbed.build()).queue();
                         Main.frame.logCommand(author, "gave someone the belt", false);
