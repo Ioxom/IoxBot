@@ -4,6 +4,7 @@ import ca.ioxom.ioxbot.other.ConfigObject;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ public class ReloadConfig implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent ae) {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(ALLOW_COMMENTS);
         try {
             ConfigObject readConfigObject = mapper.readValue(new File("config.json5"), ConfigObject.class);
             try {
