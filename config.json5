@@ -1,0 +1,7 @@
+{
+  "extraLogging": true,
+  "token": "your_token_here",
+  "logCommands": true,
+  "prefix": "-i",
+  "spaceAfterPrefix": true
+}

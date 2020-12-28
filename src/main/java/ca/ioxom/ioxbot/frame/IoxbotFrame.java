@@ -1,15 +1,10 @@
 package ca.ioxom.ioxbot.frame;
 
-import ca.ioxom.ioxbot.other.Config;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Color;
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
@@ -69,7 +64,7 @@ public class IoxbotFrame {
 
     //methods for logging
     public void logInit(String message, boolean extra) {
-        if (!extra || Config.extraLogging) {
+        if (!extra || Main.config.extraLogging) {
             this.console.append("\n[init] " + message);
         }
     }
@@ -79,7 +74,7 @@ public class IoxbotFrame {
     }
 
     public void logCommand(User user, String command, boolean containsUsed) {
-        if (Config.logCommands) this.console.append("\n[cmd] " + user.getAsTag() + (containsUsed? " used " : " ")  + command);
+        if (Main.config.logCommands) this.console.append("\n[cmd] " + user.getAsTag() + (containsUsed? " used " : " ")  + command);
     }
 
     public void throwError(String error, boolean fatal) {

@@ -16,10 +16,10 @@ public class MainListener extends ListenerAdapter {
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         CommandMethods.bullyAlex(event);
 
-        if (event.getMessage().getContentRaw().startsWith(Config.prefix)) {
+        if (event.getMessage().getContentRaw().startsWith(Main.config.formattedPrefix)) {
             User author = event.getAuthor();
             MessageChannel channel = event.getChannel();
-            String messageContent = event.getMessage().getContentRaw().split(Config.prefix, 2)[1].toLowerCase().strip();
+            String messageContent = event.getMessage().getContentRaw().split(Main.config.formattedPrefix, 2)[1].toLowerCase().strip();
             switch (messageContent.split(" ")[0]) {
                 case "ping":
                     //code copied from the JDA discord, don't credit me for this
@@ -33,11 +33,11 @@ public class MainListener extends ListenerAdapter {
                             .setAuthor("ioxbot")
                             .setColor(new Color(0x00FF00))
                             .addField("ping", "checks the current ping in ms of ioxbot" +
-                                    "\nsyntax: `" + Config.prefix + "ping`", false)
+                                    "\nsyntax: `" + Main.config.formattedPrefix + "ping`", false)
                             .addField("coinflip", "flips a coin" +
-                                    "\nsyntax: `" + Config.prefix + "coinflip`", false)
+                                    "\nsyntax: `" + Main.config.formattedPrefix + "coinflip`", false)
                             .addField("belt", "sometimes you just need to give someone the belt" +
-                                    "\nsyntax: `" + Config.prefix + "belt <@user>`", false)
+                                    "\nsyntax: `" + Main.config.formattedPrefix + "belt <@user>`", false)
                             .setFooter("also includes lots of diverse functions to bully alex with!");
                     channel.sendMessage(helpEmbed.build()).queue();
                     Main.frame.logCommand(author, "help", true);

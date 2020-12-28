@@ -1,5 +1,6 @@
 package ca.ioxom.ioxbot.other;
 
+import ca.ioxom.ioxbot.frame.Main;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -20,7 +21,7 @@ public class StatusSetter extends ListenerAdapter {
     }
 
     public static class StatusRunnable implements Runnable {
-        private final String[] statuses = {"prefix | " + Config.prefix, "help | " + Config.prefix + "help"};
+        private final String[] statuses = {"prefix | " + Main.config.formattedPrefix, "help | " + Main.config.formattedPrefix + "help"};
         private int i;
         private final Presence presence;
         public StatusRunnable(Presence presence) {

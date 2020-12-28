@@ -1,61 +1,69 @@
 package ca.ioxom.ioxbot.other;
 
 import ca.ioxom.ioxbot.frame.Main;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Config {
-    public static boolean extraLogging;
-    public static String token;
-    public static boolean logCommands;
-    public static String prefix;
+    public boolean extraLogging;
+    public String token;
+    public boolean logCommands;
+    public String prefix;
+    public String formattedPrefix;
+    public boolean spaceAfterPrefix;
     public static final HashMap<String, String> configs = new HashMap<>();
-    public static void configure() {
-        try (Scanner scanner = new Scanner(Paths.get("config.txt"))) {
-            //save config to a hashmap, ignoring lines starting with //
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.startsWith("//") || line.isEmpty()) continue;
-                //throw error if a line is entered incorrectly
-                try  {
-                    String[] splitLine = line.split(" = ");
-                    configs.put(splitLine[0], splitLine[1]);
-                } catch (Exception e) {
-                    Main.frame.throwError("error reading line \"" + line + "\" of config", true);
-                }
-            }
-        //throw error if config.txt is not found
+    public void configure() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            Config readConfig = mapper.readValue(new File("config.json5"), Config.class);
+            this.setValues(readConfig);
+        } catch (JsonParseException e) {
+            Main.frame.throwError("config.json5 does not conform to json standard formatting", true);
+        } catch (JsonMappingException e) {
+            Main.frame.throwError("error mapping json values of config", true);
+        } catch (FileNotFoundException e) {
+            Main.frame.throwError("config.json5 not found in target directory", true);
         } catch (IOException e) {
-            Main.frame.throwError("could not find config.txt in the target directory", true);
+            Main.frame.throwError("an IOException has occurred", true);
         }
         //set all the values to public variables
-        setValues();
         Main.frame.logInit("successfully read configuration file", false);
     }
 
-    public static void setValues() {
+    public void setValues(Config readConfig) {
         try {
-            token = configs.get("token");
+            this.extraLogging = readConfig.extraLogging;
         } catch (Exception e) {
-            Main.frame.throwError("error reading line \"token\" of config", true);
+            Main.frame.throwError("field \"extraLogging\" of config is missing or invalid", false);
         }
         try {
-            prefix = configs.get("prefix") + (configs.get("spaceAfterPrefix").equals("true")? " " : "");
+            this.token = readConfig.token;
         } catch (Exception e) {
-            Main.frame.throwError("error reading line \"prefix\" or \"spaceAfterPrefix\" of config", true);
+            Main.frame.throwError("field \"token\" of config is missing or invalid", false);
         }
         try {
-            logCommands = configs.get("logCommands").equals("true");
+            this.logCommands = readConfig.logCommands;
         } catch (Exception e) {
-            Main.frame.throwError("error reading line \"logCommands\" of config", true);
+            Main.frame.throwError("field \"logCommands\" of config is missing or invalid", false);
         }
         try {
-            extraLogging = configs.get("extraLogging").equals("true");
+            this.prefix = readConfig.prefix;
         } catch (Exception e) {
-            Main.frame.throwError("error reading line \"extraLogging\" of config", true);
+            Main.frame.throwError("field \"prefix\" of config is missing or invalid", false);
         }
+        try {
+            this.spaceAfterPrefix = readConfig.spaceAfterPrefix;
+        } catch (Exception e) {
+            Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid", false);
+        }
+        this.formattedPrefix = this.prefix + (this.spaceAfterPrefix? " " : "");
     }
 }

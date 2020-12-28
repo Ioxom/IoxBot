@@ -1,7 +1,6 @@
 package ca.ioxom.ioxbot.commands;
 
 import ca.ioxom.ioxbot.frame.Main;
-import ca.ioxom.ioxbot.other.Config;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -23,7 +22,7 @@ public class CommandMethods {
             message.delete().queue();
             event.getChannel().sendMessage("bad").queue();
             Main.frame.logCommand(author, "very bad", true);
-        } else if (message.getContentRaw().equals(Config.prefix + "shut up alex")) {
+        } else if (message.getContentRaw().equals(Main.config.formattedPrefix + "shut up alex")) {
             event.getChannel().sendMessage(messages[Main.random.nextInt(messages.length)]).queue();
             Main.frame.logCommand(author, "shut up alex", true);
         } else if (message.getContentRaw().equals("bo bo bo") && author.getId().equals("730866562189230110")) {
