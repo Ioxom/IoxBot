@@ -1,7 +1,18 @@
 {
-  "extraLogging": true,
+  //the token for your bot
   "token": "your_token_here",
+  //more detailed logging about startup
+  //on: logs things like successfully adding window icon
+  //off: only logs the most important events
+  "extraLogging": true,
+  //log which commands are used by who
+  //on: [cmd]yes#8000 checked ping
+  //off:
   "logCommands": true,
+  //commands start with this in order to work
   "prefix": "-i",
+  //add a space after the prefix
+  //on: -i ping
+  //off: -iping
   "spaceAfterPrefix": true
 }

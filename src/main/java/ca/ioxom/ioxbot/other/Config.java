@@ -2,6 +2,7 @@ package ca.ioxom.ioxbot.other;
 
 import ca.ioxom.ioxbot.frame.Main;
 import com.fasterxml.jackson.core.JsonParseException;
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,6 +23,7 @@ public class Config {
     public static final HashMap<String, String> configs = new HashMap<>();
     public void configure() {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(ALLOW_COMMENTS);
         try {
             Config readConfig = mapper.readValue(new File("config.json5"), Config.class);
             this.setValues(readConfig);
