@@ -1,6 +1,6 @@
 package ca.ioxom.ioxbot.frame;
 
-import ca.ioxom.ioxbot.other.Config;
+import ca.ioxom.ioxbot.other.ConfigObject;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,33 +17,33 @@ public class ReloadConfig implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Config readConfig = mapper.readValue(new File("config.json5"), Config.class);
+            ConfigObject readConfigObject = mapper.readValue(new File("config.json5"), ConfigObject.class);
             try {
-                Main.config.extraLogging = readConfig.extraLogging;
+                Main.config.extraLogging = readConfigObject.extraLogging;
             } catch (Exception e) {
                 Main.frame.throwError("field \"extraLogging\" of config is missing or invalid; not reloading config", false);
                 return;
             }
             try {
-                Main.config.token = readConfig.token;
+                Main.config.token = readConfigObject.token;
             } catch (Exception e) {
                 Main.frame.throwError("field \"token\" of config is missing or invalid; not reloading config", false);
                 return;
             }
             try {
-                Main.config.logCommands = readConfig.logCommands;
+                Main.config.logCommands = readConfigObject.logCommands;
             } catch (Exception e) {
                 Main.frame.throwError("field \"logCommands\" of config is missing or invalid; not reloading config", false);
                 return;
             }
             try {
-                Main.config.prefix = readConfig.prefix;
+                Main.config.prefix = readConfigObject.prefix;
             } catch (Exception e) {
                 Main.frame.throwError("field \"prefix\" of config is missing or invalid; not reloading config", false);
                 return;
             }
             try {
-                Main.config.spaceAfterPrefix = readConfig.spaceAfterPrefix;
+                Main.config.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
             } catch (Exception e) {
                 Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid; not reloading config", false);
                 return;

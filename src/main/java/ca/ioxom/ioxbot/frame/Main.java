@@ -1,7 +1,7 @@
 package ca.ioxom.ioxbot.frame;
 
 import ca.ioxom.ioxbot.commands.MainListener;
-import ca.ioxom.ioxbot.other.Config;
+import ca.ioxom.ioxbot.other.ConfigObject;
 import ca.ioxom.ioxbot.other.StatusSetter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -10,7 +10,7 @@ import javax.security.auth.login.LoginException;
 import java.security.SecureRandom;
 
 public class Main {
-    public static Config config = new Config();
+    public static ConfigObject config = new ConfigObject();
     public static final SecureRandom random = new SecureRandom();
     public static final String VERSION = "0.2.0";
     public static IoxbotFrame frame;

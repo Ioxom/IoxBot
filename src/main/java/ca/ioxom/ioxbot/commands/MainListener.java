@@ -1,7 +1,6 @@
 package ca.ioxom.ioxbot.commands;
 
 import ca.ioxom.ioxbot.frame.Main;
-import ca.ioxom.ioxbot.other.Config;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.User;

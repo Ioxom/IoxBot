@@ -9,24 +9,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Scanner;
 
-public class Config {
+public class ConfigObject {
     public boolean extraLogging;
     public String token;
     public boolean logCommands;
     public String prefix;
     public String formattedPrefix;
     public boolean spaceAfterPrefix;
-    public static final HashMap<String, String> configs = new HashMap<>();
     public void configure() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(ALLOW_COMMENTS);
         try {
-            Config readConfig = mapper.readValue(new File("config.json5"), Config.class);
-            this.setValues(readConfig);
+            ConfigObject readConfigObject = mapper.readValue(new File("config.json5"), ConfigObject.class);
+            this.setValues(readConfigObject);
         } catch (JsonParseException e) {
             Main.frame.throwError("config.json5 does not conform to json standard formatting", true);
         } catch (JsonMappingException e) {
@@ -40,29 +36,29 @@ public class Config {
         Main.frame.logInit("successfully read configuration file", false);
     }
 
-    public void setValues(Config readConfig) {
+    public void setValues(ConfigObject readConfigObject) {
         try {
-            this.extraLogging = readConfig.extraLogging;
+            this.extraLogging = readConfigObject.extraLogging;
         } catch (Exception e) {
             Main.frame.throwError("field \"extraLogging\" of config is missing or invalid", false);
         }
         try {
-            this.token = readConfig.token;
+            this.token = readConfigObject.token;
         } catch (Exception e) {
             Main.frame.throwError("field \"token\" of config is missing or invalid", false);
         }
         try {
-            this.logCommands = readConfig.logCommands;
+            this.logCommands = readConfigObject.logCommands;
         } catch (Exception e) {
             Main.frame.throwError("field \"logCommands\" of config is missing or invalid", false);
         }
         try {
-            this.prefix = readConfig.prefix;
+            this.prefix = readConfigObject.prefix;
         } catch (Exception e) {
             Main.frame.throwError("field \"prefix\" of config is missing or invalid", false);
         }
         try {
-            this.spaceAfterPrefix = readConfig.spaceAfterPrefix;
+            this.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
         } catch (Exception e) {
             Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid", false);
         }
