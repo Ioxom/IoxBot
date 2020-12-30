@@ -18,8 +18,8 @@ public class MainListener extends ListenerAdapter {
         if (event.getMessage().getContentRaw().startsWith(Main.config.formattedPrefix)) {
             User author = event.getAuthor();
             MessageChannel channel = event.getChannel();
-            String messageContent = event.getMessage().getContentRaw().split(Main.config.formattedPrefix, 2)[1].toLowerCase().strip();
-            switch (messageContent.split(" ")[0]) {
+            String[] messageContent = event.getMessage().getContentRaw().split(Main.config.formattedPrefix, 2)[1].toLowerCase().strip().split(" ");
+            switch (messageContent[0]) {
                 case "ping":
                     //code copied from the JDA discord, don't credit me for this
                     long time = System.currentTimeMillis();
@@ -37,6 +37,8 @@ public class MainListener extends ListenerAdapter {
                                     "\nsyntax: `" + Main.config.formattedPrefix + "coinflip`", false)
                             .addField("belt", "sometimes you just need to give someone the belt" +
                                     "\nsyntax: `" + Main.config.formattedPrefix + "belt <@user>`", false)
+                            .addField("github", "gives a github link to the specified repository" +
+                                    "\nsyntax: `" + Main.config.formattedPrefix + "gh <user> <repository name>`", false)
                             .setFooter("also includes lots of diverse functions to bully alex with!");
                     channel.sendMessage(helpEmbed.build()).queue();
                     Main.frame.logCommand(author, "help", true);
@@ -67,6 +69,11 @@ public class MainListener extends ListenerAdapter {
                         channel.sendMessage(beltEmbed.build()).queue();
                         Main.frame.logCommand(author, "gave someone the belt", false);
                     }
+                    break;
+                case "gh":
+                case "github":
+                    channel.sendMessage("https://github.com/" + messageContent[1] + "/" + messageContent[2]).queue();
+                    Main.frame.logCommand(author, "linked to github", false);
                     break;
             }
         //yum
