@@ -7,11 +7,11 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
 import javax.security.auth.login.LoginException;
-import java.security.SecureRandom;
+import java.util.Random;
 
 public class Main {
     public static ConfigObject config = new ConfigObject();
-    public static final SecureRandom random = new SecureRandom();
+    public static final Random random = new Random();
     public static final String VERSION = "0.2.0";
     public static IoxbotFrame frame;
     public static void main(String[] args) {
@@ -30,12 +30,11 @@ public class Main {
         }
         //add event listeners
         if (api != null) {
-            api.addEventListener(new MainListener());
-            api.addEventListener(new StatusSetter());
+            api.addEventListener(new MainListener(), new StatusSetter());
             if (!config.extraLogging) {
-                frame.logInit("initialized jda; ioxbot is ready to go", false);
+                frame.logInit("initialized jda; ioxbot is ready to go");
             } else {
-                frame.logInit("added event listeners; ioxbot is ready to go", false);
+                frame.logInit("added event listeners; ioxbot is ready to go");
             }
         }
     }

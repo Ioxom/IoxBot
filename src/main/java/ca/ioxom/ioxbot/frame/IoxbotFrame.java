@@ -27,9 +27,9 @@ public class IoxbotFrame {
         try {
             Image image = ImageIO.read(new URL("https://user-images.githubusercontent.com/66223394/102388605-9ce81880-3f97-11eb-85d4-d4841103d47b.png"));
             this.frame.setIconImage(image);
-            this.logInit("added icon to frame", false);
+            this.logInit("added icon to frame");
         } catch (IOException e) {
-            this.throwError("could not find icon, defaulting to java icon", false);
+            this.throwError("could not find icon, defaulting to java icon");
         }
         //configure the console, adding a scroll bar and setting the colour
         this.console.setBackground(Color.GRAY);
@@ -42,7 +42,7 @@ public class IoxbotFrame {
         this.panel.setPreferredSize(new Dimension(550, 375));
         this.panel.add(pane);
         this.frame.setContentPane(this.panel);
-        this.logInit("added console to frame", false);
+        this.logInit("added console to frame");
         //add a button for reloading the config
         JButton reloadConfig = new JButton();
         //get the icon
@@ -59,7 +59,7 @@ public class IoxbotFrame {
         //open the frame
         this.frame.setSize(new Dimension(600, 275));
         this.frame.setVisible(true);
-        this.logInit("finished initializing frame", false);
+        this.logInit("finished initializing frame");
     }
 
     //methods for logging
@@ -67,6 +67,10 @@ public class IoxbotFrame {
         if (!extra || Main.config.extraLogging) {
             this.console.append("\n[init] " + message);
         }
+    }
+
+    public void logInit(String message) {
+        this.console.append("\n[init] " + message);
     }
 
     public void logMain(String message) {
@@ -87,5 +91,9 @@ public class IoxbotFrame {
                 this.console.append("\n" + e.toString());
             }
         }
+    }
+
+    public void throwError(String error) {
+        this.console.append("\n[err] " + error);
     }
 }

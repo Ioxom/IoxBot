@@ -33,34 +33,34 @@ public class ConfigObject {
             Main.frame.throwError("an IOException has occurred", true);
         }
         //set all the values to public variables
-        Main.frame.logInit("successfully read configuration file", false);
+        Main.frame.logInit("successfully read configuration file");
     }
 
     public void setValues(ConfigObject readConfigObject) {
         try {
             this.extraLogging = readConfigObject.extraLogging;
         } catch (Exception e) {
-            Main.frame.throwError("field \"extraLogging\" of config is missing or invalid", false);
+            Main.frame.throwError("field \"extraLogging\" of config is missing or invalid");
         }
         try {
             this.token = readConfigObject.token;
         } catch (Exception e) {
-            Main.frame.throwError("field \"token\" of config is missing or invalid", false);
+            Main.frame.throwError("field \"token\" of config is missing or invalid");
         }
         try {
             this.logCommands = readConfigObject.logCommands;
         } catch (Exception e) {
-            Main.frame.throwError("field \"logCommands\" of config is missing or invalid", false);
+            Main.frame.throwError("field \"logCommands\" of config is missing or invalid");
         }
         try {
             this.prefix = readConfigObject.prefix;
         } catch (Exception e) {
-            Main.frame.throwError("field \"prefix\" of config is missing or invalid", false);
+            Main.frame.throwError("field \"prefix\" of config is missing or invalid");
         }
         try {
             this.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
         } catch (Exception e) {
-            Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid", false);
+            Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid");
         }
         this.formattedPrefix = this.prefix + (this.spaceAfterPrefix? " " : "");
     }
