@@ -7,12 +7,18 @@
   "extraLogging": true,
   //log which commands are used by who
   //on: [cmd]yes#8000 checked ping
-  //off:
+  //off: [not logged]
   "logCommands": true,
   //commands start with this in order to work
   "prefix": "-i",
   //add a space after the prefix
-  //on: -i ping
-  //off: -iping
-  "spaceAfterPrefix": true
+  //on: [prefix] ping
+  //off: [prefix]ping
+  "spaceAfterPrefix": true,
+  //users who are banned from youtube
+  "youtubeBlacklist": [
+    "382659726778957858",
+    "692512270353170468",
+    "730866562189230110"
+  ]
 }

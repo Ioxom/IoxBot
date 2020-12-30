@@ -17,6 +17,7 @@ public class ConfigObject {
     public String prefix;
     public String formattedPrefix;
     public boolean spaceAfterPrefix;
+    public String[] youtubeBlacklist;
     public void configure() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(ALLOW_COMMENTS);
@@ -61,6 +62,11 @@ public class ConfigObject {
             this.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
         } catch (Exception e) {
             Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid");
+        }
+        try {
+           this.youtubeBlacklist = readConfigObject.youtubeBlacklist;
+        } catch (Exception e) {
+            Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid");
         }
         this.formattedPrefix = this.prefix + (this.spaceAfterPrefix? " " : "");
     }

@@ -50,6 +50,11 @@ public class ReloadConfig implements ActionListener {
                 Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid; not reloading config");
                 return;
             }
+            try {
+                Main.config.youtubeBlacklist = readConfigObject.youtubeBlacklist;
+            } catch (Exception e) {
+                Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid");
+            }
             Main.config.formattedPrefix = Main.config.prefix + (Main.config.spaceAfterPrefix? " " : "");
         } catch (JsonParseException e) {
             Main.frame.throwError("config.json5 does not conform to json standard formatting; not reloading config");

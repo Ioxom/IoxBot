@@ -15,14 +15,20 @@ public class CommandMethods {
             "shut up already alex"
     };
     public static void bullyAlex(MessageReceivedEvent event) {
+        //delete youtube
         Message message = event.getMessage();
         User author = event.getAuthor();
-        if ((author.getId().equals("382659726778957858") || author.getId().equals("730866562189230110")) && (message.getContentRaw().contains("https://www.youtu")
-                || message.getContentRaw().contains("www.youtube"))) {
-            message.delete().queue();
-            event.getChannel().sendMessage("bad").queue();
-            Main.frame.logCommand(author, "very bad", true);
-        } else if (message.getContentRaw().equals(Main.config.formattedPrefix + "shut up alex")) {
+        if (message.getContentRaw().contains("https://www.youtu") || message.getContentRaw().contains("www.youtube.com")) {
+            for (String id : Main.config.youtubeBlacklist) {
+                if (id.equals(author.getId())) {
+                    message.delete().queue();
+                    event.getChannel().sendMessage("bad").queue();
+                    Main.frame.logCommand(author, "very bad", true);
+                }
+            }
+        }
+
+        if (message.getContentRaw().equals(Main.config.formattedPrefix + "shut up alex")) {
             event.getChannel().sendMessage(messages[Main.random.nextInt(messages.length)]).queue();
             Main.frame.logCommand(author, "shut up alex", true);
         } else if (message.getContentRaw().equals("bo bo bo") && author.getId().equals("730866562189230110")) {
