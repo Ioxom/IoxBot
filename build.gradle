@@ -7,7 +7,7 @@ plugins {
 mainClassName = 'ca.ioxom.ioxbot.frame.Main'
 group 'ca.ioxom'
 version '0.2.0'
-def jdaVersion = '4.2.0_224'
+def jdaVersion = '4.2.0_225'
 
 repositories {
     jcenter()
