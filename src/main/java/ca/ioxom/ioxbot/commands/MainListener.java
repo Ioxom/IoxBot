@@ -39,7 +39,7 @@ public class MainListener extends ListenerAdapter {
                                     "\nsyntax: `" + Main.config.formattedPrefix + "belt <@user>`", false)
                             .addField("github", "gives a github link to the specified repository" +
                                     "\nsyntax: `" + Main.config.formattedPrefix + "gh <user> <repository name>`", false)
-                            .setFooter("also includes lots of diverse functions to bully alex with!");
+                            .setFooter("ioxbot, powered by ioxcorp™ technology");
                     channel.sendMessage(helpEmbed.build()).queue();
                     Main.frame.logCommand(author, "help", true);
                     break;
@@ -50,7 +50,7 @@ public class MainListener extends ListenerAdapter {
                             .setAuthor("ioxbot")
                             .setColor(new Color(0x00FF00))
                             .setTitle("You flipped a coin!")
-                            .setThumbnail(tails? "https://user-images.githubusercontent.com/66223394/102388590-978ace00-3f97-11eb-8b79-74c8b123f264.jpg" : "https://user-images.githubusercontent.com/66223394/102388542-8a6ddf00-3f97-11eb-9f15-60d852a2bc2b.jpg")
+                            .setThumbnail(tails? "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_tails.jpg" : "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_heads.jpg")
                             .setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
                     channel.sendMessage(coinflipEmbed.build()).queue();
                     Main.frame.logCommand(author, "flipped a coin", false);
@@ -64,7 +64,7 @@ public class MainListener extends ListenerAdapter {
                         EmbedBuilder beltEmbed = new EmbedBuilder()
                                 .setAuthor("ioxbot")
                                 .setColor(new Color(0x00FF00))
-                                .setImage("https://cdn.discordapp.com/attachments/618926084750180363/791440175276228628/IMG_20200807_131425973.jpg")
+                                .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/ioxbot_profile_photo.png")
                                 .setDescription(belter + " gives the belt to " + belted);
                         channel.sendMessage(beltEmbed.build()).queue();
                         Main.frame.logCommand(author, "gave someone the belt", false);
