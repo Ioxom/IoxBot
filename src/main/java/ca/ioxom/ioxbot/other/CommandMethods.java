@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class CommandMethods {
-    protected static final String[] messages = {
+    private static final String[] messages = {
             "shut up alex",
             "shut up and go find the lambo chevy with jams",
             "shut up alex you sodden tic tac",
