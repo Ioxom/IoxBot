@@ -8,8 +8,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.Color;
-
 public class MainListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
@@ -30,7 +28,7 @@ public class MainListener extends ListenerAdapter {
                 case "help":
                     EmbedBuilder helpEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
-                            .setColor(new Color(0x00FF00))
+                            .setColor(Main.config.embedColour)
                             .addField("ping", "checks the current ping in ms of ioxbot" +
                                     "\nsyntax: `" + Main.config.formattedPrefix + "ping`", false)
                             .addField("coinflip", "flips a coin" +
@@ -48,7 +46,7 @@ public class MainListener extends ListenerAdapter {
                     boolean tails = Main.random.nextBoolean();
                     EmbedBuilder coinflipEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
-                            .setColor(new Color(0x00FF00))
+                            .setColor(Main.config.embedColour)
                             .setTitle("You flipped a coin!")
                             .setThumbnail(tails? "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_tails.jpg" : "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_heads.jpg")
                             .setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
@@ -63,7 +61,7 @@ public class MainListener extends ListenerAdapter {
                     } else {
                         EmbedBuilder beltEmbed = new EmbedBuilder()
                                 .setAuthor("ioxbot")
-                                .setColor(new Color(0x00FF00))
+                                .setColor(Main.config.embedColour)
                                 .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/ioxbot_profile_photo.png")
                                 .setDescription(belter + " gives the belt to " + belted);
                         channel.sendMessage(beltEmbed.build()).queue();
@@ -72,8 +70,12 @@ public class MainListener extends ListenerAdapter {
                     break;
                 case "gh":
                 case "github":
-                    channel.sendMessage("https://github.com/" + messageContent[1] + "/" + messageContent[2]).queue();
-                    Main.frame.logCommand(author, "linked to github", false);
+                    try {
+                        channel.sendMessage("https://github.com/" + messageContent[1] + "/" + messageContent[2]).queue();
+                        Main.frame.logCommand(author, "linked to github", false);
+                    } catch (Exception e) {
+                        channel.sendMessage("incorrect usage of command!\nsyntax: `" + Main.config.formattedPrefix + "gh <user> <repository>`").queue();
+                    }
                     break;
             }
         //yum

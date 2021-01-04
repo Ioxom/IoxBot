@@ -6,6 +6,7 @@ import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,6 +19,8 @@ public class ConfigObject {
     public String formattedPrefix;
     public boolean spaceAfterPrefix;
     public String[] youtubeBlacklist;
+    public String embedColourString;
+    public Color embedColour;
     public void configure() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(ALLOW_COMMENTS);
@@ -69,5 +72,11 @@ public class ConfigObject {
             Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid");
         }
         this.formattedPrefix = this.prefix + (this.spaceAfterPrefix? " " : "");
+        try {
+            this.embedColourString = readConfigObject.embedColourString;
+            this.embedColour = new Color(Integer.parseUnsignedInt(this.embedColourString, 16));
+        } catch (Exception e) {
+            Main.frame.throwError("field \"embedColour\" of config is missing or invalid");
+        }
     }
 }

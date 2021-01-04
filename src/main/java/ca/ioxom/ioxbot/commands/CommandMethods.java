@@ -37,7 +37,7 @@ public class CommandMethods {
     }
 
     public static void yum(MessageReceivedEvent event) {
-        if (event.getAuthor().getId().equals("675553099490000926") && Main.random.nextInt(100) == 50) {
+        if (event.getAuthor().getId().equals("675553099490000926") && Main.random.nextInt(200) == 50) {
             event.getChannel().sendMessage("yum").queue();
             Main.frame.logCommand(event.getAuthor(), "yum", true);
         }

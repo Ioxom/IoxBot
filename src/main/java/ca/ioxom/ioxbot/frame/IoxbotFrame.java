@@ -3,8 +3,16 @@ package ca.ioxom.ioxbot.frame;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 
@@ -32,14 +40,15 @@ public class IoxbotFrame {
             this.throwError("could not find icon, defaulting to java icon");
         }
         //configure the console, adding a scroll bar and setting the colour
+        final Dimension consoleSize = new Dimension(500, 375);
         this.console.setBackground(Color.GRAY);
-        this.console.setSize(new Dimension(550, 375));
+        this.console.setSize(consoleSize);
         this.console.setEditable(false);
         //create a pane to allow the console to have scrolling
         JScrollPane pane = new JScrollPane(this.console);
-        pane.setPreferredSize(new Dimension(550, 375));
+        pane.setPreferredSize(consoleSize);
         //configure the main background panel
-        this.panel.setPreferredSize(new Dimension(550, 375));
+        this.panel.setPreferredSize(consoleSize);
         this.panel.add(pane);
         this.frame.setContentPane(this.panel);
         this.logInit("added console to frame");

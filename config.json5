@@ -15,6 +15,7 @@
   //on: [prefix] ping
   //off: [prefix]ping
   "spaceAfterPrefix": true,
+  "embedColourString": "00FF00",
   //users who are banned from youtube
   "youtubeBlacklist": [
     "382659726778957858",

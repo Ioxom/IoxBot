@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -54,6 +55,12 @@ public class ReloadConfig implements ActionListener {
                 Main.config.youtubeBlacklist = readConfigObject.youtubeBlacklist;
             } catch (Exception e) {
                 Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid");
+            }
+            try {
+                Main.config.embedColourString = readConfigObject.embedColourString;
+                Main.config.embedColour = new Color(Integer.parseUnsignedInt(Main.config.embedColourString, 16));
+            } catch (Exception e) {
+                Main.frame.throwError("field \"embedColour\" of config is missing or invalid");
             }
             Main.config.formattedPrefix = Main.config.prefix + (Main.config.spaceAfterPrefix? " " : "");
         } catch (JsonParseException e) {
