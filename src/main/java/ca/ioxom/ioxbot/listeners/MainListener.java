@@ -9,7 +9,14 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.Color;
+
 public class MainListener extends ListenerAdapter {
+
+    public Color getRandomColour() {
+        return new Color(Integer.parseUnsignedInt(new Object().toString().split("Object@")[1], 16));
+    }
+
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         CommandMethods.bullyAlex(event);
@@ -29,7 +36,7 @@ public class MainListener extends ListenerAdapter {
             case "help":
                 EmbedBuilder helpEmbed = new EmbedBuilder()
                         .setAuthor("ioxbot")
-                        .setColor(Main.config.embedColour)
+                        .setColor(getRandomColour())
                         .addField("ping", "checks the current ping in ms of ioxbot" +
                                 "\nsyntax: `" + Main.config.formattedPrefix + "ping`", false)
                         .addField("coinflip", "flips a coin" +
