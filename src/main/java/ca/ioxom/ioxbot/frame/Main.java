@@ -1,7 +1,7 @@
 package ca.ioxom.ioxbot.frame;
 
 import ca.ioxom.ioxbot.commands.MainListener;
-import ca.ioxom.ioxbot.other.ConfigObject;
+import ca.ioxom.ioxbot.config.ConfigObject;
 import ca.ioxom.ioxbot.other.StatusSetter;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;

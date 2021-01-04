@@ -1,4 +1,6 @@
-package ca.ioxom.ioxbot.frame;
+package ca.ioxom.ioxbot.config;
+
+import ca.ioxom.ioxbot.frame.Main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

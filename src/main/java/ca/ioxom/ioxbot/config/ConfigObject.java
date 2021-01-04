@@ -1,4 +1,4 @@
-package ca.ioxom.ioxbot.other;
+package ca.ioxom.ioxbot.config;
 
 import ca.ioxom.ioxbot.frame.Main;
 import com.fasterxml.jackson.core.JsonParseException;

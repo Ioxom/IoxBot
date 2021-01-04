@@ -1,5 +1,6 @@
 package ca.ioxom.ioxbot.frame;
 
+import ca.ioxom.ioxbot.config.ReloadConfig;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
