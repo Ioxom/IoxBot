@@ -1,13 +1,15 @@
 package ca.ioxom.ioxbot.config;
 
-import blue.endless.jankson.Jankson;
-import blue.endless.jankson.impl.SyntaxError;
 import ca.ioxom.ioxbot.frame.Main;
+import com.fasterxml.jackson.core.JsonParseException;
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.awt.Color;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class ConfigObject {
     private boolean isFirstRun;
@@ -18,15 +20,29 @@ public class ConfigObject {
     public String formattedPrefix;
     public boolean spaceAfterPrefix;
     public String[] youtubeBlacklist;
-    public ConfigObject() {
-        this.isFirstRun = true;
-    }
-
+    public String embedColourString;
+    public Color embedColour;
     public void configure() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(ALLOW_COMMENTS);
         boolean successfullySetValues = false;
         try {
-            ConfigObject readConfigObject = Jankson.builder().build().fromJson(Files.readString(Paths.get("config.json5")), ConfigObject.class);
+            ConfigObject readConfigObject = mapper.readValue(new File("config.json5"), ConfigObject.class);
             successfullySetValues = this.setValues(readConfigObject);
+        } catch (JsonParseException e) {
+            if (this.isFirstRun) {
+                Main.frame.throwError("config.json5 does not conform to json standard formatting", true);
+            } else {
+                Main.frame.throwError("config.json5 does not conform to json standard formatting; not reloading config");
+                return;
+            }
+        } catch (JsonMappingException e) {
+            if (this.isFirstRun) {
+                Main.frame.throwError("error mapping json values of config", true);
+            } else {
+                Main.frame.throwError("error mapping json values of config; not reloading config");
+                return;
+            }
         } catch (FileNotFoundException e) {
             if (this.isFirstRun) {
                 Main.frame.throwError("config.json5 not found in target directory", true);
@@ -40,12 +56,6 @@ public class ConfigObject {
             } else {
                 Main.frame.throwError("an IOException has occurred; not reloading config");
                 return;
-            }
-        } catch (SyntaxError e) {
-            if (this.isFirstRun) {
-                Main.frame.throwError("json syntax error in config.json5: " + e.getLineMessage(), true);
-            } else {
-                Main.frame.throwError("json syntax error in config.json5: " + e.getLineMessage() + ";not reloading config");
             }
         }
         if (!successfullySetValues) {
@@ -118,6 +128,17 @@ public class ConfigObject {
                 Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid", true);
             } else {
                 Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid; not reloading config");
+                return false;
+            }
+        }
+        try {
+            this.embedColourString = readConfigObject.embedColourString;
+            this.embedColour = new Color(Integer.parseUnsignedInt(this.embedColourString, 16));
+        } catch (Exception e) {
+            if (this.isFirstRun) {
+                Main.frame.throwError("field \"embedColourString\" of config is missing or invalid", true);
+            } else {
+                Main.frame.throwError("field \"embedColourString\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
