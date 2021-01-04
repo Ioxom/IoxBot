@@ -14,6 +14,7 @@ public class CommandMethods {
             "shut",
             "shut up already alex"
     };
+
     public static void bullyAlex(MessageReceivedEvent event) {
         //delete youtube
         Message message = event.getMessage();
@@ -33,13 +34,6 @@ public class CommandMethods {
             Main.frame.logCommand(author, "shut up alex", true);
         } else if (message.getContentRaw().equals("bo bo bo") && author.getId().equals("730866562189230110")) {
             message.delete().queue();
-        }
-    }
-
-    public static void yum(MessageReceivedEvent event) {
-        if (event.getAuthor().getId().equals("675553099490000926") && Main.random.nextInt(200) == 50) {
-            event.getChannel().sendMessage("yum").queue();
-            Main.frame.logCommand(event.getAuthor(), "yum", true);
         }
     }
 }
