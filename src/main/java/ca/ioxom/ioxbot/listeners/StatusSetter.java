@@ -1,4 +1,4 @@
-package ca.ioxom.ioxbot.other;
+package ca.ioxom.ioxbot.listeners;
 
 import ca.ioxom.ioxbot.frame.Main;
 import net.dv8tion.jda.api.entities.Activity;

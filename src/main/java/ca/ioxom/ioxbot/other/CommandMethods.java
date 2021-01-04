@@ -1,4 +1,4 @@
-package ca.ioxom.ioxbot.commands;
+package ca.ioxom.ioxbot.other;
 
 import ca.ioxom.ioxbot.frame.Main;
 import net.dv8tion.jda.api.entities.Message;
