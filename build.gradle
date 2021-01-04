@@ -8,6 +8,7 @@ mainClassName = 'ca.ioxom.ioxbot.frame.Main'
 group 'ca.ioxom'
 version '0.2.0'
 def jdaVersion = '4.2.0_225'
+def janksonVersion = '1.1.0'
 
 repositories {
     jcenter()
@@ -16,7 +17,7 @@ repositories {
 
 dependencies {
     compile "net.dv8tion:JDA:$jdaVersion"
-    compile "blue.endless:jankson:1.1.0"
+    compile "blue.endless:jankson:$janksonVersion"
 }
 
 compileJava.options.encoding = 'UTF-8'
