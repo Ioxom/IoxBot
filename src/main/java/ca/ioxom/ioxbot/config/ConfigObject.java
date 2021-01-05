@@ -22,6 +22,10 @@ public class ConfigObject {
     public String[] youtubeBlacklist;
     public String embedColourString;
     public Color embedColour;
+    public ConfigObject() {
+        this.isFirstRun = true;
+    }
+
     public void configure() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(ALLOW_COMMENTS);
@@ -58,15 +62,12 @@ public class ConfigObject {
                 return;
             }
         }
-        if (!successfullySetValues) {
-            this.isFirstRun = false;
-            return;
-        }
+        if (!successfullySetValues) return;
         Main.frame.logInit(this.isFirstRun? "successfully read configuration file" : "successfully reread configuration file");
         if (this.isFirstRun) this.isFirstRun = false;
     }
 
-    public boolean setValues(ConfigObject readConfigObject) {
+    private boolean setValues(ConfigObject readConfigObject) {
         try {
             this.extraLogging = readConfigObject.extraLogging;
         } catch (Exception e) {

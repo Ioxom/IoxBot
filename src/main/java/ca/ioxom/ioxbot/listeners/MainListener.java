@@ -79,7 +79,9 @@ public class MainListener extends ListenerAdapter {
             case "gh":
             case "github":
                 try {
-                    channel.sendMessage("https://github.com/" + messageContent[1] + "/" + messageContent[2]).queue();
+                    channel.sendMessage("https://github.com/" + messageContent[1] + "/" + messageContent[2]).queue(message -> {
+                        if (messageContent[3].equals("-noembed")) message.suppressEmbeds(true).queue();
+                    });
                     Main.frame.logCommand(author, "linked to github", false);
                 } catch (Exception e) {
                     channel.sendMessage("incorrect usage of command!\nsyntax: `" + Main.config.formattedPrefix + "gh <user> <repository>`").queue();
