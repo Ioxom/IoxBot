@@ -22,6 +22,7 @@ public class ConfigObject {
     public String[] youtubeBlacklist;
     public String embedColourString;
     public Color embedColour;
+    public boolean randomEmbedColour;
     public ConfigObject() {
         this.isFirstRun = true;
     }
@@ -140,6 +141,17 @@ public class ConfigObject {
                 Main.frame.throwError("field \"embedColourString\" of config is missing or invalid", true);
             } else {
                 Main.frame.throwError("field \"embedColourString\" of config is missing or invalid; not reloading config");
+                return false;
+            }
+        }
+
+        try {
+            this.randomEmbedColour = readConfigObject.randomEmbedColour;
+        } catch (Exception e) {
+            if (this.isFirstRun) {
+                Main.frame.throwError("field \"randomEmbedColour\" of config is missing or invalid", true);
+            } else {
+                Main.frame.throwError("field \"randomEmbedColour\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }

@@ -13,8 +13,12 @@ import java.awt.Color;
 
 public class MainListener extends ListenerAdapter {
 
-    public Color getRandomColour() {
-        return new Color(Integer.parseUnsignedInt(new Object().toString().split("Object@")[1], 16));
+    public Color getEmbedColour() {
+        if (Main.config.randomEmbedColour) {
+            return new Color(Integer.parseUnsignedInt(new Object().toString().split("Object@")[1], 16));
+        } else {
+            return Main.config.embedColour;
+        }
     }
 
     @Override
@@ -36,7 +40,7 @@ public class MainListener extends ListenerAdapter {
             case "help":
                 EmbedBuilder helpEmbed = new EmbedBuilder()
                         .setAuthor("ioxbot")
-                        .setColor(getRandomColour())
+                        .setColor(getEmbedColour())
                         .addField("ping", "checks the current ping in ms of ioxbot" +
                                 "\nsyntax: `" + Main.config.formattedPrefix + "ping`", false)
                         .addField("coinflip", "flips a coin" +
@@ -54,7 +58,7 @@ public class MainListener extends ListenerAdapter {
                 boolean tails = Main.random.nextBoolean();
                 EmbedBuilder coinflipEmbed = new EmbedBuilder()
                         .setAuthor("ioxbot")
-                        .setColor(Main.config.embedColour)
+                        .setColor(getEmbedColour())
                         .setTitle("You flipped a coin!")
                         .setThumbnail(tails? "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_tails.jpg" : "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_heads.jpg")
                         .setDescription(tails? "your coin landed on tails!" : "your coin landed on heads!");
@@ -69,7 +73,7 @@ public class MainListener extends ListenerAdapter {
                 } else {
                     EmbedBuilder beltEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
-                            .setColor(Main.config.embedColour)
+                            .setColor(getEmbedColour())
                             .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/ioxbot_profile_photo.png")
                             .setDescription(belter + " gives the belt to " + belted);
                     channel.sendMessage(beltEmbed.build()).queue();

@@ -15,6 +15,9 @@
   //on: [prefix] ping
   //off: [prefix]ping
   "spaceAfterPrefix": true,
+  //overrides embedColourString
+  //if on all embed colours are random, ignoring the set colour
+  "randomEmbedColour": true,
   "embedColourString": "00FF00",
   //users who are banned from youtube
   "youtubeBlacklist": [
