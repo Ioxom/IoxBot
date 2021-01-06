@@ -1,6 +1,6 @@
 package ca.ioxom.ioxbot.other;
 
-import ca.ioxom.ioxbot.frame.Main;
+import ca.ioxom.ioxbot.Main;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;

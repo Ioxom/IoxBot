@@ -1,5 +1,6 @@
-package ca.ioxom.ioxbot.frame;
+package ca.ioxom.ioxbot;
 
+import ca.ioxom.ioxbot.frame.IoxbotFrame;
 import ca.ioxom.ioxbot.listeners.MainListener;
 import ca.ioxom.ioxbot.config.ConfigObject;
 import ca.ioxom.ioxbot.listeners.StatusSetter;

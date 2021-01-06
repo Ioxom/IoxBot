@@ -1,6 +1,6 @@
 package ca.ioxom.ioxbot.config;
 
-import ca.ioxom.ioxbot.frame.Main;
+import ca.ioxom.ioxbot.Main;
 import com.fasterxml.jackson.core.JsonParseException;
 import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 import com.fasterxml.jackson.databind.JsonMappingException;
