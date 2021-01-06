@@ -20,11 +20,12 @@ public class CommandMethods {
         Message message = event.getMessage();
         User author = event.getAuthor();
         if (message.getContentRaw().contains("https://www.youtu") || message.getContentRaw().contains("www.youtube.com")) {
-            for (String id : Main.config.youtubeBlacklist) {
-                if (id.equals(author.getId())) {
+            for (long id : Main.config.youtubeBlacklist) {
+                if (id == author.getIdLong()) {
                     message.delete().queue();
                     event.getChannel().sendMessage("bad").queue();
                     Main.frame.logCommand(author, "very bad", true);
+                    return;
                 }
             }
         }

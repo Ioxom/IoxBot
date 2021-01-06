@@ -19,10 +19,11 @@ public class ConfigObject {
     public String prefix;
     public String formattedPrefix;
     public boolean spaceAfterPrefix;
-    public String[] youtubeBlacklist;
+    public long[] youtubeBlacklist;
     public String embedColourString;
     public Color embedColour;
     public boolean randomEmbedColour;
+    public long[] admins;
     public ConfigObject() {
         this.isFirstRun = true;
     }
@@ -152,6 +153,17 @@ public class ConfigObject {
                 Main.frame.throwError("field \"randomEmbedColour\" of config is missing or invalid", true);
             } else {
                 Main.frame.throwError("field \"randomEmbedColour\" of config is missing or invalid; not reloading config");
+                return false;
+            }
+        }
+
+        try {
+            this.admins = readConfigObject.admins;
+        } catch (Exception e) {
+            if (this.isFirstRun) {
+                Main.frame.throwError("field \"admins\" of config is missing or invalid", true);
+            } else {
+                Main.frame.throwError("field \"admins\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }

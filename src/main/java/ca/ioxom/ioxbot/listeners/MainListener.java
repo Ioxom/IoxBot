@@ -91,6 +91,20 @@ public class MainListener extends ListenerAdapter {
                     channel.sendMessage("incorrect usage of command!\nsyntax: `" + Main.config.formattedPrefix + "gh <user> <repository>`").queue();
                 }
                 break;
+            case "exit":
+                for (long id : Main.config.admins) {
+                    if (author.getIdLong() == id) {
+                        channel.sendMessage("ending ioxbot process").queue();
+                        Main.frame.logMain(author.getAsTag() + " killed process via command");
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            Main.frame.throwError("exception while attempting to pause execution");
+                        }
+                        System.exit(2);
+                    }
+                }
+                break;
         }
     }
 }
