@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
 mainClassName = 'ca.ioxom.ioxbot.Main'
@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
-    compile "net.dv8tion:JDA:$jdaVersion"
+    compile(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion)
+    compile("net.dv8tion:JDA:$jdaVersion")
 }
 
 compileJava.options.encoding = 'UTF-8'

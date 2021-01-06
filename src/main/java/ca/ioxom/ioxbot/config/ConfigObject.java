@@ -1,15 +1,16 @@
 package ca.ioxom.ioxbot.config;
 
-import ca.ioxom.ioxbot.Main;
 import com.fasterxml.jackson.core.JsonParseException;
-import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.awt.Color;
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import static ca.ioxom.ioxbot.Main.frame;
+import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 
 public class ConfigObject {
     private boolean isFirstRun;
@@ -37,35 +38,35 @@ public class ConfigObject {
             successfullySetValues = this.setValues(readConfigObject);
         } catch (JsonParseException e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("config.json5 does not conform to json standard formatting", true);
+                frame.throwError("config.json5 does not conform to json standard formatting", true);
             } else {
-                Main.frame.throwError("config.json5 does not conform to json standard formatting; not reloading config");
+                frame.throwError("config.json5 does not conform to json standard formatting; not reloading config");
                 return;
             }
         } catch (JsonMappingException e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("error mapping json values of config", true);
+                frame.throwError("error mapping json values of config", true);
             } else {
-                Main.frame.throwError("error mapping json values of config; not reloading config");
+                frame.throwError("error mapping json values of config; not reloading config");
                 return;
             }
         } catch (FileNotFoundException e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("config.json5 not found in target directory", true);
+                frame.throwError("config.json5 not found in target directory", true);
             } else {
-                Main.frame.throwError("config.json5 not found in target directory; not reloading config");
+                frame.throwError("config.json5 not found in target directory; not reloading config");
                 return;
             }
         } catch (IOException e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("an IOException has occurred", true);
+                frame.throwError("an IOException has occurred", true);
             } else {
-                Main.frame.throwError("an IOException has occurred; not reloading config");
+                frame.throwError("an IOException has occurred; not reloading config");
                 return;
             }
         }
         if (!successfullySetValues) return;
-        Main.frame.logInit(this.isFirstRun? "successfully read configuration file" : "successfully reread configuration file");
+        frame.logInit(this.isFirstRun? "successfully read configuration file" : "successfully reread configuration file");
         if (this.isFirstRun) this.isFirstRun = false;
     }
 
@@ -74,9 +75,9 @@ public class ConfigObject {
             this.extraLogging = readConfigObject.extraLogging;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"extraLogging\" of config is missing or invalid", true);
+                frame.throwError("field \"extraLogging\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"extraLogging\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"extraLogging\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -84,9 +85,9 @@ public class ConfigObject {
             this.token = readConfigObject.token;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"token\" of config is missing or invalid", true);
+                frame.throwError("field \"token\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"token\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"token\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -94,9 +95,9 @@ public class ConfigObject {
             this.logCommands = readConfigObject.logCommands;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"logCommands\" of config is missing or invalid", true);
+                frame.throwError("field \"logCommands\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"logCommands\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"logCommands\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -105,9 +106,9 @@ public class ConfigObject {
             this.prefix = readConfigObject.prefix;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"prefix\" of config is missing or invalid", true);
+                frame.throwError("field \"prefix\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"prefix\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"prefix\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -115,9 +116,9 @@ public class ConfigObject {
             this.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid", true);
+                frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -128,9 +129,9 @@ public class ConfigObject {
            this.youtubeBlacklist = readConfigObject.youtubeBlacklist;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid", true);
+                frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"youtubeBlacklist\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -139,9 +140,9 @@ public class ConfigObject {
             this.embedColour = new Color(Integer.parseUnsignedInt(this.embedColourString, 16));
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"embedColourString\" of config is missing or invalid", true);
+                frame.throwError("field \"embedColourString\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"embedColourString\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"embedColourString\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -150,9 +151,9 @@ public class ConfigObject {
             this.randomEmbedColour = readConfigObject.randomEmbedColour;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"randomEmbedColour\" of config is missing or invalid", true);
+                frame.throwError("field \"randomEmbedColour\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"randomEmbedColour\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"randomEmbedColour\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -161,9 +162,9 @@ public class ConfigObject {
             this.admins = readConfigObject.admins;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                Main.frame.throwError("field \"admins\" of config is missing or invalid", true);
+                frame.throwError("field \"admins\" of config is missing or invalid", true);
             } else {
-                Main.frame.throwError("field \"admins\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"admins\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
