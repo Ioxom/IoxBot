@@ -74,7 +74,7 @@ public class MainListener extends ListenerAdapter {
                     EmbedBuilder beltEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
                             .setColor(getEmbedColour())
-                            .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/ioxbot_profile_photo.png")
+                            .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/belt.png")
                             .setDescription(belter + " gives the belt to " + belted);
                     channel.sendMessage(beltEmbed.build()).queue();
                     Main.frame.logCommand(author, "gave someone the belt", false);
