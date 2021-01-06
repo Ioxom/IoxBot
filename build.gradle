@@ -15,8 +15,8 @@ repositories {
 }
 
 dependencies {
-    compile(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion)
-    compile("net.dv8tion:JDA:$jdaVersion")
+    implementation(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion)
+    implementation("net.dv8tion:JDA:$jdaVersion")
 }
 
 compileJava.options.encoding = 'UTF-8'
