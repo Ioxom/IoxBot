@@ -3,11 +3,14 @@ package ca.ioxom.ioxbot.config;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.dv8tion.jda.api.entities.User;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static ca.ioxom.ioxbot.Main.frame;
 import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
@@ -20,11 +23,11 @@ public class ConfigObject {
     public String prefix;
     public String formattedPrefix;
     public boolean spaceAfterPrefix;
-    public long[] youtubeBlacklist;
+    public ArrayList<Long> youtubeBlacklist;
     public String embedColourString;
     public Color embedColour;
     public boolean randomEmbedColour;
-    public long[] admins;
+    public ArrayList<Long> admins;
     public ConfigObject() {
         this.isFirstRun = true;
     }
@@ -170,5 +173,46 @@ public class ConfigObject {
         }
 
         return true;
+    }
+
+    public void writeCurrentConfig() {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.writeValue(new File("config.json5"), this);
+            frame.logMain("wrote current configuration to config.json5");
+        } catch (IOException e) {
+            frame.throwError("failed to write to config");
+        }
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix.split(" ")[0];
+        this.spaceAfterPrefix = prefix.contains(" ");
+        this.formattedPrefix = prefix;
+    }
+
+    public void addAdmin(long id) {
+        this.admins.add(id);
+    }
+
+    public void removeAdmin(long id) {
+        this.admins.remove(id);
+    }
+
+    public void addToYoutubeBlacklist(long id) {
+        this.youtubeBlacklist.add(id);
+    }
+
+    public void removeFromYoutubeBlacklist(long id) {
+        this.youtubeBlacklist.remove(id);
+    }
+
+    public void setRandomEmbedColour(boolean b) {
+        this.randomEmbedColour = b;
+    }
+
+    public void setEmbedColour(String hex) {
+        this.embedColour = new Color(Integer.parseUnsignedInt(hex, 16));
+        this.randomEmbedColour = false;
     }
 }
