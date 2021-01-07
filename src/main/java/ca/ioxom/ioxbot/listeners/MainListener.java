@@ -30,7 +30,7 @@ public class MainListener extends ListenerAdapter {
         User author = event.getAuthor();
         if (event.getMessage().getContentRaw().startsWith(config.formattedPrefix) && !author.isBot()) {
             MessageChannel channel = event.getChannel();
-            String[] messageContent = event.getMessage().getContentRaw().split(config.formattedPrefix, 2)[1].toLowerCase().strip().split(" ");
+            String[] messageContent = event.getMessage().getContentRaw().split(config.formattedPrefix, 2)[1].toLowerCase().trim().split(" ");
             switch (messageContent[0]) {
                 case "ping":
                     //code copied from the JDA discord, don't credit me for this
