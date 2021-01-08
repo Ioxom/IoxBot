@@ -3,13 +3,13 @@ package ca.ioxom.ioxbot.config;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.dv8tion.jda.api.entities.User;
 
-import java.awt.*;
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static ca.ioxom.ioxbot.Main.frame;
@@ -75,6 +75,22 @@ public class ConfigObject {
 
     private boolean setValues(ConfigObject readConfigObject) {
         try {
+            this.token = Files.readAllLines(Paths.get("token.txt")).get(0);
+        } catch (FileNotFoundException e) {
+            if (this.isFirstRun) {
+                frame.throwError("token.txt not found", true);
+            } else {
+                frame.throwError("token.txt not found; using previously saved token");
+            }
+        } catch (IOException e) {
+            if (this.isFirstRun) {
+                frame.throwError("an IOException occurred when reading file: token.txt", true);
+            } else {
+                frame.throwError("an IOException occurred when reading file: token.txt; using previously saved token");
+            }
+        }
+
+        try {
             this.extraLogging = readConfigObject.extraLogging;
         } catch (Exception e) {
             if (this.isFirstRun) {
@@ -84,16 +100,7 @@ public class ConfigObject {
                 return false;
             }
         }
-        try {
-            this.token = readConfigObject.token;
-        } catch (Exception e) {
-            if (this.isFirstRun) {
-                frame.throwError("field \"token\" of config is missing or invalid", true);
-            } else {
-                frame.throwError("field \"token\" of config is missing or invalid; not reloading config");
-                return false;
-            }
-        }
+
         try {
             this.logCommands = readConfigObject.logCommands;
         } catch (Exception e) {
@@ -115,6 +122,7 @@ public class ConfigObject {
                 return false;
             }
         }
+
         try {
             this.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
         } catch (Exception e) {
@@ -138,6 +146,7 @@ public class ConfigObject {
                 return false;
             }
         }
+
         try {
             this.embedColourString = readConfigObject.embedColourString;
             this.embedColour = new Color(Integer.parseUnsignedInt(this.embedColourString, 16));

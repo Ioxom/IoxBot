@@ -125,57 +125,57 @@ public class MainListener extends ListenerAdapter {
                     }
                     break;
 
-//                case "config":
-//                case "cfg":
-//                    if (config.admins.contains(author.getIdLong())) {
-//                        switch (messageContent[1]) {
-//                            case "admins":
-//                            case "admin":
-//                                long idOfNewAdmin = Long.parseLong(messageContent[3]);
-//                                if (messageContent[2].equals("remove")) {
-//                                    config.removeAdmin(idOfNewAdmin);
-//                                } else if (messageContent[2].equals("add")) {
-//                                    config.addAdmin(idOfNewAdmin);
-//                                }
-//                                break;
-//                            case "youtubeblacklist":
-//                            case "ytblacklist":
-//                                long idOfBlacklistedUser = Long.parseLong(messageContent[3]);
-//                                if (messageContent[2].equals("remove")) {
-//                                    config.removeFromYoutubeBlacklist(idOfBlacklistedUser);
-//                                } else if (messageContent[2].equals("add")) {
-//                                    config.addToYoutubeBlacklist(idOfBlacklistedUser);
-//                                }
-//                                break;
-//                            case "prefix":
-//                                if (messageContent[2].equals("set")) {
-//                                    String prefix = config.formattedPrefix;
-//                                    //cursed: get the prefix
-//                                    //we can't get it from messageContent because all spaces are removed
-//                                    if (messageContent[0].equals("config")) {
-//                                        prefix = event.getMessage().getContentRaw().split(config.formattedPrefix + "config prefix set ")[0];
-//                                    } else if (messageContent[0].equals("cfg")) {
-//                                        prefix = event.getMessage().getContentRaw().split(config.formattedPrefix + "cfg prefix set ")[0];
-//                                    }
-//                                    config.setPrefix(prefix);
-//                                }
-//                                break;
-//                            case "randomembedcolour":
-//                                if (messageContent[2].equals("set")) {
-//                                    config.setRandomEmbedColour(Boolean.parseBoolean(messageContent[3]));
-//                                }
-//                                break;
-//                            case "embedcolour":
-//                                if (messageContent[2].equals("set")) {
-//                                    config.setEmbedColour(messageContent[3]);
-//                                }
-//                                break;
-//                        }
-//                        config.writeCurrentConfig();
-//                    } else {
-//                        channel.sendMessage("insufficient permissions").queue();
-//                    }
-//                    break;
+                case "config":
+                case "cfg":
+                    if (config.admins.contains(author.getIdLong())) {
+                        switch (messageContent[1]) {
+                            case "admins":
+                            case "admin":
+                                long idOfNewAdmin = Long.parseLong(messageContent[3]);
+                                if (messageContent[2].equals("remove")) {
+                                    config.removeAdmin(idOfNewAdmin);
+                                } else if (messageContent[2].equals("add")) {
+                                    config.addAdmin(idOfNewAdmin);
+                                }
+                                break;
+                            case "youtubeblacklist":
+                            case "ytblacklist":
+                                long idOfBlacklistedUser = Long.parseLong(messageContent[3]);
+                                if (messageContent[2].equals("remove")) {
+                                    config.removeFromYoutubeBlacklist(idOfBlacklistedUser);
+                                } else if (messageContent[2].equals("add")) {
+                                    config.addToYoutubeBlacklist(idOfBlacklistedUser);
+                                }
+                                break;
+                            case "prefix":
+                                if (messageContent[2].equals("set")) {
+                                    String prefix = config.formattedPrefix;
+                                    //cursed: get the prefix
+                                    //we can't get it from messageContent because all spaces are removed
+                                    if (messageContent[0].equals("config")) {
+                                        prefix = event.getMessage().getContentRaw().split(config.formattedPrefix + "config prefix set ")[0];
+                                    } else if (messageContent[0].equals("cfg")) {
+                                        prefix = event.getMessage().getContentRaw().split(config.formattedPrefix + "cfg prefix set ")[0];
+                                    }
+                                    config.setPrefix(prefix);
+                                }
+                                break;
+                            case "randomembedcolour":
+                                if (messageContent[2].equals("set")) {
+                                    config.setRandomEmbedColour(Boolean.parseBoolean(messageContent[3]));
+                                }
+                                break;
+                            case "embedcolour":
+                                if (messageContent[2].equals("set")) {
+                                    config.setEmbedColour(messageContent[3]);
+                                }
+                                break;
+                        }
+                        config.writeCurrentConfig();
+                    } else {
+                        channel.sendMessage("insufficient permissions").queue();
+                    }
+                    break;
             }
         }
     }

@@ -1,6 +1,4 @@
 {
-  //the token for your bot
-  "token": "your_token_here",
   //more detailed logging about startup
   //on: logs things like successfully adding window icon
   //off: only logs the most important events
