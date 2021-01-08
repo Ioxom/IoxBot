@@ -7,7 +7,7 @@ plugins {
 mainClassName = 'ca.ioxom.ioxbot.Main'
 group 'ca.ioxom'
 version '0.2.0'
-def jdaVersion = '4.2.0_225'
+def jdaVersion = '4.2.0_226'
 def jacksonVersion = '2.12.0'
 
 repositories {
@@ -23,4 +23,10 @@ compileJava {
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
     options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
 }
