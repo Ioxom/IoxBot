@@ -19,7 +19,7 @@ public class MainListener extends ListenerAdapter {
         if (config.randomEmbedColour) {
             return new Color(Integer.parseUnsignedInt(new Object().toString().split("Object@")[1], 16));
         } else {
-            return config.embedColour;
+            return new Color(Integer.parseUnsignedInt(config.embedColour, 16));
         }
     }
 

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,8 +21,7 @@ public class ConfigObject {
     public boolean logCommands;
     public String prefix;
     public ArrayList<Long> youtubeBlacklist;
-    public String embedColourString;
-    public Color embedColour;
+    public String embedColour;
     public boolean randomEmbedColour;
     public ArrayList<Long> admins;
     public ConfigObject() {
@@ -133,13 +131,12 @@ public class ConfigObject {
         }
 
         try {
-            this.embedColourString = readConfigObject.embedColourString;
-            this.embedColour = new Color(Integer.parseUnsignedInt(this.embedColourString, 16));
+            this.embedColour = readConfigObject.embedColour;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                frame.throwError("field \"embedColourString\" of config is missing or invalid", true);
+                frame.throwError("field \"embedColour\" of config is missing or invalid", true);
             } else {
-                frame.throwError("field \"embedColourString\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"embedColour\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -204,7 +201,7 @@ public class ConfigObject {
     }
 
     public void setEmbedColour(String hex) {
-        this.embedColour = new Color(Integer.parseUnsignedInt(hex, 16));
+        this.embedColour = hex;
         this.randomEmbedColour = false;
     }
 }

@@ -9,10 +9,10 @@
   "logCommands": true,
   //commands start with this in order to work
   "prefix": "-i",
-  //overrides embedColourString
+  //overrides embedColour
   //if on all embed colours are random, ignoring the set colour
   "randomEmbedColour": true,
-  "embedColourString": "00FF00",
+  "embedColour": "00FF00",
   //users who are banned from youtube
   "youtubeBlacklist": [
     382659726778957858,
