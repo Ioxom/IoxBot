@@ -21,8 +21,6 @@ public class ConfigObject {
     public String token;
     public boolean logCommands;
     public String prefix;
-    public String formattedPrefix;
-    public boolean spaceAfterPrefix;
     public ArrayList<Long> youtubeBlacklist;
     public String embedColourString;
     public Color embedColour;
@@ -124,19 +122,6 @@ public class ConfigObject {
         }
 
         try {
-            this.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
-        } catch (Exception e) {
-            if (this.isFirstRun) {
-                frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid", true);
-            } else {
-                frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid; not reloading config");
-                return false;
-            }
-        }
-
-        this.formattedPrefix = this.prefix + (this.spaceAfterPrefix? " " : "");
-
-        try {
            this.youtubeBlacklist = readConfigObject.youtubeBlacklist;
         } catch (Exception e) {
             if (this.isFirstRun) {
@@ -195,9 +180,7 @@ public class ConfigObject {
     }
 
     public void setPrefix(String prefix) {
-        this.prefix = prefix.split(" ")[0];
-        this.spaceAfterPrefix = prefix.contains(" ");
-        this.formattedPrefix = prefix;
+        this.prefix = prefix;
     }
 
     public void addAdmin(long id) {

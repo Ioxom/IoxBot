@@ -28,9 +28,9 @@ public class MainListener extends ListenerAdapter {
         CommandMethods.bullyAlex(event);
 
         User author = event.getAuthor();
-        if (event.getMessage().getContentRaw().startsWith(config.formattedPrefix) && !author.isBot()) {
+        if (event.getMessage().getContentRaw().startsWith(config.prefix) && !author.isBot()) {
             MessageChannel channel = event.getChannel();
-            String[] messageContent = event.getMessage().getContentRaw().split(config.formattedPrefix, 2)[1].toLowerCase().trim().split(" ");
+            String[] messageContent = event.getMessage().getContentRaw().split(config.prefix, 2)[1].toLowerCase().trim().split(" ");
             switch (messageContent[0]) {
                 case "ping":
                     //code copied from the JDA discord, don't credit me for this
@@ -45,23 +45,23 @@ public class MainListener extends ListenerAdapter {
                             .setColor(getEmbedColour())
                             .addField(
                                     "ping", "checks the current ping in ms of ioxbot" +
-                                            "\nsyntax: `" + config.formattedPrefix + "ping`",
+                                            "\nsyntax: `" + config.prefix + "ping`",
                                     false)
                             .addField(
                                     "coinflip", "flips a coin" +
-                                            "\nsyntax: `" + config.formattedPrefix + "coinflip`",
+                                            "\nsyntax: `" + config.prefix + "coinflip`",
                                     false)
                             .addField(
                                     "belt", "sometimes you just need to give someone the belt" +
-                                            "\nsyntax: `" + config.formattedPrefix + "belt <@user>`",
+                                            "\nsyntax: `" + config.prefix + "belt <@user>`",
                                     false)
                             .addField(
                                     "github", "gives a github link to the specified repository" +
-                                            "\nsyntax: `" + config.formattedPrefix + "gh <user> <repository name>`",
+                                            "\nsyntax: `" + config.prefix + "gh <user> <repository name>`",
                                     false)
                             .addField(
                                     "exit", "*only usable by admins*: kills all of ioxbot's processes" +
-                                            "\nsyntax: `" + config.formattedPrefix + "exit`",
+                                            "\nsyntax: `" + config.prefix + "exit`",
                                     false)
                             .setFooter("ioxbot, powered by ioxcorp™ technology");
                     channel.sendMessage(helpEmbed.build()).queue();
@@ -106,7 +106,7 @@ public class MainListener extends ListenerAdapter {
                         });
                         Main.frame.logCommand(author, "linked to github", false);
                     } catch (Exception e) {
-                        channel.sendMessage("incorrect usage of command!\nsyntax: `" + config.formattedPrefix + "gh <user> <repository>`").queue();
+                        channel.sendMessage("incorrect usage of command!\nsyntax: `" + config.prefix + "gh <user> <repository>`").queue();
                     }
                     break;
                 case "exit":
@@ -149,13 +149,13 @@ public class MainListener extends ListenerAdapter {
                                 break;
                             case "prefix":
                                 if (messageContent[2].equals("set")) {
-                                    String prefix = config.formattedPrefix;
+                                    String prefix = config.prefix;
                                     //cursed: get the prefix
                                     //we can't get it from messageContent because all spaces are removed
                                     if (messageContent[0].equals("config")) {
-                                        prefix = event.getMessage().getContentRaw().split(config.formattedPrefix + "config prefix set ")[0];
+                                        prefix = event.getMessage().getContentRaw().split(config.prefix + "config prefix set ")[0];
                                     } else if (messageContent[0].equals("cfg")) {
-                                        prefix = event.getMessage().getContentRaw().split(config.formattedPrefix + "cfg prefix set ")[0];
+                                        prefix = event.getMessage().getContentRaw().split(config.prefix + "cfg prefix set ")[0];
                                     }
                                     config.setPrefix(prefix);
                                 }

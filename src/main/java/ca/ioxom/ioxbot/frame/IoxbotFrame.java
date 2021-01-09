@@ -26,8 +26,7 @@ public class IoxbotFrame {
     private final JPanel panel;
     public IoxbotFrame() {
         this.frame = new JFrame("ioxbot v " + Main.VERSION);
-        this.console = new JTextArea("[init] press the button on the right to reload config values" +
-                "\n[init] loading ioxbot");
+        this.console = new JTextArea("[init] loading ioxbot");
         this.panel = new JPanel(new BorderLayout());
     }
 
@@ -93,7 +92,7 @@ public class IoxbotFrame {
     }
 
     public void throwError(String error, boolean fatal) {
-        this.console.append((fatal?"\n[err/FATAL] " : "\n[err] ") + error + (fatal? ";closing ioxbot" : ""));
+        this.console.append((fatal?"\n[err/FATAL] " : "\n[err] ") + error + (fatal? "; closing ioxbot" : ""));
         if (fatal) {
             try {
                 Thread.sleep(5000);

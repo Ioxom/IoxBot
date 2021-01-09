@@ -30,7 +30,7 @@ public class CommandMethods {
             }
         }
 
-        if (message.getContentRaw().equals(Main.config.formattedPrefix + "shut up alex")) {
+        if (message.getContentRaw().equals(Main.config.prefix + "shut up alex")) {
             event.getChannel().sendMessage(messages[Main.random.nextInt(messages.length)]).queue();
             Main.frame.logCommand(author, "shut up alex", true);
         } else if (message.getContentRaw().equals("bo bo bo") && author.getId().equals("730866562189230110")) {
