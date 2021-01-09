@@ -162,7 +162,9 @@ public class MainListener extends ListenerAdapter {
                                 break;
                             case "randomembedcolour":
                                 if (messageContent[2].equals("set")) {
-                                    config.setRandomEmbedColour(Boolean.parseBoolean(messageContent[3]));
+                                    boolean b = false;
+                                    if (messageContent[3].equals("true") || messageContent[3].equals("yes")) b = true;
+                                    config.setRandomEmbedColour(b);
                                 }
                                 break;
                             case "embedcolour":
