@@ -7,8 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import static ca.ioxom.ioxbot.Main.frame;
@@ -17,12 +15,11 @@ import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 public class ConfigObject {
     private boolean isFirstRun;
     public boolean extraLogging;
-    public String token;
     public boolean logCommands;
-    public String prefix;
-    public ArrayList<Long> youtubeBlacklist;
     public String embedColour;
     public boolean randomEmbedColour;
+    public String prefix;
+    public ArrayList<Long> youtubeBlacklist;
     public ArrayList<Long> admins;
     public ConfigObject() {
         this.isFirstRun = true;
@@ -70,22 +67,6 @@ public class ConfigObject {
     }
 
     private boolean setValues(ConfigObject readConfigObject) {
-        try {
-            this.token = Files.readAllLines(Paths.get("token.txt")).get(0);
-        } catch (FileNotFoundException e) {
-            if (this.isFirstRun) {
-                frame.throwError("token.txt not found", true);
-            } else {
-                frame.throwError("token.txt not found; using previously saved token");
-            }
-        } catch (IOException e) {
-            if (this.isFirstRun) {
-                frame.throwError("an IOException occurred when reading file: token.txt", true);
-            } else {
-                frame.throwError("an IOException occurred when reading file: token.txt; using previously saved token");
-            }
-        }
-
         try {
             this.extraLogging = readConfigObject.extraLogging;
         } catch (Exception e) {
