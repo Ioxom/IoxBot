@@ -34,7 +34,7 @@ public class IoxbotFrame {
         this.frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //set icon
         try {
-            Image image = ImageIO.read(new URL("https://user-images.githubusercontent.com/66223394/102388605-9ce81880-3f97-11eb-85d4-d4841103d47b.png"));
+            Image image = ImageIO.read(new URL("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/ioxbot_profile_photo.png"));
             this.frame.setIconImage(image);
             this.logInit("added icon to frame");
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public class IoxbotFrame {
         JButton reloadConfig = new JButton();
         //get the icon
         try {
-            ImageIcon reloadIcon = new ImageIcon(new URL("https://cdn.discordapp.com/attachments/728781398911221795/786655027162120272/reload.png"));
+            ImageIcon reloadIcon = new ImageIcon(new URL("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/reload.png"));
             reloadConfig.setIcon(reloadIcon);
         } catch (IOException e) {
             this.throwError("could not get icon of reload button");
