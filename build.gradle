@@ -29,7 +29,6 @@ compileJava {
 
 jar {
     manifest {
-        attributes 'Main-Class': mainClassName
-        attributes 'Manifest-Version': 1.0
+        attributes 'Main-Class': mainClassName, 'Manifest-Version': 1.0
     }
 }
