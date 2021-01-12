@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import static ca.ioxom.ioxbot.Main.config;
+import static ca.ioxom.ioxbot.Main.frame;
 
 import java.awt.Color;
 
@@ -37,35 +38,51 @@ public class MainListener extends ListenerAdapter {
                     long time = System.currentTimeMillis();
                     channel.sendMessage("calculating ping...").queue(message ->
                             message.editMessageFormat("ioxbot's ping is: %dms", System.currentTimeMillis() - time).queue());
-                    Main.frame.logCommand(author, "checked ping", false);
+                    frame.logCommand(author, "checked ping", false);
                     break;
                 case "help":
-                    EmbedBuilder helpEmbed = new EmbedBuilder()
-                            .setAuthor("ioxbot")
-                            .setColor(getEmbedColour())
-                            .addField(
-                                    "ping", "checks the current ping in ms of ioxbot" +
-                                            "\nsyntax: `" + config.prefix + "ping`",
-                                    false)
-                            .addField(
-                                    "coinflip", "flips a coin" +
-                                            "\nsyntax: `" + config.prefix + "coinflip`",
-                                    false)
-                            .addField(
-                                    "belt", "sometimes you just need to give someone the belt" +
-                                            "\nsyntax: `" + config.prefix + "belt <@user>`",
-                                    false)
-                            .addField(
-                                    "github", "gives a github link to the specified repository" +
-                                            "\nsyntax: `" + config.prefix + "gh <user> <repository name>`",
-                                    false)
-                            .addField(
-                                    "exit", "*only usable by admins*: kills all of ioxbot's processes" +
-                                            "\nsyntax: `" + config.prefix + "exit`",
-                                    false)
-                            .setFooter("ioxbot, powered by ioxcorp™ technology");
-                    channel.sendMessage(helpEmbed.build()).queue();
-                    Main.frame.logCommand(author, "help", true);
+                    if (messageContent[1].equals("cfg") || messageContent[1].equals("config")) {
+                        EmbedBuilder cfgHelpEmbed = new EmbedBuilder()
+                                .setAuthor("ioxbot")
+                                .setColor(getEmbedColour())
+                                .addField("admins", "options: `add <user id>`, `remove <user id>`, `clear`", false)
+                                .addField("youtubeblacklist", "options: `add <user id>`, `remove <user id>`, `clear`", false)
+                                .addField("prefix", "options: `set <new prefix>`, `reset`", false)
+                                .addField("embedcolour", "options: `set <hex code>`, `reset`", false)
+                                .addField("randomembedcolour", "options: `set <boolean value>`, `reset`", false)
+                                .addField("extralogging", "options: `set <boolean value>`, `reset`", false)
+                                .addField("logcommands", "options: `set <boolean value>`, `reset`", false);
+                        channel.sendMessage(cfgHelpEmbed.build()).queue();
+                        frame.logCommand(author, "config help", true);
+                    } else {
+                        EmbedBuilder helpEmbed = new EmbedBuilder()
+                                .setAuthor("ioxbot")
+                                .setColor(getEmbedColour())
+                                .addField(
+                                        "ping", "checks the current ping in ms of ioxbot" +
+                                                "\nsyntax: `" + config.prefix + "ping`",
+                                        false)
+                                .addField(
+                                        "coinflip", "flips a coin" +
+                                                "\nsyntax: `" + config.prefix + "coinflip`",
+                                        false)
+                                .addField(
+                                        "belt", "sometimes you just need to give someone the belt" +
+                                                "\nsyntax: `" + config.prefix + "belt <@user>`",
+                                        false)
+                                .addField(
+                                        "github", "gives a github link to the specified repository" +
+                                                "\nsyntax: `" + config.prefix + "gh <user> <repository name>`",
+                                        false)
+                                .addField(
+                                        "exit", "*only usable by admins*: kills all of ioxbot's processes" +
+                                                "\nsyntax: `" + config.prefix + "exit`",
+                                        false)
+                                .addField("config", "use `" + config.prefix + "help config` for help", false)
+                                .setFooter("ioxbot, powered by ioxcorp™ technology");
+                        channel.sendMessage(helpEmbed.build()).queue();
+                        frame.logCommand(author, "help", true);
+                    }
                     break;
                 case "coinflip":
                     //we just generate a boolean to see which side
@@ -77,7 +94,7 @@ public class MainListener extends ListenerAdapter {
                             .setThumbnail(tails ? "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_tails.jpg" : "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_heads.jpg")
                             .setDescription(tails ? "your coin landed on tails!" : "your coin landed on heads!");
                     channel.sendMessage(coinflipEmbed.build()).queue();
-                    Main.frame.logCommand(author, "flipped a coin", false);
+                    frame.logCommand(author, "flipped a coin", false);
                     break;
                 case "belt":
                     String belter = author.getAsMention();
@@ -92,7 +109,7 @@ public class MainListener extends ListenerAdapter {
                                 .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/belt.png")
                                 .setDescription(belter + " gives the belt to " + belted);
                         channel.sendMessage(beltEmbed.build()).queue();
-                        Main.frame.logCommand(author, "gave someone the belt", false);
+                        frame.logCommand(author, "gave someone the belt", false);
                     }
                     break;
                 case "gh":
@@ -104,24 +121,22 @@ public class MainListener extends ListenerAdapter {
                             if (messageContent[3].equals("-noembed") || messageContent[3].equals("-n"))
                                 message.suppressEmbeds(true).queue();
                         });
-                        Main.frame.logCommand(author, "linked to github", false);
+                        frame.logCommand(author, "linked to github", false);
                     } catch (Exception e) {
                         channel.sendMessage("incorrect usage of command!\nsyntax: `" + config.prefix + "gh <user> <repository>`").queue();
                     }
                     break;
                 case "exit":
                     //ensure the user is specified as an admin in the config
-                    for (long id : config.admins) {
-                        if (author.getIdLong() == id) {
-                            channel.sendMessage("ending ioxbot process").queue();
-                            Main.frame.logMain(author.getAsTag() + " killed process via command");
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                Main.frame.throwError("exception while attempting to pause execution");
-                            }
-                            System.exit(2);
+                    if (config.admins.contains(author.getIdLong())) {
+                        channel.sendMessage("ending ioxbot process").queue();
+                        frame.logMain(author.getAsTag() + " killed process via command");
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            frame.throwError("exception while attempting to pause execution");
                         }
+                        System.exit(2);
                     }
                     break;
 
