@@ -60,7 +60,7 @@ public class IoxbotFrame {
             ImageIcon reloadIcon = new ImageIcon(new URL("https://cdn.discordapp.com/attachments/728781398911221795/786655027162120272/reload.png"));
             reloadConfig.setIcon(reloadIcon);
         } catch (IOException e) {
-            e.printStackTrace();
+            this.throwError("could not get icon of reload button");
         }
         reloadConfig.setPreferredSize(new Dimension(50, 50));
         reloadConfig.setBackground(Color.DARK_GRAY);

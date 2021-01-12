@@ -20,10 +20,6 @@ public class StatusSetter extends ListenerAdapter {
     }
 
     public static class StatusRunnable implements Runnable {
-        private final String[] statuses = {
-                "prefix | " + Main.config.prefix,
-                "help | " + Main.config.prefix + "help"
-        };
         private int i;
         private final Presence presence;
         public StatusRunnable(Presence presence) {
@@ -33,12 +29,16 @@ public class StatusSetter extends ListenerAdapter {
 
         @Override
         public void run() {
+            String[] statuses = {
+                    "prefix | " + Main.config.prefix,
+                    "help | " + Main.config.prefix + "help"
+            };
             if (i == 0) {
                 i = 1;
             } else {
                 i = 0;
             }
-            this.presence.setActivity(Activity.playing(this.statuses[i]));
+            this.presence.setActivity(Activity.playing(statuses[i]));
         }
     }
 }
