@@ -15,7 +15,9 @@ repositories {
 }
 
 dependencies {
+    //json parsing library
     implementation(group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion)
+    //integration with discord
     implementation(group: 'net.dv8tion', name: 'JDA', version: jdaVersion)
 }
 
