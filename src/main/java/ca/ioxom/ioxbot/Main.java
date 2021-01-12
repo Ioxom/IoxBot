@@ -30,7 +30,7 @@ public class Main {
         try {
             String token = "";
             try {
-                token = Files.readAllLines(Paths.get("token.txt")).get(0);
+                token = Files.readString(Paths.get("token.txt"));
             } catch (FileNotFoundException e) {
                 frame.throwError("token.txt not found", true);
             } catch (IOException e) {
