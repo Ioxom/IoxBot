@@ -3,13 +3,10 @@ package ca.ioxom.ioxbot.config;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.dv8tion.jda.api.entities.User;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static ca.ioxom.ioxbot.Main.frame;
@@ -17,16 +14,12 @@ import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 
 public class ConfigObject {
     private boolean isFirstRun;
-    public boolean extraLogging;
-    public String token;
-    public boolean logCommands;
     public String prefix;
-    public String formattedPrefix;
-    public boolean spaceAfterPrefix;
-    public ArrayList<Long> youtubeBlacklist;
-    public String embedColourString;
-    public Color embedColour;
+    public boolean extraLogging;
+    public boolean logCommands;
+    public String embedColour;
     public boolean randomEmbedColour;
+    public ArrayList<Long> youtubeBlacklist;
     public ArrayList<Long> admins;
     public ConfigObject() {
         this.isFirstRun = true;
@@ -37,17 +30,18 @@ public class ConfigObject {
         mapper.enable(ALLOW_COMMENTS);
         boolean successfullySetValues = false;
         try {
-            ConfigObject readConfigObject = mapper.readValue(new File("config.json5"), ConfigObject.class);
+            ConfigObject readConfigObject = mapper.readValue(new File("config.json"), ConfigObject.class);
             successfullySetValues = this.setValues(readConfigObject);
         } catch (JsonParseException e) {
             if (this.isFirstRun) {
-                frame.throwError("config.json5 does not conform to json standard formatting", true);
+                frame.throwError("config.json does not conform to json standard formatting", true);
             } else {
-                frame.throwError("config.json5 does not conform to json standard formatting; not reloading config");
+                frame.throwError("config.json does not conform to json standard formatting; not reloading config");
                 return;
             }
         } catch (JsonMappingException e) {
             if (this.isFirstRun) {
+                e.printStackTrace();
                 frame.throwError("error mapping json values of config", true);
             } else {
                 frame.throwError("error mapping json values of config; not reloading config");
@@ -55,9 +49,9 @@ public class ConfigObject {
             }
         } catch (FileNotFoundException e) {
             if (this.isFirstRun) {
-                frame.throwError("config.json5 not found in target directory", true);
+                frame.throwError("config.json not found in target directory", true);
             } else {
-                frame.throwError("config.json5 not found in target directory; not reloading config");
+                frame.throwError("config.json not found in target directory; not reloading config");
                 return;
             }
         } catch (IOException e) {
@@ -84,16 +78,7 @@ public class ConfigObject {
                 return false;
             }
         }
-        try {
-            this.token = readConfigObject.token;
-        } catch (Exception e) {
-            if (this.isFirstRun) {
-                frame.throwError("field \"token\" of config is missing or invalid", true);
-            } else {
-                frame.throwError("field \"token\" of config is missing or invalid; not reloading config");
-                return false;
-            }
-        }
+
         try {
             this.logCommands = readConfigObject.logCommands;
         } catch (Exception e) {
@@ -115,18 +100,6 @@ public class ConfigObject {
                 return false;
             }
         }
-        try {
-            this.spaceAfterPrefix = readConfigObject.spaceAfterPrefix;
-        } catch (Exception e) {
-            if (this.isFirstRun) {
-                frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid", true);
-            } else {
-                frame.throwError("field \"spaceAfterPrefix\" of config is missing or invalid; not reloading config");
-                return false;
-            }
-        }
-
-        this.formattedPrefix = this.prefix + (this.spaceAfterPrefix? " " : "");
 
         try {
            this.youtubeBlacklist = readConfigObject.youtubeBlacklist;
@@ -138,14 +111,14 @@ public class ConfigObject {
                 return false;
             }
         }
+
         try {
-            this.embedColourString = readConfigObject.embedColourString;
-            this.embedColour = new Color(Integer.parseUnsignedInt(this.embedColourString, 16));
+            this.embedColour = readConfigObject.embedColour;
         } catch (Exception e) {
             if (this.isFirstRun) {
-                frame.throwError("field \"embedColourString\" of config is missing or invalid", true);
+                frame.throwError("field \"embedColour\" of config is missing or invalid", true);
             } else {
-                frame.throwError("field \"embedColourString\" of config is missing or invalid; not reloading config");
+                frame.throwError("field \"embedColour\" of config is missing or invalid; not reloading config");
                 return false;
             }
         }
@@ -175,20 +148,48 @@ public class ConfigObject {
         return true;
     }
 
+    public String toString() {
+        StringBuilder admins = new StringBuilder();
+        if (this.admins.isEmpty()) {
+            admins.append("none");
+        } else {
+            for (long admin : this.admins) {
+                admins.append(admin).append(", ");
+            }
+            admins.append("\b\b");
+        }
+
+        StringBuilder youtubeBlacklist = new StringBuilder();
+        if (this.youtubeBlacklist.isEmpty()) {
+            youtubeBlacklist.append("none");
+        } else {
+            for (long user : this.youtubeBlacklist) {
+                youtubeBlacklist.append(user).append(", ");
+            }
+            youtubeBlacklist.append("\b\b");
+        }
+        return "prefix: " + this.prefix + "\n" +
+                "embed colour: " + this.embedColour + "\n" +
+                "random embed colour enabled?: " + this.randomEmbedColour + "\n" +
+                "admins: " + admins + "\n" +
+                "youtube blacklist: " + youtubeBlacklist + "\n" +
+                "extra logging enabled?: " + this.extraLogging + "\n" +
+                "command logging enabled?: " + this.logCommands;
+    }
+
     public void writeCurrentConfig() {
         ObjectMapper mapper = new ObjectMapper();
         try {
-            mapper.writeValue(new File("config.json5"), this);
-            frame.logMain("wrote current configuration to config.json5");
+            mapper.writeValue(new File("config.json"), this);
+            frame.logMain("wrote current configuration to config.json");
+            this.configure();
         } catch (IOException e) {
             frame.throwError("failed to write to config");
         }
     }
 
     public void setPrefix(String prefix) {
-        this.prefix = prefix.split(" ")[0];
-        this.spaceAfterPrefix = prefix.contains(" ");
-        this.formattedPrefix = prefix;
+        this.prefix = prefix;
     }
 
     public void addAdmin(long id) {
@@ -199,6 +200,10 @@ public class ConfigObject {
         this.admins.remove(id);
     }
 
+    public void clearAdmins() {
+        this.admins = new ArrayList<>();
+    }
+
     public void addToYoutubeBlacklist(long id) {
         this.youtubeBlacklist.add(id);
     }
@@ -207,12 +212,24 @@ public class ConfigObject {
         this.youtubeBlacklist.remove(id);
     }
 
+    public void clearYoutubeBlacklist() {
+        this.youtubeBlacklist = new ArrayList<>();
+    }
+
     public void setRandomEmbedColour(boolean b) {
         this.randomEmbedColour = b;
     }
 
     public void setEmbedColour(String hex) {
-        this.embedColour = new Color(Integer.parseUnsignedInt(hex, 16));
+        this.embedColour = hex;
         this.randomEmbedColour = false;
+    }
+
+    public void setExtraLogging(boolean b) {
+        this.extraLogging = b;
+    }
+
+    public void setLogCommands(boolean b) {
+        this.extraLogging = b;
     }
 }

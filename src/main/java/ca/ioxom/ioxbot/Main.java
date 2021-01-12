@@ -8,6 +8,10 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
 import javax.security.auth.login.LoginException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Random;
 
 public class Main {
@@ -24,7 +28,15 @@ public class Main {
         //log in
         JDA api = null;
         try {
-            api = JDABuilder.createDefault(config.token).build();
+            String token = "";
+            try {
+                token = Files.readString(Paths.get("token.txt"));
+            } catch (FileNotFoundException e) {
+                frame.throwError("token.txt not found", true);
+            } catch (IOException e) {
+                frame.throwError("an IOException occurred when reading file: token.txt", true);
+            }
+            api = JDABuilder.createDefault(token).build();
             Main.frame.logInit("successfully logged in JDA", true);
         } catch (LoginException e) {
             frame.throwError("invalid token", true);
