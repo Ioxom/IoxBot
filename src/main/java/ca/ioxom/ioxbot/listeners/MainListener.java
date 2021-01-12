@@ -132,19 +132,43 @@ public class MainListener extends ListenerAdapter {
                             case "admins":
                             case "admin":
                                 long idOfNewAdmin = Long.parseLong(messageContent[3]);
-                                if (messageContent[2].equals("remove")) {
-                                    config.removeAdmin(idOfNewAdmin);
-                                } else if (messageContent[2].equals("add")) {
-                                    config.addAdmin(idOfNewAdmin);
+                                switch (messageContent[2]) {
+                                    case "remove":
+                                        config.removeAdmin(idOfNewAdmin);
+                                        channel.sendMessage("removed \"" + idOfNewAdmin + "\" from admins").queue();
+                                        config.writeCurrentConfig();
+                                        break;
+                                    case "add":
+                                        config.addAdmin(idOfNewAdmin);
+                                        channel.sendMessage("added \"" + idOfNewAdmin + "\" to admins").queue();
+                                        config.writeCurrentConfig();
+                                        break;
+                                    case "clear":
+                                        config.clearAdmins();
+                                        channel.sendMessage("cleared admins").queue();
+                                        config.writeCurrentConfig();
+                                        break;
                                 }
                                 break;
                             case "youtubeblacklist":
                             case "ytblacklist":
                                 long idOfBlacklistedUser = Long.parseLong(messageContent[3]);
-                                if (messageContent[2].equals("remove")) {
-                                    config.removeFromYoutubeBlacklist(idOfBlacklistedUser);
-                                } else if (messageContent[2].equals("add")) {
-                                    config.addToYoutubeBlacklist(idOfBlacklistedUser);
+                                switch (messageContent[2]) {
+                                    case "remove":
+                                        config.removeFromYoutubeBlacklist(idOfBlacklistedUser);
+                                        channel.sendMessage("removed \"" + idOfBlacklistedUser + "\" from youtube blacklist").queue();
+                                        config.writeCurrentConfig();
+                                        break;
+                                    case "add":
+                                        config.addToYoutubeBlacklist(idOfBlacklistedUser);
+                                        channel.sendMessage("added \"" + idOfBlacklistedUser + "\" to youtube blacklist").queue();
+                                        config.writeCurrentConfig();
+                                        break;
+                                    case "clear":
+                                        config.clearYoutubeBlacklist();
+                                        channel.sendMessage("cleared youtube blacklist").queue();
+                                        config.writeCurrentConfig();
+                                        break;
                                 }
                                 break;
                             case "prefix":
@@ -158,25 +182,62 @@ public class MainListener extends ListenerAdapter {
                                         prefix = event.getMessage().getContentRaw().split(config.prefix + "cfg prefix set ")[0];
                                     }
                                     config.setPrefix(prefix);
+                                    channel.sendMessage("set \"prefix\" to [" + prefix + "]").queue();
+                                    config.writeCurrentConfig();
+                                } else if (messageContent[2].equals("reset")) {
+                                    config.setPrefix("-i ");
+                                    channel.sendMessage("reset \"prefix\" to [-i ]").queue();
+                                    config.writeCurrentConfig();
                                 }
                                 break;
                             case "randomembedcolour":
                                 if (messageContent[2].equals("set")) {
                                     boolean b = messageContent[3].equals("true") || messageContent[3].equals("yes");
                                     config.setRandomEmbedColour(b);
+                                    channel.sendMessage("set \"randomEmbedColour\" to " + b).queue();
+                                    config.writeCurrentConfig();
                                 } else if (messageContent[2].equals("reset")) {
                                     config.setRandomEmbedColour(true);
+                                    channel.sendMessage("reset \"randomEmbedColour\" to true").queue();
+                                    config.writeCurrentConfig();
                                 }
                                 break;
                             case "embedcolour":
                                 if (messageContent[2].equals("set")) {
                                     config.setEmbedColour(messageContent[3]);
+                                    channel.sendMessage("set \"embedColour\" to " + messageContent[3]).queue();
+                                    config.writeCurrentConfig();
                                 } else if (messageContent[2].equals("reset")) {
                                     config.setEmbedColour("00FF00");
+                                    channel.sendMessage("reset \"embedColour\" to 00FF00 (light green)").queue();
+                                    config.writeCurrentConfig();
+                                }
+                                break;
+                            case "extralogging":
+                                if (messageContent[2].equals("set")) {
+                                    boolean b = messageContent[3].equals("true") || messageContent[3].equals("yes");
+                                    config.setExtraLogging(b);
+                                    channel.sendMessage("set \"extraLogging\" to " + b).queue();
+                                    config.writeCurrentConfig();
+                                } else if (messageContent[2].equals("reset")) {
+                                    config.setExtraLogging(true);
+                                    channel.sendMessage("reset \"extraLogging\" to true").queue();
+                                    config.writeCurrentConfig();
+                                }
+                                break;
+                            case "logcommands":
+                                if (messageContent[2].equals("set")) {
+                                    boolean b = messageContent[3].equals("true") || messageContent[3].equals("yes");
+                                    config.setLogCommands(b);
+                                    channel.sendMessage("set \"logCommands\" to " + b).queue();
+                                    config.writeCurrentConfig();
+                                } else if (messageContent[2].equals("reset")) {
+                                    config.setLogCommands(true);
+                                    channel.sendMessage("reset \"logCommands\" to true").queue();
+                                    config.writeCurrentConfig();
                                 }
                                 break;
                         }
-                        config.writeCurrentConfig();
                     } else {
                         channel.sendMessage("insufficient permissions").queue();
                     }

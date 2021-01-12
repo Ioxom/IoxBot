@@ -200,12 +200,20 @@ public class ConfigObject {
         this.admins.remove(id);
     }
 
+    public void clearAdmins() {
+        this.admins = new ArrayList<>();
+    }
+
     public void addToYoutubeBlacklist(long id) {
         this.youtubeBlacklist.add(id);
     }
 
     public void removeFromYoutubeBlacklist(long id) {
         this.youtubeBlacklist.remove(id);
+    }
+
+    public void clearYoutubeBlacklist() {
+        this.youtubeBlacklist = new ArrayList<>();
     }
 
     public void setRandomEmbedColour(boolean b) {
@@ -215,5 +223,13 @@ public class ConfigObject {
     public void setEmbedColour(String hex) {
         this.embedColour = hex;
         this.randomEmbedColour = false;
+    }
+
+    public void setExtraLogging(boolean b) {
+        this.extraLogging = b;
+    }
+
+    public void setLogCommands(boolean b) {
+        this.extraLogging = b;
     }
 }
