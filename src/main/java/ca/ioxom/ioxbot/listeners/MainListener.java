@@ -16,14 +16,6 @@ import java.awt.Color;
 
 public class MainListener extends ListenerAdapter {
 
-    public Color getEmbedColour() {
-        if (config.randomEmbedColour) {
-            return new Color(Integer.parseUnsignedInt(new Object().toString().split("Object@")[1], 16));
-        } else {
-            return new Color(Integer.parseUnsignedInt(config.embedColour, 16));
-        }
-    }
-
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         CommandMethods.bullyAlex(event);
@@ -44,7 +36,7 @@ public class MainListener extends ListenerAdapter {
                     if (messageContent[1].equals("cfg") || messageContent[1].equals("config")) {
                         EmbedBuilder cfgHelpEmbed = new EmbedBuilder()
                                 .setAuthor("ioxbot")
-                                .setColor(getEmbedColour())
+                                .setColor(config.getEmbedColour())
                                 .addField("admins", "options: `add <user id>`, `remove <user id>`, `clear`", false)
                                 .addField("youtubeblacklist", "options: `add <user id>`, `remove <user id>`, `clear`", false)
                                 .addField("prefix", "options: `set <new prefix>`, `reset`", false)
@@ -57,7 +49,7 @@ public class MainListener extends ListenerAdapter {
                     } else {
                         EmbedBuilder helpEmbed = new EmbedBuilder()
                                 .setAuthor("ioxbot")
-                                .setColor(getEmbedColour())
+                                .setColor(config.getEmbedColour())
                                 .addField(
                                         "ping", "checks the current ping in ms of ioxbot" +
                                                 "\nsyntax: `" + config.prefix + "ping`",
@@ -89,7 +81,7 @@ public class MainListener extends ListenerAdapter {
                     boolean tails = Main.random.nextBoolean();
                     EmbedBuilder coinflipEmbed = new EmbedBuilder()
                             .setAuthor("ioxbot")
-                            .setColor(getEmbedColour())
+                            .setColor(config.getEmbedColour())
                             .setTitle("You flipped a coin!")
                             .setThumbnail(tails ? "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_tails.jpg" : "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_heads.jpg")
                             .setDescription(tails ? "your coin landed on tails!" : "your coin landed on heads!");
@@ -105,7 +97,7 @@ public class MainListener extends ListenerAdapter {
                     } else {
                         EmbedBuilder beltEmbed = new EmbedBuilder()
                                 .setAuthor("ioxbot")
-                                .setColor(getEmbedColour())
+                                .setColor(config.getEmbedColour())
                                 .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/belt.png")
                                 .setDescription(belter + " gives the belt to " + belted);
                         channel.sendMessage(beltEmbed.build()).queue();
@@ -256,7 +248,7 @@ public class MainListener extends ListenerAdapter {
                             case "current":
                                 EmbedBuilder currentConfigEmbed = new EmbedBuilder()
                                         .setAuthor("ioxbot")
-                                        .setColor(getEmbedColour())
+                                        .setColor(config.getEmbedColour())
                                         .setDescription(config.toString())
                                         .setFooter("use " + config.prefix + "help cfg for help with config");
                                 channel.sendMessage(currentConfigEmbed.build()).queue();

@@ -4,11 +4,13 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static ca.ioxom.ioxbot.Main.config;
 import static ca.ioxom.ioxbot.Main.frame;
 import static com.fasterxml.jackson.core.JsonParser.Feature.ALLOW_COMMENTS;
 
@@ -237,5 +239,13 @@ public class ConfigObject {
 
     public void setLogCommands(boolean b) {
         this.extraLogging = b;
+    }
+
+    public Color getEmbedColour() {
+        if (this.randomEmbedColour) {
+            return new Color(Integer.parseUnsignedInt(new Object().toString().split("Object@")[1], 16));
+        } else {
+            return new Color(Integer.parseUnsignedInt(this.embedColour, 16));
+        }
     }
 }
