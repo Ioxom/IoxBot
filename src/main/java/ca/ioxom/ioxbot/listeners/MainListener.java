@@ -252,6 +252,15 @@ public class MainListener extends ListenerAdapter {
                                     config.writeCurrentConfig();
                                 }
                                 break;
+                            case "print":
+                            case "current":
+                                EmbedBuilder currentConfigEmbed = new EmbedBuilder()
+                                        .setAuthor("ioxbot")
+                                        .setColor(getEmbedColour())
+                                        .setDescription(config.toString())
+                                        .setFooter("use " + config.prefix + "help cfg for help with config");
+                                channel.sendMessage(currentConfigEmbed.build()).queue();
+                                break;
                         }
                     } else {
                         channel.sendMessage("insufficient permissions").queue();

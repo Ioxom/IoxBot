@@ -153,28 +153,34 @@ public class ConfigObject {
         if (this.admins.isEmpty()) {
             admins.append("none");
         } else {
-            for (long admin : this.admins) {
-                admins.append(admin).append(", ");
+            for (int i = 0; i < this.admins.size(); i ++) {
+                if (i != this.admins.size() - 1) {
+                    admins.append(this.admins.get(i)).append(", ");
+                } else {
+                    admins.append(this.admins.get(i));
+                }
             }
-            admins.append("\b\b");
         }
 
         StringBuilder youtubeBlacklist = new StringBuilder();
         if (this.youtubeBlacklist.isEmpty()) {
             youtubeBlacklist.append("none");
         } else {
-            for (long user : this.youtubeBlacklist) {
-                youtubeBlacklist.append(user).append(", ");
+            for (int i = 0; i < this.youtubeBlacklist.size(); i ++) {
+                if (i != this.youtubeBlacklist.size() - 1) {
+                    youtubeBlacklist.append(this.youtubeBlacklist.get(i)).append(", ");
+                } else {
+                    youtubeBlacklist.append(this.youtubeBlacklist.get(i));
+                }
             }
-            youtubeBlacklist.append("\b\b");
         }
-        return "prefix: " + this.prefix + "\n" +
-                "embed colour: " + this.embedColour + "\n" +
-                "random embed colour enabled?: " + this.randomEmbedColour + "\n" +
-                "admins: " + admins + "\n" +
-                "youtube blacklist: " + youtubeBlacklist + "\n" +
-                "extra logging enabled?: " + this.extraLogging + "\n" +
-                "command logging enabled?: " + this.logCommands;
+        return  "prefix: `" + this.prefix + "`\n" +
+                "embed colour: `" + this.embedColour + "`\n" +
+                "random embed colour enabled?: `" + this.randomEmbedColour + "`\n" +
+                "admins: `" + admins + "`\n" +
+                "youtube blacklist: `" + youtubeBlacklist + "`\n" +
+                "extra logging enabled?: `" + this.extraLogging + "`\n" +
+                "command logging enabled?: `" + this.logCommands + "`";
     }
 
     public void writeCurrentConfig() {
