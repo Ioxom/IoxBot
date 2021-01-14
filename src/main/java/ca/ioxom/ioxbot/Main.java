@@ -49,6 +49,8 @@ public class Main {
             } else {
                 frame.logInit("added event listeners; ioxbot is ready to go");
             }
+        } else {
+            frame.throwError("failed to create JDA object", true);
         }
     }
 }

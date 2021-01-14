@@ -12,8 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import static ca.ioxom.ioxbot.Main.config;
 import static ca.ioxom.ioxbot.Main.frame;
 
-import java.awt.Color;
-
 public class MainListener extends ListenerAdapter {
 
     @Override
@@ -33,48 +31,33 @@ public class MainListener extends ListenerAdapter {
                     frame.logCommand(author, "checked ping", false);
                     break;
                 case "help":
-                    if (messageContent[1].equals("cfg") || messageContent[1].equals("config")) {
-                        EmbedBuilder cfgHelpEmbed = new EmbedBuilder()
-                                .setAuthor("ioxbot")
-                                .setColor(config.getEmbedColour())
-                                .addField("admins", "options: `add <user id>`, `remove <user id>`, `clear`", false)
-                                .addField("youtubeblacklist", "options: `add <user id>`, `remove <user id>`, `clear`", false)
-                                .addField("prefix", "options: `set <new prefix>`, `reset`", false)
-                                .addField("embedcolour", "options: `set <hex code>`, `reset`", false)
-                                .addField("randomembedcolour", "options: `set <boolean value>`, `reset`", false)
-                                .addField("extralogging", "options: `set <boolean value>`, `reset`", false)
-                                .addField("logcommands", "options: `set <boolean value>`, `reset`", false);
-                        channel.sendMessage(cfgHelpEmbed.build()).queue();
-                        frame.logCommand(author, "config help", true);
-                    } else {
-                        EmbedBuilder helpEmbed = new EmbedBuilder()
-                                .setAuthor("ioxbot")
-                                .setColor(config.getEmbedColour())
-                                .addField(
-                                        "ping", "checks the current ping in ms of ioxbot" +
-                                                "\nsyntax: `" + config.prefix + "ping`",
-                                        false)
-                                .addField(
-                                        "coinflip", "flips a coin" +
-                                                "\nsyntax: `" + config.prefix + "coinflip`",
-                                        false)
-                                .addField(
-                                        "belt", "sometimes you just need to give someone the belt" +
-                                                "\nsyntax: `" + config.prefix + "belt <@user>`",
-                                        false)
-                                .addField(
-                                        "github", "gives a github link to the specified repository" +
-                                                "\nsyntax: `" + config.prefix + "gh <user> <repository name>`",
-                                        false)
-                                .addField(
-                                        "exit", "*only usable by admins*: kills all of ioxbot's processes" +
-                                                "\nsyntax: `" + config.prefix + "exit`",
-                                        false)
-                                .addField("config", "use `" + config.prefix + "help config` for help", false)
-                                .setFooter("ioxbot, powered by ioxcorp™ technology");
-                        channel.sendMessage(helpEmbed.build()).queue();
-                        frame.logCommand(author, "help", true);
-                    }
+                    EmbedBuilder helpEmbed = new EmbedBuilder()
+                            .setAuthor("ioxbot")
+                            .setColor(config.getEmbedColour())
+                            .addField(
+                                    "ping", "checks the current ping in ms of ioxbot" +
+                                            "\nsyntax: `" + config.prefix + "ping`",
+                                    false)
+                            .addField(
+                                    "coinflip", "flips a coin" +
+                                            "\nsyntax: `" + config.prefix + "coinflip`",
+                                    false)
+                            .addField(
+                                    "belt", "sometimes you just need to give someone the belt" +
+                                            "\nsyntax: `" + config.prefix + "belt <@user>`",
+                                    false)
+                            .addField(
+                                    "github", "gives a github link to the specified repository" +
+                                            "\nsyntax: `" + config.prefix + "gh <user> <repository name>`",
+                                    false)
+                            .addField(
+                                    "exit", "*only usable by admins*: kills all of ioxbot's processes" +
+                                            "\nsyntax: `" + config.prefix + "exit`",
+                                    false)
+                            .addField("config", "use `" + config.prefix + "cfg help for help", false)
+                            .setFooter("ioxbot, powered by ioxcorp™ technology");
+                    channel.sendMessage(helpEmbed.build()).queue();
+                    frame.logCommand(author, "help", true);
                     break;
                 case "coinflip":
                     //we just generate a boolean to see which side
@@ -134,10 +117,24 @@ public class MainListener extends ListenerAdapter {
 
                 case "config":
                 case "cfg":
-                    if (config.admins.contains(author.getIdLong())) {
-                        switch (messageContent[1]) {
-                            case "admins":
-                            case "admin":
+                    switch (messageContent[1]) {
+                        case "help":
+                            EmbedBuilder cfgHelpEmbed = new EmbedBuilder()
+                                    .setAuthor("ioxbot")
+                                    .setColor(config.getEmbedColour())
+                                    .addField("admins", "options: `add <user id>`, `remove <user id>`, `clear`", false)
+                                    .addField("youtubeblacklist", "options: `add <user id>`, `remove <user id>`, `clear`", false)
+                                    .addField("prefix", "options: `set <new prefix>`, `reset`", false)
+                                    .addField("embedcolour", "options: `set <hex code>`, `reset`", false)
+                                    .addField("randomembedcolour", "options: `set <boolean value>`, `reset`", false)
+                                    .addField("extralogging", "options: `set <boolean value>`, `reset`", false)
+                                    .addField("logcommands", "options: `set <boolean value>`, `reset`", false);
+                            channel.sendMessage(cfgHelpEmbed.build()).queue();
+                            frame.logCommand(author, "config help", true);
+                            break;
+                        case "admins":
+                        case "admin":
+                            if (config.admins.contains(author.getIdLong())) {
                                 long idOfNewAdmin = Long.parseLong(messageContent[3]);
                                 switch (messageContent[2]) {
                                     case "remove":
@@ -156,9 +153,13 @@ public class MainListener extends ListenerAdapter {
                                         config.writeCurrentConfig();
                                         break;
                                 }
-                                break;
-                            case "youtubeblacklist":
-                            case "ytblacklist":
+                            } else {
+                                channel.sendMessage("insufficient permissions").queue();
+                            }
+                            break;
+                        case "youtubeblacklist":
+                        case "ytblacklist":
+                            if (config.admins.contains(author.getIdLong())) {
                                 long idOfBlacklistedUser = Long.parseLong(messageContent[3]);
                                 switch (messageContent[2]) {
                                     case "remove":
@@ -177,8 +178,12 @@ public class MainListener extends ListenerAdapter {
                                         config.writeCurrentConfig();
                                         break;
                                 }
-                                break;
-                            case "prefix":
+                            } else {
+                                channel.sendMessage("insufficient permissions").queue();
+                            }
+                            break;
+                        case "prefix":
+                            if (config.admins.contains(author.getIdLong())) {
                                 if (messageContent[2].equals("set")) {
                                     String prefix = config.prefix;
                                     //cursed: get the prefix
@@ -196,8 +201,12 @@ public class MainListener extends ListenerAdapter {
                                     channel.sendMessage("reset \"prefix\" to [-i ]").queue();
                                     config.writeCurrentConfig();
                                 }
-                                break;
-                            case "randomembedcolour":
+                            } else {
+                                channel.sendMessage("insufficient permissions").queue();
+                            }
+                            break;
+                        case "randomembedcolour":
+                            if (config.admins.contains(author.getIdLong())) {
                                 if (messageContent[2].equals("set")) {
                                     boolean b = messageContent[3].equals("true") || messageContent[3].equals("yes");
                                     config.setRandomEmbedColour(b);
@@ -208,8 +217,12 @@ public class MainListener extends ListenerAdapter {
                                     channel.sendMessage("reset \"randomEmbedColour\" to true").queue();
                                     config.writeCurrentConfig();
                                 }
-                                break;
-                            case "embedcolour":
+                            } else {
+                                channel.sendMessage("insufficient permissions").queue();
+                            }
+                            break;
+                        case "embedcolour":
+                            if (config.admins.contains(author.getIdLong())) {
                                 if (messageContent[2].equals("set")) {
                                     config.setEmbedColour(messageContent[3]);
                                     channel.sendMessage("set \"embedColour\" to " + messageContent[3]).queue();
@@ -219,8 +232,12 @@ public class MainListener extends ListenerAdapter {
                                     channel.sendMessage("reset \"embedColour\" to 00FF00 (light green)").queue();
                                     config.writeCurrentConfig();
                                 }
-                                break;
-                            case "extralogging":
+                            } else {
+                                channel.sendMessage("insufficient permissions").queue();
+                            }
+                            break;
+                        case "extralogging":
+                            if (config.admins.contains(author.getIdLong())) {
                                 if (messageContent[2].equals("set")) {
                                     boolean b = messageContent[3].equals("true") || messageContent[3].equals("yes");
                                     config.setExtraLogging(b);
@@ -231,8 +248,12 @@ public class MainListener extends ListenerAdapter {
                                     channel.sendMessage("reset \"extraLogging\" to true").queue();
                                     config.writeCurrentConfig();
                                 }
-                                break;
-                            case "logcommands":
+                            } else {
+                                channel.sendMessage("insufficient permissions").queue();
+                            }
+                            break;
+                        case "logcommands":
+                            if (config.admins.contains(author.getIdLong())) {
                                 if (messageContent[2].equals("set")) {
                                     boolean b = messageContent[3].equals("true") || messageContent[3].equals("yes");
                                     config.setLogCommands(b);
@@ -243,21 +264,20 @@ public class MainListener extends ListenerAdapter {
                                     channel.sendMessage("reset \"logCommands\" to true").queue();
                                     config.writeCurrentConfig();
                                 }
-                                break;
-                            case "print":
-                            case "current":
-                                EmbedBuilder currentConfigEmbed = new EmbedBuilder()
-                                        .setAuthor("ioxbot")
-                                        .setColor(config.getEmbedColour())
-                                        .setDescription(config.toString())
-                                        .setFooter("use " + config.prefix + "help cfg for help with config");
-                                channel.sendMessage(currentConfigEmbed.build()).queue();
-                                break;
-                        }
-                    } else {
-                        channel.sendMessage("insufficient permissions").queue();
+                            } else {
+                                channel.sendMessage("insufficient permissions").queue();
+                            }
+                            break;
+                        case "print":
+                        case "current":
+                            EmbedBuilder currentConfigEmbed = new EmbedBuilder()
+                                    .setAuthor("ioxbot")
+                                    .setColor(config.getEmbedColour())
+                                    .setDescription(config.toString())
+                                    .setFooter("use " + config.prefix + "cfg help for help with config");
+                            channel.sendMessage(currentConfigEmbed.build()).queue();
+                            break;
                     }
-                    break;
             }
         }
     }
