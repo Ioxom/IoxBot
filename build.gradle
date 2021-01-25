@@ -6,7 +6,7 @@ plugins {
 
 mainClassName = 'ca.ioxom.ioxbot.Main'
 group 'ca.ioxom'
-version '0.2.0'
+version '0.2.1'
 def jdaVersion = '4.2.0_227'
 def jacksonVersion = '2.12.0'
 
