@@ -21,15 +21,16 @@ dependencies {
     implementation(group: 'net.dv8tion', name: 'JDA', version: jdaVersion)
 }
 
+//we use java 11
 compileJava {
     sourceCompatibility = '11'
     targetCompatibility = '11'
     options.encoding = 'UTF-8'
 }
 
+//append the version to a properties file so we can access it from java code
 task('addVersion') {
     doLast {
-        //append the version to a properties file so we can access it from java code
         file("src/main/resources/ioxbot.properties").write(
                 "# ioxbot's version. this is stored here to allow project-wide version syncing\n" +
                 "version=$version"
@@ -37,6 +38,7 @@ task('addVersion') {
     }
 }
 
+//create a jar that includes dependencies so it can be run
 task uberJar(type: Jar) {
     manifest {
         attributes 'Main-Class': mainClassName, 'Manifest-Version': 1.0
