@@ -36,10 +36,17 @@ task('addVersion') {
         )
     }
 }
-jar.dependsOn(addVersion)
 
-jar {
+task uberJar(type: Jar) {
     manifest {
         attributes 'Main-Class': mainClassName, 'Manifest-Version': 1.0
+    }
+
+    from sourceSets.main.output
+
+    dependsOn(addVersion)
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
     }
 }
