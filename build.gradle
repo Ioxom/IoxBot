@@ -46,6 +46,7 @@ task uberJar(type: Jar) {
 
     from sourceSets.main.output
 
+    DuplicatesStrategy.EXCLUDE
     dependsOn(addVersion)
     dependsOn configurations.runtimeClasspath
     from {
