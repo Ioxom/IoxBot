@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -64,8 +65,8 @@ public class IoxbotFrame {
         try {
             InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/reload.png");
             if (inputStream != null) {
-                Image reloadIcon = ImageIO.read(inputStream);
-                reloadConfig.setIcon((Icon) reloadIcon);
+                ImageIcon reloadIcon = new ImageIcon(ImageIO.read(inputStream));
+                reloadConfig.setIcon(reloadIcon);
             } else {
                 this.throwError("failed to add icon to reload button; resources may be broken");
             }
