@@ -5,7 +5,7 @@ import ca.ioxom.ioxbot.config.ReloadConfig;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +16,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -34,11 +34,16 @@ public class IoxbotFrame {
         this.frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //set icon
         try {
-            Image image = ImageIO.read(new URL("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/ioxbot_profile_photo.png"));
-            this.frame.setIconImage(image);
-            this.logInit("added icon to frame");
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/ioxbot_profile_photo.png");
+            if (inputStream != null) {
+                Image image = ImageIO.read(inputStream);
+                this.frame.setIconImage(image);
+                this.logInit("added icon to frame");
+            } else {
+                this.throwError("failed to add icon to frame; resources may be broken");
+            }
         } catch (IOException e) {
-            this.throwError("could not find icon, defaulting to java icon");
+            this.throwError("an IOException occurred while reading file \"images/ioxbot_profile_photo.png\"");
         }
         //configure the console, adding a scroll bar and setting the colour
         final Dimension consoleSize = new Dimension(500, 375);
@@ -57,10 +62,15 @@ public class IoxbotFrame {
         JButton reloadConfig = new JButton();
         //get the icon
         try {
-            ImageIcon reloadIcon = new ImageIcon(new URL("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/reload.png"));
-            reloadConfig.setIcon(reloadIcon);
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("images/reload.png");
+            if (inputStream != null) {
+                Image reloadIcon = ImageIO.read(inputStream);
+                reloadConfig.setIcon((Icon) reloadIcon);
+            } else {
+                this.throwError("failed to add icon to reload button; resources may be broken");
+            }
         } catch (IOException e) {
-            this.throwError("could not get icon of reload button");
+            this.throwError("an IOException occurred while reading file \"images/reload.png\"");
         }
         reloadConfig.setPreferredSize(new Dimension(50, 50));
         reloadConfig.setBackground(Color.DARK_GRAY);
