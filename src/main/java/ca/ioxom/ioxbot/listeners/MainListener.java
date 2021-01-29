@@ -32,7 +32,7 @@ public class MainListener extends ListenerAdapter {
                     break;
                 case "help":
                     EmbedBuilder helpEmbed = new EmbedBuilder()
-                            .setAuthor("ioxbot")
+                            .setAuthor("ioxbot, version " + Main.VERSION)
                             .setColor(config.getEmbedColour())
                             .addField(
                                     "ping", "checks the current ping in ms of ioxbot" +
@@ -63,7 +63,7 @@ public class MainListener extends ListenerAdapter {
                     //we just generate a boolean to see which side
                     boolean tails = Main.random.nextBoolean();
                     EmbedBuilder coinflipEmbed = new EmbedBuilder()
-                            .setAuthor("ioxbot")
+                            .setAuthor("ioxbot, version " + Main.VERSION)
                             .setColor(config.getEmbedColour())
                             .setTitle("You flipped a coin!")
                             .setThumbnail(tails ? "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_tails.jpg" : "https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/coin_heads.jpg")
@@ -79,7 +79,7 @@ public class MainListener extends ListenerAdapter {
                         channel.sendMessage(new EmbedBuilder().setDescription("no thanks mate").build()).queue();
                     } else {
                         EmbedBuilder beltEmbed = new EmbedBuilder()
-                                .setAuthor("ioxbot")
+                                .setAuthor("ioxbot, version " + Main.VERSION)
                                 .setColor(config.getEmbedColour())
                                 .setImage("https://raw.githubusercontent.com/Ioxom/IoxBot/master/src/main/resources/images/belt.png")
                                 .setDescription(belter + " gives the belt to " + belted);
@@ -120,7 +120,7 @@ public class MainListener extends ListenerAdapter {
                     switch (messageContent[1]) {
                         case "help":
                             EmbedBuilder cfgHelpEmbed = new EmbedBuilder()
-                                    .setAuthor("ioxbot")
+                                    .setAuthor("ioxbot, version " + Main.VERSION)
                                     .setColor(config.getEmbedColour())
                                     .addField("admins", "options: `add <user id>`, `remove <user id>`, `clear`", false)
                                     .addField("youtubeblacklist", "options: `add <user id>`, `remove <user id>`, `clear`", false)
@@ -271,7 +271,7 @@ public class MainListener extends ListenerAdapter {
                         case "print":
                         case "current":
                             EmbedBuilder currentConfigEmbed = new EmbedBuilder()
-                                    .setAuthor("ioxbot")
+                                    .setAuthor("ioxbot, version " + Main.VERSION)
                                     .setColor(config.getEmbedColour())
                                     .setDescription(config.toString())
                                     .setFooter("use " + config.prefix + "cfg help for help with config");

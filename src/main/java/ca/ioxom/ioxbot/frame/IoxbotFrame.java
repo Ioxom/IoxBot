@@ -5,7 +5,6 @@ import ca.ioxom.ioxbot.config.ReloadConfig;
 import net.dv8tion.jda.api.entities.User;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;

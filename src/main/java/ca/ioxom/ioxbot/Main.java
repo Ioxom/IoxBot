@@ -17,12 +17,11 @@ import java.util.Properties;
 import java.util.Random;
 
 public class Main {
-    public static ConfigObject config = new ConfigObject();
+    public static final ConfigObject config = new ConfigObject();
     public static final Random random = new Random();
+    //get version
     public static String VERSION;
-    public static IoxbotFrame frame;
-    public static void main(String[] args) {
-        //get version
+    static {
         try {
             Properties properties = new Properties();
             String fileName = "ioxbot.properties";
@@ -40,7 +39,10 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public static IoxbotFrame frame;
+    public static void main(String[] args) {
         //create frame
         frame = new IoxbotFrame();
         frame.init();
