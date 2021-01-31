@@ -20,7 +20,10 @@ public class CommandMethods {
         //delete youtube
         Message message = event.getMessage();
         User author = event.getAuthor();
-        if (message.getContentRaw().contains("https://www.youtu") || message.getContentRaw().contains("www.youtube.com")) {
+        if (message.getContentRaw().contains("https://youtu") ||
+                message.getContentRaw().contains("https://youtube.com") ||
+                message.getContentRaw().contains("https://www.youtube.com") ||
+                message.getContentRaw().contains("https://www.youtu")) {
             for (long id : Main.config.youtubeBlacklist) {
                 if (id == author.getIdLong()) {
                     message.delete().queue();
