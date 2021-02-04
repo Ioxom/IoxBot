@@ -3,6 +3,7 @@ package ca.ioxom.ioxbot.config;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.awt.Color;
 import java.io.File;
@@ -186,7 +187,7 @@ public class ConfigObject {
     }
 
     public void writeCurrentConfig() {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         try {
             mapper.writeValue(new File("config.json"), this);
             frame.logMain("wrote current configuration to config.json");
