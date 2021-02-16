@@ -7,7 +7,7 @@ plugins {
 mainClassName = 'ca.ioxom.ioxbot.Main'
 group 'ca.ioxom'
 version '0.2.2'
-def jdaVersion = '4.2.0_227'
+def jdaVersion = '4.2.0_228'
 def jacksonVersion = '2.12.1'
 
 repositories {
